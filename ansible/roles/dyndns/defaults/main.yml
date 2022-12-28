@@ -1,0 +1,3 @@
+---
+dyndns_domain: "{{ lookup('ansible.builtin.env', 'DYNDNS_DOMAIN') }}"
+dyndns_token: "{{ lookup('ansible.builtin.env', 'DYNDNS_TOKEN') }}"
