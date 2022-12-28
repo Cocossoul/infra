@@ -1,0 +1,104 @@
+storage:
+  type: sqlite
+  path: /srv/data.db
+
+alerting:
+  discord:
+    webhook-url: "${ discord_webhook }"
+
+endpoints:
+  - name: homepage
+    url: "https://cocopaps.com"
+    interval: 30s
+    group: 1. public
+    conditions:
+      - "[STATUS] == 200"         # Status must be 200
+      - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
+
+  - name: mealie
+    url: "https://mealie.cocopaps.com"
+    interval: 30s
+    group: 2. private
+    conditions:
+      - "[STATUS] == 200"         # Status must be 200
+      - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
+
+  - name: cloud
+    url: "https://cloud.cocopaps.com"
+    interval: 30s
+    group: 2. private
+    conditions:
+      - "[STATUS] == 200"         # Status must be 200
+      - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
+
+  - name: passbolt
+    url: "https://passbolt.cocopaps.com"
+    interval: 30s
+    group: 2. private
+    conditions:
+      - "[STATUS] == 200"         # Status must be 200
+      - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
+
+  - name: cloud dns
+    url: "8.8.8.8"
+    interval: 30s
+    group: 3. dns
+    dns:
+      query-name: "cloud.cocopaps.com"
+      query-type: "A"
+    conditions:
+      - "[DNS_RCODE] == NOERROR"
+
+  - name: passbolt dns
+    url: "8.8.8.8"
+    interval: 30s
+    group: 3. dns
+    dns:
+      query-name: "passbolt.cocopaps.com"
+      query-type: "A"
+    conditions:
+      - "[DNS_RCODE] == NOERROR"
+
+  - name: homepage dns
+    url: "8.8.8.8"
+    interval: 30s
+    group: 3. dns
+    dns:
+      query-name: "home.cocopaps.com"
+      query-type: "A"
+    conditions:
+      - "[DNS_RCODE] == NOERROR"
+
+  - name: gatus dns
+    url: "8.8.8.8"
+    interval: 30s
+    group: 3. dns
+    dns:
+      query-name: "gatus.cocopaps.com"
+      query-type: "A"
+    conditions:
+      - "[DNS_RCODE] == NOERROR"
