@@ -1,0 +1,34 @@
+---
+- name: Install the required packages for WOL (ethtool and ifupdown)
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - ethtool
+      - ifupdown
+
+- name: Activate WOL for this session
+  become: true
+  command: /usr/sbin/ethtool -s {{ wol_interface }} wol g
+  changed_when: false
+
+- name: Install the WOL systemd service to make it persistent
+  become: true
+  template:
+    src: wol.service.j2
+    dest: /etc/systemd/system/wol.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: "restart wol service"
+
+- name: Make sure the WOL systemd service is started
+  become: true
+  ansible.builtin.systemd:
+    name: wol.service
+    state: started
+    enabled: true
+    masked: no
+
+- name: Get the network informations to setup the NAT and write WOL command
+  debug:
+    var: ansible_all_ipv4_addresses

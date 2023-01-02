@@ -1,0 +1,20 @@
+---
+- name: Install rsync
+  become: true
+  apt:
+    name: rsync
+    state: latest
+
+- name: Synchronize service configuration files with rsync
+  become: true
+  ansible.posix.synchronize:
+    src: "{{ playbook_dir }}/home_server/srv"
+    dest: /
+  notify:
+    - "restart home_server services"
+
+- name: Make sure the containers managed by docker compose are started.
+  community.docker.docker_compose:
+    project_name: home_server
+    project_src: /srv
+    state: present

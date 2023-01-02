@@ -1,0 +1,26 @@
+version: "3.9"
+volumes:
+  youp0m_static:
+    driver: local
+services:
+  youp0m:
+    expose:
+      - 8080
+    volumes:
+      - youp0m_static:/srv/static
+    image: nemunaire/youp0m:latest
+  nginx:
+    ports:
+      - 80:80
+      - 443:433
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TZ=Europe/Paris
+      - URL=corentinpape.com
+      - SUBDOMAINS=youp0m
+      - VALIDATION=http
+      - EMAIL=saulunaire@gmail.com
+    image: linuxserver/swag
+    volumes:
+      - ./nginx:/config/nginx/

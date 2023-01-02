@@ -1,0 +1,14 @@
+---
+- name: Fetch node-exporter from Github releases
+  ansible.builtin.unarchive:
+    src: https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.{{ node_exporter_version }}-amd64.tar.gz
+    dest: /usr/bin/
+    remote_src: yes
+
+- name: download and unzip node exporter if not exist
+  unarchive:
+    src: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz"
+    dest: /tmp/
+    remote_src: yes
+    validate_certs: false
+  when: __check_node_exporter_present.stat.exists == false or not __get_node_exporter_version.stdout == node_exporter_version

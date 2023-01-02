@@ -1,0 +1,48 @@
+---
+- name: Add Docker GPG apt Key
+  become: true
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  become: true
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Update apt with the new cache and install docker-ce
+  become: true
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+  notify: "restart docker service"
+
+- name: Install pip
+  become: true
+  apt:
+    name: python3-pip
+    state: latest
+
+- name: Install the Python docker library
+  pip:
+    name:
+      - docker
+      - docker-compose
+
+- name: Make sure the Docker service is started
+  become: true
+  ansible.builtin.systemd:
+    name: docker.service
+    state: started
+    enabled: true
+    masked: no
+
+
+- name: Add '{{ ansible_user }}' to docker group
+  become: true
+  user:
+    name: '{{ ansible_user }}'
+    groups: docker
+    append: yes

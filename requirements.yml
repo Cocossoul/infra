@@ -1,0 +1,5 @@
+---
+collections:
+- devsec.hardening
+- community.docker
+- ansible.posix

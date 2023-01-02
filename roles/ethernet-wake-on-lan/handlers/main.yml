@@ -1,0 +1,10 @@
+---
+- name: Restart the WOL systemd service
+  become: true
+  ansible.builtin.systemd:
+    name: wol.service
+    state: restarted
+    daemon_reload: yes
+    enabled: true
+    masked: no
+  listen: "restart wol service"

@@ -1,0 +1,31 @@
+---
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    update_cache: yes
+    upgrade: 'yes'
+    cache_valid_time: 86400 # Cache valid for a day
+
+- name: Install unattended-upgrades
+  become: true
+  apt:
+    pkg: unattended-upgrades
+    state: present
+
+- name: Create apt auto-upgrades configuration
+  become: true
+  copy:
+    src: 20auto-upgrades
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create unattended-upgrades configuration
+  become: true
+  copy:
+    src: 50unattended-upgrades
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    owner: root
+    group: root
+    mode: 0644

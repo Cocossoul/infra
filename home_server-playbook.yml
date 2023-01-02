@@ -1,0 +1,20 @@
+- name: Update my home server (website)
+  hosts: home_server
+  collections:
+    - devsec.hardening
+    - ansible.posix
+    - community.docker
+  roles:
+    - { role: copy_ssh_key, tags: copy_ssh_key }
+    - { role: ssh_hardening, tags: ssh_hardening }
+    - { role: core, tags: core }
+    - { role: ethernet-wake-on-lan, tags: ethernet-wake-on-lan }
+    - { role: docker, tags: docker }
+    - { role: home_server_services, tags: home_server_services }
+  vars:
+    ssh_pam_support: false
+    ssh_use_pam: false
+    ssh_kerberos_support: false
+    ssh_server_password_login: false
+    sshd_authenticationmethods: publickey
+    ssh_permit_root_login: without-password

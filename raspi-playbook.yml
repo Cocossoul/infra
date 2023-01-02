@@ -1,0 +1,20 @@
+- name: Update Raspberry Pi (Waker and Prometheus)
+  hosts: raspberry_pi
+  collections:
+    - devsec.hardening
+    - ansible.posix
+  roles:
+    - { role: copy_ssh_key, tags: raspi_copy_ssh_key }
+    - ssh_hardening
+    - core
+    - mosquitto
+    - waker
+    - prometheus
+    - grafana
+  vars:
+    ssh_pam_support: false
+    ssh_use_pam: false
+    ssh_kerberos_support: false
+    ssh_server_password_login: false
+    sshd_authenticationmethods: publickey
+

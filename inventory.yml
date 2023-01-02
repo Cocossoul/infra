@@ -1,0 +1,16 @@
+raspberry_pi:
+  hosts:
+    raspi:
+      ansible_host: broker.corentinpape.com
+      ansible_port: 1882
+  vars:
+    ansible_user: pi
+home_server:
+  hosts:
+    home:
+      ansible_host: corentinpape.com
+      ansible_port: 22
+  vars:
+    ansible_user: coco
+    ansible_host_key_checking: no
+    wol_interface: enp4s0
