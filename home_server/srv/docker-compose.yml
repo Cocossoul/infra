@@ -1,26 +1,56 @@
 version: "3.9"
+networks:
+  gateway:
+    driver: bridge
 volumes:
   youp0m_static:
     driver: local
+  traefik_static:
+    driver: local
 services:
+  traefik:
+    image: traefik:v2.9
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - traefik_static:/srv/
+      - ./traefik/traefik.yml:/traefik.yml
+      - ./traefik/.htdigest:/srv/.htdigest
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+    networks:
+      - gateway
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=home_server_gateway"
+
+      # HTTPS management
+      - "traefik.http.routers.traefik.entryPoints=secure"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.corentinpape.com`)"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
+
+      # Redirect to api@internal (dashboard)
+      - "traefik.http.routers.traefik.service=api@internal"
+
+      # Adds a digest authentication
+      - "traefik.http.routers.traefik.middlewares=dash-auth"
+      - "traefik.http.middlewares.dash-auth.digestauth.usersfile=/srv/.htdigest"
   youp0m:
+    image: nemunaire/youp0m:latest
     expose:
       - 8080
     volumes:
       - youp0m_static:/srv/static
-    image: nemunaire/youp0m:latest
-  nginx:
-    ports:
-      - 80:80
-      - 443:433
-    environment:
-      - PUID=1000
-      - PGID=1001
-      - TZ=Europe/Paris
-      - URL=corentinpape.com
-      - SUBDOMAINS=youp0m
-      - VALIDATION=http
-      - EMAIL=saulunaire@gmail.com
-    image: linuxserver/swag
-    volumes:
-      - ./nginx:/config/nginx/
+    networks:
+      - gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=home_server_gateway
+
+      # HTTPS management
+      - traefik.http.routers.youp0m.entryPoints=secure
+      - traefik.http.routers.youp0m.rule=Host(`youp0m.corentinpape.com`)
+      - traefik.http.routers.youp0m.tls=true
+      - traefik.http.routers.youp0m.tls.certresolver=letsencrypt

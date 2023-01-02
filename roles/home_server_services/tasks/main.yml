@@ -12,6 +12,18 @@
     dest: /
   notify:
     - "restart home_server services"
+      #register changes and docker compose down before applying changes
+
+- name: Create Traefik password
+  become: true
+  shell: |
+    digest="$( printf "%s:%s:%s" "{{ traefik_user }}" traefik "{{ traefik_password }}" | md5sum | awk '{print $1}' )"
+    printf "%s:%s:%s\n" "{{ traefik_user }}" traefik "$digest" > /srv/traefik/.htdigest
+  args:
+    creates:
+      /srv/traefik/.htdigest
+  notify:
+    - "restart home_server services"
 
 - name: Make sure the containers managed by docker compose are started.
   community.docker.docker_compose:
