@@ -1,0 +1,14 @@
+name: Build the code
+
+on:
+  push:
+
+jobs:
+  ansible-check-syntax:
+    name: ansible-check-syntax
+    runs-on: ubuntu-latest
+    container: cocopaps/ansible-ci:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check Ansible playbook syntax
+        run: ansible-playbook -i inventory.yml playbook.yml --check-syntax
