@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Check Ansible playbook syntax
-        run: ansible-playbook -i inventory.yml playbook.yml --check-syntax
+        run: ansible-playbook -i inventory.yml playbook.yml --syntax-check
