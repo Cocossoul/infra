@@ -1,7 +1,7 @@
 ---
 - name: Install rsync
   become: true
-  ansible.posix.apt:
+  ansible.builtin.apt:
     name: rsync
     state: present
 
@@ -15,7 +15,7 @@
 
 - name: Create Traefik password
   become: true
-  ansible.posix.shell: |
+  ansible.builtin.shell: |
     set -o pipefail
     digest="$( printf "%s:%s:%s" "{{ traefik_user }}" traefik "{{ traefik_password }}" | md5sum | awk '{print $1}' )"
     printf "%s:%s:%s\n" "{{ traefik_user }}" traefik "$digest" > /srv/traefik/.htdigest
