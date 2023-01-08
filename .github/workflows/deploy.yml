@@ -1,0 +1,32 @@
+name: Deploy the infra using Ansible
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    container: cocopaps/ansible-ci:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy with Ansible playbook
+        uses: dawidd6/action-ansible-playbook@v2.6.1
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: 'false'
+          ANSIBLE_FORCE_COLOR: 'true'
+          ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
+          MOSQUITTO_USER: ${{secrets.MOSQUITTO_USER}}
+          MOSQUITTO_PASSWORD: ${{secrets.MOSQUITTO_PASSWORD}}
+          WAKER_PC_MAC_ADDR: ${{secrets.WAKER_PC_MAC_ADDR}}
+          TRAEFIK_USER: ${{secrets.TRAEFIK_USER}}
+          TRAEFIK_PASSWORD: ${{secrets.TRAEFIK_PASSWORD}}
+        with:
+          playbook: playbook.yml
+          directory: ./
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          requirements: requirements.yml
+          options: |
+            --inventory inventory.yml
+            --verbose
