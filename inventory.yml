@@ -8,7 +8,7 @@ raspberry_pi:
 home_server:
   hosts:
     home:
-      ansible_host: corentinpape.com
+      ansible_host: homeserver.corentinpape.com
       ansible_port: 22
   vars:
     ansible_user: coco
