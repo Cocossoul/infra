@@ -11,6 +11,6 @@ home_server:
       ansible_host: corentinpape.com
       ansible_port: 22
   vars:
-    ansible_user: root
+    ansible_user: coco
     ansible_host_key_checking: no
     wol_interface: enp4s0
