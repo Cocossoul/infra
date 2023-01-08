@@ -54,3 +54,20 @@ services:
       - traefik.http.routers.youp0m.rule=Host(`youp0m.corentinpape.com`)
       - traefik.http.routers.youp0m.tls=true
       - traefik.http.routers.youp0m.tls.certresolver=letsencrypt
+  homer:
+    image: b4bz/homer:latest
+    expose:
+      - 8080
+    volumes:
+      - ./homer/assets/:/www/assets
+    networks:
+      - gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=home_server_gateway
+
+      # HTTPS management
+      - traefik.http.routers.homer.entryPoints=secure
+      - traefik.http.routers.homer.rule=Host(`home.corentinpape.com`)
+      - traefik.http.routers.homer.tls=true
+      - traefik.http.routers.homer.tls.certresolver=letsencrypt
