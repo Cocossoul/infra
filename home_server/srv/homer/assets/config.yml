@@ -88,7 +88,7 @@ services:
       - name: "My Github"
         icon: "fa-brands fa-github"
         subtitle: "My Github account"
-        url: "https://github.corentinpape.com"
+        url: "https://github.com/Cocossoul"
       - name: "Service health"
         icon: "fa-solid fa-heart-pulse"
         subtitle: "Monitor availability with Uptime-Kuma"
