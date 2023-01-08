@@ -1,0 +1,4 @@
+baseURL = 'https://blog.corentinpape.com'
+languageCode = 'en-us'
+title = 'My blog'
+theme = "bootstrap"
