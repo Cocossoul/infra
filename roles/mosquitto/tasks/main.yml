@@ -17,7 +17,7 @@
 
 - name: Create Mosquitto password file
   become: true
-  ansible.builtin.command: mosquitto_passwd -c /etc/mosquitto/passwd.txt "{{ lookup('ansible.builtin.env', 'MOSQUITTO_USER', default='admin') }}" "{{ lookup('ansible.builtin.env', 'MOSQUITTO_PASSWORD', default='admin') }}"
+  ansible.builtin.command: mosquitto_passwd -c /etc/mosquitto/passwd.txt "{{ mosquitto_user }}" "{{ mosquitto_password }}"
   args:
     creates: /etc/mosquitto/passwd.txt
   notify: "restart mosquitto service"
@@ -28,4 +28,4 @@
     name: mosquitto.service
     state: started
     enabled: true
-    masked: no
+    masked: false

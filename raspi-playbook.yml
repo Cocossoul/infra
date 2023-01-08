@@ -17,4 +17,3 @@
     ssh_kerberos_support: false
     ssh_server_password_login: false
     sshd_authenticationmethods: publickey
-

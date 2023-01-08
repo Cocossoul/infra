@@ -1,9 +1,9 @@
 ---
 - name: Install rsync
   become: true
-  apt:
+  ansible.posix.apt:
     name: rsync
-    state: latest
+    state: present
 
 - name: Synchronize service configuration files with rsync
   become: true
@@ -12,11 +12,11 @@
     dest: /
   notify:
     - "restart home_server services"
-      #register changes and docker compose down before applying changes
 
 - name: Create Traefik password
   become: true
-  shell: |
+  ansible.posix.shell: |
+    set -o pipefail
     digest="$( printf "%s:%s:%s" "{{ traefik_user }}" traefik "{{ traefik_password }}" | md5sum | awk '{print $1}' )"
     printf "%s:%s:%s\n" "{{ traefik_user }}" traefik "$digest" > /srv/traefik/.htdigest
   args:

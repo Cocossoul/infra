@@ -6,7 +6,7 @@
   notify: "restart waker service"
 
 - name: Get the waker script python requirements from github
-  get_url:
+  ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/Cocossoul/wifi-wake-on-lan/main/requirements.txt
     dest: /home/pi/requirements.txt
     owner: pi
@@ -20,7 +20,7 @@
   notify: "restart waker service"
 
 - name: Install the waker python script from Github
-  get_url:
+  ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/Cocossoul/wifi-wake-on-lan/main/waker.py
     dest: /home/pi/waker.py
     owner: pi
@@ -29,7 +29,7 @@
   notify: "restart waker service"
 
 - name: Install the waker bash script
-  template:
+  ansible.builtin.template:
     src: waker.sh
     dest: /home/pi/waker.sh
     owner: pi
@@ -39,7 +39,7 @@
 
 - name: Install the waker systemd service
   become: true
-  copy:
+  ansible.builtin.copy:
     src: waker.service
     dest: /etc/systemd/system/waker.service
     owner: root
@@ -53,4 +53,4 @@
     name: waker.service
     state: started
     enabled: true
-    masked: no
+    masked: false

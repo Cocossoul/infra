@@ -3,8 +3,8 @@
   become: true
   ansible.builtin.systemd:
     name: docker.service
-    daemon_reload: yes
+    daemon_reload: true
     state: restarted
     enabled: true
-    masked: no
+    masked: false
   listen: "restart docker service"
