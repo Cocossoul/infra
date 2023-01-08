@@ -8,7 +8,6 @@
     - { role: copy_ssh_key, tags: copy_ssh_key }
     - { role: ssh_hardening, tags: ssh_hardening }
     - { role: core, tags: core }
-      #- { role: ethernet-wake-on-lan, tags: ethernet-wake-on-lan }
     - { role: docker, tags: docker }
     - { role: home_server_services, tags: home_server_services }
   vars:

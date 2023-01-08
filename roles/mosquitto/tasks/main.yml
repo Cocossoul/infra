@@ -7,7 +7,7 @@
 
 - name: Create Mosquitto configuration
   become: true
-  copy:
+  ansible.builtin.copy:
     src: server.conf
     dest: /etc/mosquitto/conf.d/server.conf
     owner: root
