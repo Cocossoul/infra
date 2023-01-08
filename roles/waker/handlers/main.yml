@@ -4,7 +4,7 @@
   ansible.builtin.systemd:
     name: waker.service
     state: restarted
-    daemon_reload: yes
+    daemon_reload: true
     enabled: true
-    masked: no
+    masked: false
   listen: "restart waker service"

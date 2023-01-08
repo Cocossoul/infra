@@ -1,4 +1,4 @@
 #!/bin/sh
 while true ; do
-    python3 /home/pi/waker.py 'localhost' "{{ lookup('ansible.builtin.env', 'WAKER_PC_MAC_ADDR') }}" "{{ lookup('ansible.builtin.env', 'MOSQUITTO_USER', default='admin') }}" "{{ lookup('ansible.builtin.env', 'MOSQUITTO_PASSWORD', default='admin') }}"
+    python3 /home/pi/waker.py 'localhost' "{{ waker_pc_mac_address }}" "{{ mosquitto_user }}" "{{ mosquitto_password }}"
 done

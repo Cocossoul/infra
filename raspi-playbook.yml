@@ -9,12 +9,9 @@
     - core
     - mosquitto
     - waker
-    - prometheus
-    - grafana
   vars:
     ssh_pam_support: false
     ssh_use_pam: false
     ssh_kerberos_support: false
     ssh_server_password_login: false
     sshd_authenticationmethods: publickey
-

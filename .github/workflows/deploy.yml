@@ -19,7 +19,7 @@ jobs:
           ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
           MOSQUITTO_USER: ${{secrets.MOSQUITTO_USER}}
           MOSQUITTO_PASSWORD: ${{secrets.MOSQUITTO_PASSWORD}}
-          WAKER_PC_MAC_ADDR: ${{secrets.WAKER_PC_MAC_ADDR}}
+          WAKER_PC_MAC_ADDRESS: ${{secrets.WAKER_PC_MAC_ADDRESS}}
           TRAEFIK_USER: ${{secrets.TRAEFIK_USER}}
           TRAEFIK_PASSWORD: ${{secrets.TRAEFIK_PASSWORD}}
         with:
