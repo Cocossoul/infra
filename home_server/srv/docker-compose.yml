@@ -7,6 +7,10 @@ volumes:
     driver: local
   traefik_static:
     driver: local
+  prometheus_static:
+    driver: local
+  grafana_static:
+    driver: local
 services:
   traefik:
     image: traefik:v2.9
@@ -71,3 +75,46 @@ services:
       - traefik.http.routers.homer.rule=Host(`home.corentinpape.com`)
       - traefik.http.routers.homer.tls=true
       - traefik.http.routers.homer.tls.certresolver=letsencrypt
+  grafana:
+    image: grafana/grafana-oss:latest
+    expose:
+      - 3000
+    networks:
+      - gateway
+    volumes:
+      - grafana_static:/var/lib/grafana
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=home_server_gateway
+
+      # HTTPS management
+      - traefik.http.routers.grafana.entryPoints=secure
+      - traefik.http.routers.grafana.rule=Host(`grafana.corentinpape.com`)
+      - traefik.http.routers.grafana.tls=true
+      - traefik.http.routers.grafana.tls.certresolver=letsencrypt
+
+      # Adds a digest authentication
+      - "traefik.http.routers.grafana.middlewares=dash-auth"
+      - "traefik.http.middlewares.dash-auth.digestauth.usersfile=/srv/.htdigest"
+  prometheus:
+    image: prom/prometheus:latest
+    expose:
+      - 9090
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=home_server_gateway
+
+      # HTTPS management
+      - traefik.http.routers.prometheus.entryPoints=secure
+      - traefik.http.routers.prometheus.rule=Host(`prometheus.corentinpape.com`)
+      - traefik.http.routers.prometheus.tls=true
+      - traefik.http.routers.prometheus.tls.certresolver=letsencrypt
+
+      # Adds a digest authentication
+      - "traefik.http.routers.prometheus.middlewares=dash-auth"
+      - "traefik.http.middlewares.dash-auth.digestauth.usersfile=/srv/.htdigest"

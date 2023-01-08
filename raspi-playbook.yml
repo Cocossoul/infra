@@ -9,6 +9,7 @@
     - core
     - mosquitto
     - waker
+    - { role: cloudalchemy.node_exporter, tags: node_exporter }
   vars:
     ssh_pam_support: false
     ssh_use_pam: false

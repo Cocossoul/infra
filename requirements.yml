@@ -3,3 +3,5 @@ collections:
 - devsec.hardening
 - community.docker
 - ansible.posix
+roles:
+- cloudalchemy.node_exporter
