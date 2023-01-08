@@ -7,6 +7,10 @@ volumes:
     driver: local
   traefik_static:
     driver: local
+  jenkins-docker-certs:
+    driver: local
+  jenkins-data:
+    driver: local
 services:
   traefik:
     image: traefik:v2.9
@@ -113,3 +117,41 @@ services:
       - traefik.http.routers.homer.rule=Host(`home.${DOMAIN}`)
       - traefik.http.routers.homer.tls=true
       - traefik.http.routers.homer.tls.certresolver=letsencrypt
+  dind:
+    image: docker:dind
+    expose:
+      - 2376
+    privileged: true
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    volumes:
+      - jenkins-docker-certs:/certs/client
+      - jenkins-data:/var/jenkins_home
+    networks:
+      - gateway
+  jenkins:
+    image: cocopaps/jenkins:2.375.1
+    expose:
+      - 8080
+    environment:
+      - DOCKER_HOST=tcp://dind:2376
+      - DOCKER_CERT_PATH=/certs/client
+      - DOCKER_TLS_VERIFY=1
+    networks:
+      - gateway
+    volumes:
+      - jenkins-docker-certs:/certs/client:ro
+      - jenkins-data:/var/jenkins_home
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=home_server_gateway
+
+      # HTTPS management
+      - traefik.http.routers.jenkins.entryPoints=secure
+      - traefik.http.routers.jenkins.rule=Host(`jenkins.corentinpape.com`)
+      - traefik.http.routers.jenkins.tls=true
+      - traefik.http.routers.jenkins.tls.certresolver=letsencrypt
+
+      # Adds a digest authentication
+      - "traefik.http.routers.jenkins.middlewares=dash-auth"
+      - "traefik.http.middlewares.dash-auth.digestauth.usersfile=/srv/.htdigest"
