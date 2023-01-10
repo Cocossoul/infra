@@ -54,6 +54,12 @@ services:
       - traefik.http.routers.youp0m.rule=Host(`youp0m.corentinpape.com`)
       - traefik.http.routers.youp0m.tls=true
       - traefik.http.routers.youp0m.tls.certresolver=letsencrypt
+  gatus:
+    image: twinproduction/gatus
+    ports:
+      - 8080:8080
+    volumes:
+      - ./gatus/config.yaml:/config/config.yaml
   homer:
     image: b4bz/homer:latest
     expose:
