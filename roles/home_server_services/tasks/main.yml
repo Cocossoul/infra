@@ -30,3 +30,4 @@
     project_name: home_server
     project_src: /srv
     state: present
+    remove_orphans: true
