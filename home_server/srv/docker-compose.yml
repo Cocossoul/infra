@@ -54,6 +54,23 @@ services:
       - traefik.http.routers.youp0m.rule=Host(`youp0m.corentinpape.com`)
       - traefik.http.routers.youp0m.tls=true
       - traefik.http.routers.youp0m.tls.certresolver=letsencrypt
+  gatus:
+    image: twinproduction/gatus
+    expose:
+      - 8080
+    volumes:
+      - ./gatus/config.yaml:/config/config.yaml
+    networks:
+      - gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=home_server_gateway
+
+      # HTTPS management
+      - traefik.http.routers.devoups.entryPoints=secure
+      - traefik.http.routers.devoups.rule=Host(`devoups.corentinpape.com`)
+      - traefik.http.routers.devoups.tls=true
+      - traefik.http.routers.devoups.tls.certresolver=letsencrypt
   homer:
     image: b4bz/homer:latest
     expose:
