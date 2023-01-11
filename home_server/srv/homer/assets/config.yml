@@ -118,4 +118,4 @@ services:
       - name: "Raspi Monitoring"
         icon: "fa-brands fa-watchman-monitoring"
         subtitle: "Monitoring my Raspi with Netdata"
-        url: "https://broker.corentinpape.com:1889"
+        url: "http://broker.corentinpape.com:1889"
