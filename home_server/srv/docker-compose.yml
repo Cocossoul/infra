@@ -54,6 +54,31 @@ services:
       - traefik.http.routers.youp0m.rule=Host(`youp0m.corentinpape.com`)
       - traefik.http.routers.youp0m.tls=true
       - traefik.http.routers.youp0m.tls.certresolver=letsencrypt
+  netdata:
+    image: netdata/netdata:latest
+    expose:
+      - 19999
+    volumes:
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    networks:
+      - gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=home_server_gateway
+
+      # HTTPS management
+      - traefik.http.routers.netdata.entryPoints=secure
+      - traefik.http.routers.netdata.rule=Host(`monitoring.homeserver.corentinpape.com`)
+      - traefik.http.routers.netdata.tls=true
+      - traefik.http.routers.netdata.tls.certresolver=letsencrypt
   gatus:
     image: twinproduction/gatus
     expose:
