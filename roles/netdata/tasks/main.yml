@@ -1,0 +1,7 @@
+---
+- name: Get Netdata from the web
+  ansible.builtin.get_url:
+    url: https://my-netdata.io/kickstart.sh
+    dest: "~{{ ansible_user }}/netdata-kickstart.sh"
+    mode: 0700
+  notify: "install netdata"
