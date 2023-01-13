@@ -20,6 +20,7 @@
               sshpass
               # Might be needed for non-NixOS users
               glibcLocales
+              terraform
             ];
         };
     };

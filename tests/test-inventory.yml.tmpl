@@ -1,0 +1,9 @@
+home_server:
+  hosts:
+    home:
+      ansible_host: ${ test_home_server_ip }
+      ansible_port: 22
+  vars:
+    ansible_user: coco
+    ansible_password: coco
+    ansible_host_key_checking: no
