@@ -22,6 +22,7 @@ jobs:
           WAKER_PC_MAC_ADDRESS: ${{secrets.WAKER_PC_MAC_ADDRESS}}
           TRAEFIK_USER: ${{secrets.TRAEFIK_USER}}
           TRAEFIK_PASSWORD: ${{secrets.TRAEFIK_PASSWORD}}
+          DOMAIN: corentinpape.com
         with:
           playbook: playbook.yml
           directory: ./
