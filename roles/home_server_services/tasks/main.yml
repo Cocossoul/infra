@@ -46,3 +46,5 @@
     project_src: /srv
     state: present
     remove_orphans: true
+  environment:
+    DOMAIN: "{{ domain }}"

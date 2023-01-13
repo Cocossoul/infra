@@ -5,4 +5,6 @@
     project_src: /srv
     state: present
     restarted: true
+  environment:
+    DOMAIN: "{{ domain }}"
   listen: "restart home_server services"
