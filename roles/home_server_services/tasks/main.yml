@@ -1,7 +1,7 @@
 ---
 - name: Export required variables in environment
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "/etc/environment"
     line: "export DOMAIN={{ domain }}"
     regexp: "^export DOMAIN={{ domain }}$"
