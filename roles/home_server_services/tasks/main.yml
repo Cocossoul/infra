@@ -1,4 +1,12 @@
 ---
+- name: Export required variables in environment
+  become: true
+  lineinfile:
+    dest: "/etc/environment"
+    line: "export DOMAIN={{ domain }}"
+    regexp: "^export DOMAIN={{ domain }}$"
+    state: present
+
 - name: Install rsync
   become: true
   ansible.builtin.apt:
