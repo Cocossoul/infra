@@ -17,7 +17,7 @@ header: true # Set to false to hide the header
 # Optional: Different hotkey for search, defaults to "/"
 # hotkey:
 #   search: "Shift"
-footer: '<p>Infrastructure source code at <a href="https://github.com/Cocossoul/infra"> // Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>' # set false if you want to hide it.
+footer: '<p>Infrastructure source code on <a href="https://github.com/Cocossoul/infra">Github</a> // Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>' # set false if you want to hide it.
 
 columns: "3" # "auto" or number (must be a factor of 12: 1, 2, 3, 4, 6, 12)
 connectivityCheck: true # whether you want to display a message when the apps are not accessible anymore (VPN disconnected for example).
@@ -95,14 +95,14 @@ services:
         url: "https://www.instagram.com/aperceptionn/"
       - name: "Service health"
         icon: "fa-solid fa-heart-pulse"
-        subtitle: "Monitor availability with Uptime-Kuma"
+        subtitle: "Monitor availability with Gatus"
         url: "https://devoups.corentinpape.com"
   - name: "Internal"
     icon: "fa-solid fa-globe"
     items:
-      - name: "Nextcloud"
+      - name: "Home Cloud"
         icon: "fa-solid fa-hard-drive"
-        subtitle: "Nextcloud server"
+        subtitle: "Owncloud server"
         url: "https://cloud.corentinpape.com"
   - name: "Tools"
     icon: "fa-solid fa-screwdriver-wrench"
@@ -111,10 +111,6 @@ services:
         icon: "fa-solid fa-route"
         subtitle: "Traefik admin panel"
         url: "https://traefik.corentinpape.com"
-      - name: "Jenkins"
-        icon: "fa-brands fa-jenkins"
-        subtitle: "Jenkins self-hosted instance"
-        url: "https://jenkins.corentinpape.com"
       - name: "Home Server Monitoring"
         icon: "fa-brands fa-watchman-monitoring"
         subtitle: "Monitoring my Home Server with Netdata"
