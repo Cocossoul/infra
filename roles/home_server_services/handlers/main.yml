@@ -7,4 +7,6 @@
     restarted: true
   environment:
     DOMAIN: "{{ domain }}"
+    OWNCLOUD_USER: "{{ owncloud_user }}"
+    OWNCLOUD_PASSWORD: "{{ owncloud_password }}"
   listen: "restart home_server services"
