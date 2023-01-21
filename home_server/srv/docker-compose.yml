@@ -76,7 +76,7 @@ services:
 
       # HTTPS management
       - traefik.http.routers.netdata.entryPoints=secure
-      - traefik.http.routers.netdata.rule=Host(`monitoring.homeserver.corentinpape.com`)
+      - traefik.http.routers.netdata.rule=Host(`monitoring.homeserver.${DOMAIN}`)
       - traefik.http.routers.netdata.tls=true
       - traefik.http.routers.netdata.tls.certresolver=letsencrypt
   gatus:
