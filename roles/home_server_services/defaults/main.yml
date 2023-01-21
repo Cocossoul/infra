@@ -2,3 +2,5 @@
 traefik_user: "{{ lookup('ansible.builtin.env', 'TRAEFIK_USER', default='admin') }}"
 traefik_password: "{{ lookup('ansible.builtin.env', 'TRAEFIK_PASSWORD', default='admin') }}"
 domain: "{{ lookup('ansible.builtin.env', 'DOMAIN', default='corentinpape.com') }}"
+owncloud_user: "{{ lookup('ansible.builtin.env', 'OWNCLOUD_USER', default='admin') }}"
+owncloud_password: "{{ lookup('ansible.builtin.env', 'OWNCLOUD_PASSWORD', default='admin') }}"

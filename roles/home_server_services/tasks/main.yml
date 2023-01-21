@@ -48,3 +48,5 @@
     remove_orphans: true
   environment:
     DOMAIN: "{{ domain }}"
+    OWNCLOUD_USER: "{{ owncloud_user }}"
+    OWNCLOUD_PASSWORD: "{{ owncloud_password }}"
