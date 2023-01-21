@@ -22,7 +22,7 @@ services:
       - ./traefik/traefik.yml:/traefik.yml
       - ./traefik/.htdigest:/srv/.htdigest
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    restart: unless-stopped
+    restart: always
     networks:
       - gateway
     labels:
@@ -43,6 +43,7 @@ services:
       - "traefik.http.middlewares.dash-auth.digestauth.usersfile=/srv/.htdigest"
   youp0m:
     image: nemunaire/youp0m:latest
+    restart: unless-stopped
     expose:
       - 8080
     volumes:
@@ -60,6 +61,7 @@ services:
       - traefik.http.routers.youp0m.tls.certresolver=letsencrypt
   netdata:
     image: netdata/netdata:latest
+    restart: unless-stopped
     expose:
       - 19999
     volumes:
@@ -130,6 +132,7 @@ services:
       - gateway
   gatus:
     image: twinproduction/gatus
+    restart: unless-stopped
     expose:
       - 8080
     volumes:
@@ -147,6 +150,7 @@ services:
       - traefik.http.routers.devoups.tls.certresolver=letsencrypt
   homer:
     image: b4bz/homer:latest
+    restart: unless-stopped
     expose:
       - 8080
     volumes:
