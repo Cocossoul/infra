@@ -23,6 +23,8 @@ jobs:
           TRAEFIK_USER: ${{secrets.TRAEFIK_USER}}
           TRAEFIK_PASSWORD: ${{secrets.TRAEFIK_PASSWORD}}
           DOMAIN: corentinpape.com
+          OWNCLOUD_USER: ${{secrets.OWNCLOUD_USER}}
+          OWNCLOUD_PASSWORD: ${{secrets.OWNCLOUD_PASSWORD}}
         with:
           playbook: playbook.yml
           directory: ./
