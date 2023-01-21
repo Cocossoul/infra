@@ -10,15 +10,15 @@
   become: true
   ansible.builtin.lineinfile:
     dest: "/etc/environment"
-    line: "export OWNCLOUD_USER={{ owncloud_user }}"
-    regexp: "^export OWNCLOUD_USER={{ owncloud_user }}$"
+    line: "export OWNCLOUD_USER='{{ owncloud_user }}'"
+    regexp: "^export OWNCLOUD_USER='{{ owncloud_user }}'$"
     state: present
 - name: Export owncloud password variable in environment
   become: true
   ansible.builtin.lineinfile:
     dest: "/etc/environment"
-    line: "export OWNCLOUD_PASSWORD={{ owncloud_password }}"
-    regexp: "^export OWNCLOUD_PASSWORD={{ owncloud_password }}$"
+    line: "export OWNCLOUD_PASSWORD='{{ owncloud_password }}'"
+    regexp: "^export OWNCLOUD_PASSWORD='{{ owncloud_password }}'$"
     state: present
 
 - name: Export domain variable in environment
@@ -31,15 +31,15 @@
 - name: Export owncloud_user variable in environment
   ansible.builtin.lineinfile:
     dest: "~{{ ansible_user }}/.bashrc"
-    line: "export OWNCLOUD_USER={{ owncloud_user }}"
-    regexp: "^export OWNCLOUD_USER={{ owncloud_user }}$"
+    line: "export OWNCLOUD_USER='{{ owncloud_user }}'"
+    regexp: "^export OWNCLOUD_USER='{{ owncloud_user }}'$"
     state: present
 
 - name: Export owncloud_password variable in environment
   ansible.builtin.lineinfile:
     dest: "~{{ ansible_user }}/.bashrc"
-    line: "export OWNCLOUD_PASSWORD={{ owncloud_password }}"
-    regexp: "^export OWNCLOUD_PASSWORD={{ owncloud_password }}$"
+    line: "export OWNCLOUD_PASSWORD='{{ owncloud_password }}'"
+    regexp: "^export OWNCLOUD_PASSWORD='{{ owncloud_password }}'$"
     state: present
 
 - name: Install rsync
