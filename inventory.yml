@@ -5,6 +5,9 @@ raspberry_pi:
       ansible_port: 1882
   vars:
     ansible_user: pi
+    dyndns_server: "dynv6.com"
+    dyndns_domain: "cocopapsbroker.dynv6.net"
+    dyndns_token: "{{ lookup('ansible.builtin.env', 'DYNDNS_BROKER_TOKEN', default='') }}"
 home_server:
   hosts:
     home:
@@ -14,3 +17,6 @@ home_server:
     ansible_user: coco
     ansible_host_key_checking: no
     wol_interface: enp4s0
+    dyndns_server: "dynv6.com"
+    dyndns_domain: "cocopapshomeserver.dynv6.net"
+    dyndns_token: "{{ lookup('ansible.builtin.env', 'DYNDNS_HOMESERVER_TOKEN', default='') }}"
