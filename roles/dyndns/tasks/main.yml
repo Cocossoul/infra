@@ -23,6 +23,7 @@
   become: true
   ansible.builtin.cron:
     name: "update dyndns"
-    minute: "0"
-    hour: "2"
+    weekday: "*"
+    minute: "30"
+    hour: "*"
     job: "/etc/dyndns.sh"
