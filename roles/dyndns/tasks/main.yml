@@ -4,6 +4,11 @@
   ansible.builtin.apt:
     name: curl
 
+- name: Install the cron package
+  become: true
+  ansible.builtin.apt:
+    name: cron
+
 - name: Install dyndns update script
   become: true
   ansible.builtin.template:
