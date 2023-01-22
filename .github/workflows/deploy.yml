@@ -22,6 +22,8 @@ jobs:
           WAKER_PC_MAC_ADDRESS: ${{secrets.WAKER_PC_MAC_ADDRESS}}
           TRAEFIK_USER: ${{secrets.TRAEFIK_USER}}
           TRAEFIK_PASSWORD: ${{secrets.TRAEFIK_PASSWORD}}
+          DYNDNS_BROKER_TOKEN: ${{secrets.DYNDNS_BROKER_TOKEN}}
+          DYNDNS_HOMESERVER_TOKEN: ${{secrets.DYNDNS_HOMESERVER_TOKEN}}
           DOMAIN: corentinpape.com
           OWNCLOUD_USER: ${{secrets.OWNCLOUD_USER}}
           OWNCLOUD_PASSWORD: ${{secrets.OWNCLOUD_PASSWORD}}

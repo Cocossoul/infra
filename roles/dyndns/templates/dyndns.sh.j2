@@ -1,0 +1,25 @@
+#!/bin/sh -e
+file=$HOME/.dynv6.addr4
+set -v
+[ -e $file ] && old=`cat $file`
+
+address="$(curl https://api.ipify.org/?format=plain)"
+echo $address
+
+if [ -z "$address" ]; then
+  echo "no IPv4 address found"
+  exit 1
+fi
+
+current=$address
+
+if [ "$old" = "$current" ]; then
+  echo "IPv4 address unchanged"
+  exit
+fi
+
+# send addresses to dynv6
+curl "http://ipv4.dynv6.com/api/update?zone={{ dyndns_domain }}&ipv4=$current&token={{ dyndns_token }}"
+
+# save current address
+echo $current > $file
