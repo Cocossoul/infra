@@ -7,8 +7,6 @@ volumes:
     driver: local
   traefik_static:
     driver: local
-  owncloud_static:
-    driver: local
   redis_owncloud_static:
     driver: local
 services:
@@ -98,7 +96,7 @@ services:
       - OWNCLOUD_REDIS_HOST=redis_owncloud
       - HTTP_PORT=8080
     volumes:
-      - owncloud_static:/mnt/data
+      - /owncloud_data:/mnt/data
     networks:
       - gateway
     labels:
