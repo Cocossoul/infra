@@ -8,5 +8,5 @@ home_server:
     ansible_password: coco
     ansible_host_key_checking: no
     dyndns_server: "dynv6.com"
-    dyndns_domain: "cocohomeservertest.dynv6.net"
+    dyndns_domain: "{{ lookup('ansible.builtin.env', DYNDNS_HOMESERVERTEST_DOMAIN', default='') }}"
     dyndns_token: "{{ lookup('ansible.builtin.env', 'DYNDNS_HOMESERVERTEST_TOKEN', default='') }}"
