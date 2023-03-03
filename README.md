@@ -51,37 +51,37 @@ Or easily use traefik with default config if everything is Docker (docker labels
 
 ## Architecture
 
-infra/
-├─ services/
-│  ├─ gatus/
-│  │  ├─ Dockerfile
-│  │  ├─ default.tf
-│  │  ├─ config/
-│  │  │  ├─ config.yaml
-│  ├─ owncloud/
-├─ machines/
-│  ├─ homeserver/
-│  │  ├─ playbook.yml
-│  │  ├─ inventory.yml
-│  │  ├─ dns.tf
-│  │  ├─ configure.tf
-│  │  ├─ reverse-proxy.tf
-│  ├─ vultr/
-│  │  ├─ playbook.yml
-│  │  ├─ inventory.yml
-│  │  ├─ dns.tf
-│  │  ├─ configure.tf
-│  │  ├─ reverse-proxy.tf
-│  │  ├─ deploy.tf
-├─ reverse-proxy/
-│  ├─ Dockerfile
-│  ├─ traefik.yml
-│  ├─ default.tf
-├─ init.tf
-├─ services.tf
-├─ machines.tf
-├─ ansible/
-│  ├─ roles/
-│  ├─ ansible.cfg
-├─ bootstrap/
-│  ├─ tfstate_storage.tf
+    infra/
+    ├─ services/
+    │  ├─ gatus/
+    │  │  ├─ Dockerfile
+    │  │  ├─ default.tf
+    │  │  ├─ config/
+    │  │  │  ├─ config.yaml
+    │  ├─ owncloud/
+    ├─ machines/
+    │  ├─ homeserver/
+    │  │  ├─ playbook.yml
+    │  │  ├─ inventory.yml
+    │  │  ├─ dns.tf
+    │  │  ├─ configure.tf
+    │  │  ├─ reverse-proxy.tf
+    │  ├─ vultr/
+    │  │  ├─ playbook.yml
+    │  │  ├─ inventory.yml
+    │  │  ├─ dns.tf
+    │  │  ├─ configure.tf
+    │  │  ├─ reverse-proxy.tf
+    │  │  ├─ deploy.tf
+    ├─ reverse-proxy/
+    │  ├─ Dockerfile
+    │  ├─ traefik.yml
+    │  ├─ default.tf
+    ├─ init.tf
+    ├─ services.tf
+    ├─ machines.tf
+    ├─ ansible/
+    │  ├─ roles/
+    │  ├─ ansible.cfg
+    ├─ bootstrap/
+    │  ├─ tfstate_storage.tf
