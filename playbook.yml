@@ -1,5 +1,0 @@
----
-- name: Home server playbook
-  import_playbook: home_server-playbook.yml
-- name: Raspi playbook
-  import_playbook: raspi-playbook.yml

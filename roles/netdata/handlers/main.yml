@@ -1,5 +1,0 @@
----
-- name: Install Netdata with the installer script
-  become: true
-  ansible.builtin.command: "~{{ ansible_user }}/netdata-kickstart.sh --stable-channel --disable-telemetry"
-  listen: "install netdata"
