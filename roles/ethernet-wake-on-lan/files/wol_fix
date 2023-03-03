@@ -1,2 +1,0 @@
-#!/bin/sh
-/sbin/ethtool -s enp4s0 wol g
