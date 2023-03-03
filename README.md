@@ -59,6 +59,7 @@ Or easily use traefik with default config if everything is Docker (docker labels
     │  │  ├─ config/
     │  │  │  ├─ config.yaml
     │  ├─ owncloud/
+    │  │  ├─ default.tf
     ├─ machines/
     │  ├─ homeserver/
     │  │  ├─ playbook.yml
