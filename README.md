@@ -4,13 +4,13 @@
 
 The specifications for designing the infrastructure, the most important first:
 
-- Should be testable (deployment + applications)
-- Should be resilient (state stored in safe places, easy to redeploy, save important data)
-- Should be easy to add other services and machines to the infrastructure
-- Should be entirely automated (one command to deploy, update and destroy)
-- Should be easy to understand
-- Should be updatable and destroyable in one command
-- Should not have a loooot of secrets and variables
+- [ ] Should be testable (deployment + applications)
+- [ ] Should be resilient (state stored in safe places, easy to redeploy, save important data)
+- [x] Should be easy to add other services and machines to the infrastructure
+- [x] Should be entirely automated (one command to deploy, update and destroy)
+- [x] Should be easy to understand
+- [x] Should be updatable and destroyable in one command
+- [ ] Should not have a loooot of secrets and variables
 
 ## Resources
 
