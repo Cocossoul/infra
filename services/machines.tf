@@ -29,3 +29,17 @@ module "vultr_netdata" {
   machine_name = local.vultr_machine.name
 }
 # -----------------------------------------------------------------------------
+locals {
+    raspipcgamer_machine = {
+        dyndns_domain = "cocopapsraspi.duckdns.org"
+        name = "raspipcgamer"
+    }
+}
+resource "cloudflare_record" "broker" {
+  zone_id = data.cloudflare_zone.cocopaps.name
+  name    = "broker"
+  value   = local.raspipcgamer_machine.dyndns_domain
+  type    = "CNAME"
+  ttl     = 3600
+}
+# -----------------------------------------------------------------------------
