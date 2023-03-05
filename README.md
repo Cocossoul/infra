@@ -8,9 +8,9 @@ The specifications for designing the infrastructure, the most important first:
 - [ ] Should be resilient (state stored in safe places, easy to redeploy, save important data)
 - [x] Should be easy to add other services and machines to the infrastructure
 - [x] Should be entirely automated (one command to deploy, update and destroy)
-- [x] Should be easy to understand
+- [ ] Should be easy to understand
 - [x] Should be updatable and destroyable in one command
-- [ ] Should not have a loooot of secrets and variables
+- [x] Should not have a loooot of secrets and variables
 
 ## Resources
 
@@ -48,6 +48,26 @@ Gatus
 
 One reverse proxy per machine -> should be solved by Kubernetes
 Or easily use traefik with default config if everything is Docker (docker labels not on docker-compose) -> I like that better
+
+## Secrets
+
+To be exported to the env:
+
+- TF_VAR_cloudflare_token
+- VULTR_API_KEY
+- TF_VAR_dyndns_token
+- DOCKER_USERNAME
+- DOCKER_PASSWORD
+- TF_VAR_owncloud_admin_username
+- TF_VAR_owncloud_admin_password
+
+## Optim
+
+Make modules for services to have a true PaaS
+
+## Bugs
+
+Dyndns not supported yet
 
 ## Architecture
 
