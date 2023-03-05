@@ -1,4 +1,18 @@
 ---
+- name: Install required packages
+  become: true
+  ansible.builtin.apt:
+    name:
+      - lsb-release
+      - ca-certificates
+      - curl
+      - gnupg
+    state: present
+
+- name: Store Ubuntu release name
+  ansible.builtin.shell: lsb_release -cs
+  register: lsb_release
+
 - name: Add Docker GPG apt Key
   become: true
   ansible.builtin.apt_key:
@@ -8,7 +22,7 @@
 - name: Add Docker Repository
   become: true
   ansible.builtin.apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    repo: deb https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable
     state: present
 
 - name: Update apt with the new cache and install docker-ce
