@@ -1,0 +1,19 @@
+- name: Configure the Vultr machine
+  hosts: vultr
+  collections:
+    - devsec.hardening
+    - ansible.posix
+    - community.docker
+  roles:
+    - { role: copy_ssh_key, tags: copy_ssh_key }
+    - { role: ssh_hardening, tags: ssh_hardening }
+    - { role: dyndns, tags: dyndns }
+    - { role: core, tags: core }
+    - { role: docker, tags: docker }
+  vars:
+    ssh_pam_support: false
+    ssh_use_pam: false
+    ssh_kerberos_support: false
+    ssh_server_password_login: false
+    sshd_authenticationmethods: publickey
+    ssh_permit_root_login: without-password
