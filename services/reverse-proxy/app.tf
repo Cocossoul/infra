@@ -14,15 +14,12 @@ resource "null_resource" "reverse-proxy_build" {
 
   provisioner "local-exec" {
     working_dir = "${path.module}/src"
-    environment = {
-      MACHINE_NAME = var.machine_name
-    }
     command = "./build.sh"
   }
 }
 
 data "docker_registry_image" "reverse-proxy" {
-  name = "cocopaps/reverse-proxy${var.machine_name}"
+  name = "cocopaps/reverse-proxy"
   depends_on = [
     null_resource.reverse-proxy_build // On this data source bc otherwise the docker provider tries to fetch it and gets a 401 if it does not exist yet
   ]

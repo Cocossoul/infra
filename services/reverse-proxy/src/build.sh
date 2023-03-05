@@ -2,7 +2,7 @@
 
 set -e
 
-IMAGE_NAME="cocopaps/reverse-proxy${MACHINE_NAME}"
+IMAGE_NAME="cocopaps/reverse-proxy"
 
 docker build --tag "${IMAGE_NAME}" .
 
