@@ -9,12 +9,12 @@
     {
       "Effect": "Allow",
       "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
-      "Resource": "arn:aws:s3:::${terraform_state_bucket}/machines.tf"
+      "Resource": "arn:aws:s3:::${terraform_state_bucket}/infra/machines.tf"
     },
     {
       "Effect": "Allow",
       "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
-      "Resource": "arn:aws:s3:::${terraform_state_bucket}/services.tf"
+      "Resource": "arn:aws:s3:::${terraform_state_bucket}/infra/services.tf"
     },
     {
       "Effect": "Allow",
