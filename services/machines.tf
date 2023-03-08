@@ -1,7 +1,15 @@
+data "terraform_remote_state" "machines" {
+  backend = "local"
+
+  config = {
+    path = "../machines/terraform.tfstate"
+  }
+}
+
 # -----------------------------------------------------------------------------
 locals {
     vultr_machine = {
-        dyndns_domain = "cocopapsvultr.duckdns.org"
+        dyndns_domain = data.terraform_remote_state.machines.outputs.vultr_dyndns_domain
         name = "vultr"
     }
 }
@@ -31,7 +39,7 @@ module "vultr_netdata" {
 # -----------------------------------------------------------------------------
 locals {
     raspipcgamer_machine = {
-        dyndns_domain = "cocopapsraspi.duckdns.org"
+        dyndns_domain = data.terraform_remote_state.machines.outputs.raspipcgamer_dyndns_domain
         name = "raspipcgamer"
     }
 }
@@ -45,7 +53,7 @@ resource "cloudflare_record" "broker" {
 # -----------------------------------------------------------------------------
 locals {
     homeserver_machine = {
-        dyndns_domain = "cocopapshomeserver.duckdns.org"
+        dyndns_domain = data.terraform_remote_state.machines.outputs.homeserver_dyndns_domain
         name = "homeserver"
     }
 }
