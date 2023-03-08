@@ -54,7 +54,7 @@ resource "docker_container" "minecraft_server" {
   }
   volumes {
     container_path = "/server/runtime"
-    host_path = "/minecraft_server_data"
+    host_path      = "/minecraft_server_data"
   }
   restart = "unless-stopped"
 }

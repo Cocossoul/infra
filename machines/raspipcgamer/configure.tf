@@ -1,5 +1,5 @@
 locals {
-    dyndns_domain = "cocopapsraspi.duckdns.org"
+  dyndns_domain = "cocopapsraspi.duckdns.org"
 }
 
 resource "null_resource" "ansible_configuration" {

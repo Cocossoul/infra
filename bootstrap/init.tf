@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     bucket         = "cocopaps-terraform-states"
     key            = "infra/bootstrap.tf"
-    region = "eu-west-3"
+    region         = "eu-west-3"
     dynamodb_table = "cocopaps-terraform-locks"
     encrypt        = true
   }

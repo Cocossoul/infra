@@ -14,7 +14,7 @@ resource "null_resource" "reverse-proxy_build" {
 
   provisioner "local-exec" {
     working_dir = "${path.module}/src"
-    command = "./build.sh"
+    command     = "./build.sh"
   }
 }
 

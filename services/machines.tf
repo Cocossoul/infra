@@ -4,7 +4,7 @@ data "terraform_remote_state" "machines" {
   config = {
     bucket         = "cocopaps-terraform-states"
     key            = "infra/machines.tf"
-    region = "eu-west-3"
+    region         = "eu-west-3"
     dynamodb_table = "cocopaps-terraform-locks"
     encrypt        = true
   }
@@ -12,10 +12,10 @@ data "terraform_remote_state" "machines" {
 
 # -----------------------------------------------------------------------------
 locals {
-    vultr_machine = {
-        dyndns_domain = data.terraform_remote_state.machines.outputs.vultr_dyndns_domain
-        name = "vultr"
-    }
+  vultr_machine = {
+    dyndns_domain = data.terraform_remote_state.machines.outputs.vultr_dyndns_domain
+    name          = "vultr"
+  }
 }
 provider "docker" {
   host     = "ssh://coco@${local.vultr_machine.dyndns_domain}:22"
@@ -42,10 +42,10 @@ module "vultr_netdata" {
 }
 # -----------------------------------------------------------------------------
 locals {
-    raspipcgamer_machine = {
-        dyndns_domain = data.terraform_remote_state.machines.outputs.raspipcgamer_dyndns_domain
-        name = "raspipcgamer"
-    }
+  raspipcgamer_machine = {
+    dyndns_domain = data.terraform_remote_state.machines.outputs.raspipcgamer_dyndns_domain
+    name          = "raspipcgamer"
+  }
 }
 resource "cloudflare_record" "broker" {
   zone_id = data.cloudflare_zone.cocopaps.zone_id
@@ -56,10 +56,10 @@ resource "cloudflare_record" "broker" {
 }
 # -----------------------------------------------------------------------------
 locals {
-    homeserver_machine = {
-        dyndns_domain = data.terraform_remote_state.machines.outputs.homeserver_dyndns_domain
-        name = "homeserver"
-    }
+  homeserver_machine = {
+    dyndns_domain = data.terraform_remote_state.machines.outputs.homeserver_dyndns_domain
+    name          = "homeserver"
+  }
 }
 provider "docker" {
   host     = "ssh://coco@${local.homeserver_machine.dyndns_domain}:1844"

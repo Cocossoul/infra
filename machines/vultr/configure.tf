@@ -1,5 +1,5 @@
 locals {
-    dyndns_domain = "cocopapsvultr.duckdns.org"
+  dyndns_domain = "cocopapsvultr.duckdns.org"
 }
 
 resource "local_file" "ansible_inventory" {
