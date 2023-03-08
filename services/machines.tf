@@ -1,8 +1,12 @@
 data "terraform_remote_state" "machines" {
-  backend = "local"
+  backend = "s3"
 
   config = {
-    path = "../machines/terraform.tfstate"
+    bucket         = "cocopaps-terraform-states"
+    key            = "infra/machines.tf"
+    region = "eu-west-3"
+    dynamodb_table = "cocopaps-terraform-locks"
+    encrypt        = true
   }
 }
 
