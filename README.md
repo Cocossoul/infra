@@ -73,6 +73,9 @@ The following secrets should be exported in the env:
 - TF_VAR_owncloud_admin_password
 - AWS_ACCESS_KEY_ID
 - AWS_SECRET_ACCESS_KEY
+- TF_VAR_mosquitto_user
+- TF_VAR_mosquitto_password
+- TF_VAR_gamerpc_mac_address
 
 ## Architecture
 

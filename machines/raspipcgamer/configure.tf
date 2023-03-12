@@ -13,6 +13,9 @@ resource "null_resource" "ansible_configuration" {
     environment = {
       DYNDNS_DOMAIN = local.dyndns_domain
       DYNDNS_TOKEN  = var.dyndns_token
+      MOSQUITTO_USER = var.mosquitto_user
+      MOSQUITTO_PASSWORD = var.mosquitto_password
+      WAKER_PC_MAC_ADDRESS = var.gamerpc_mac_address
     }
   }
 }
