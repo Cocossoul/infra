@@ -1,15 +1,3 @@
-module "youp0m" {
-  source                = "./youp0m"
-  domain_name           = data.cloudflare_zone.cocopaps.name
-  domain_zone_id        = data.cloudflare_zone.cocopaps.zone_id
-  machine_name          = local.homeserver_machine.name
-  machine_dyndns_domain = local.homeserver_machine.dyndns_domain
-  subdomain             = "youp0m"
-  providers = {
-    docker = docker.homeserver_machine
-  }
-}
-
 module "owncloud" {
   source                  = "./owncloud"
   domain_name             = data.cloudflare_zone.cocopaps.name
