@@ -5,6 +5,7 @@ endpoints:
   - name: blog
     url: "https://blog.cocopaps.com"
     interval: 30s
+    group: 1. public
     conditions:
       - "[STATUS] == 200"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
@@ -12,12 +13,14 @@ endpoints:
   - name: minecraft
     url: "tcp://mc.cocopaps.com:25565"
     interval: 30s
+    group: 2. private
     conditions:
       - "[CONNECTED] == true"
 
   - name: homepage
     url: "https://home.cocopaps.com"
     interval: 30s
+    group: 1. public
     conditions:
       - "[STATUS] == 200"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
@@ -25,6 +28,7 @@ endpoints:
   - name: cloud
     url: "https://cloud.cocopaps.com"
     interval: 30s
+    group: 2. private
     conditions:
       - "[STATUS] == 200"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
@@ -32,6 +36,7 @@ endpoints:
   - name: minecraft dns
     url: "8.8.8.8"
     interval: 30s
+    group: 3. dns
     dns:
       query-name: "mc.cocopaps.com"
       query-type: "A"
@@ -41,6 +46,7 @@ endpoints:
   - name: cloud dns
     url: "8.8.8.8"
     interval: 30s
+    group: 3. dns
     dns:
       query-name: "cloud.cocopaps.com"
       query-type: "A"
@@ -50,6 +56,7 @@ endpoints:
   - name: homepage dns
     url: "8.8.8.8"
     interval: 30s
+    group: 3. dns
     dns:
       query-name: "home.cocopaps.com"
       query-type: "A"
@@ -59,6 +66,7 @@ endpoints:
   - name: gatus dns
     url: "8.8.8.8"
     interval: 30s
+    group: 3. dns
     dns:
       query-name: "gatus.cocopaps.com"
       query-type: "A"
