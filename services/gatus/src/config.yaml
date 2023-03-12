@@ -1,3 +1,6 @@
+storage:
+  type: sqlite
+  path: /srv/data.db
 endpoints:
   - name: blog
     url: "https://blog.cocopaps.com"
