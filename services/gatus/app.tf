@@ -79,5 +79,15 @@ resource "docker_container" "gatus" {
     name = "gateway"
   }
 
+  volumes {
+    container_path = "/srv/"
+    volume_name    = docker_volume.gatus.name
+  }
+
   restart = "unless-stopped"
+}
+
+resource "docker_volume" "gatus" {
+  name   = "gatus_static"
+  driver = "local"
 }
