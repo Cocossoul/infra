@@ -18,7 +18,7 @@ endpoints:
       - "[CONNECTED] == true"
 
   - name: homepage
-    url: "https://home.cocopaps.com"
+    url: "https://cocopaps.com"
     interval: 30s
     group: 1. public
     conditions:
