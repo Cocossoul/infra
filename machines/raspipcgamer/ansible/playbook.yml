@@ -3,11 +3,13 @@
   collections:
     - devsec.hardening
     - ansible.posix
+    - community.general
   roles:
     - { role: copy_ssh_key, tags: copy_ssh_key }
     - { role: ssh_hardening, tags: ssh_hardening }
     - { role: core, tags: core }
     - { role: dyndns, tags: dyndns }
+    - { role: firewall, tags: firewall }
     - { role: mosquitto, tags: mosquitto }
     - { role: waker, tags: waker }
   vars:
