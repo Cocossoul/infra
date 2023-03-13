@@ -28,7 +28,6 @@ module "home" {
   source                = "./homer"
   domain_name           = data.cloudflare_zone.cocopaps.name
   domain_zone_id        = data.cloudflare_zone.cocopaps.zone_id
-  subdomain             = "home"
   machine_name          = local.vultr_machine.name
   machine_dyndns_domain = local.vultr_machine.dyndns_domain
   providers = {

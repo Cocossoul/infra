@@ -13,8 +13,16 @@ terraform {
 
 resource "cloudflare_record" "homer" {
   zone_id = var.domain_zone_id
-  name    = var.subdomain
+  name    = "@"
   value   = var.machine_dyndns_domain
+  type    = "CNAME"
+  ttl     = 3600
+}
+
+resource "cloudflare_record" "homer_alias" {
+  zone_id = var.domain_zone_id
+  name    = "home"
+  value   = var.domain_name
   type    = "CNAME"
   ttl     = 3600
 }
@@ -65,7 +73,7 @@ resource "docker_container" "homer" {
   }
   labels {
     label = "traefik.http.routers.homer.rule"
-    value = "Host(`${var.subdomain}.${var.domain_name}`)"
+    value = "Host(`home.${var.domain_name}`,`${var.domain_name}`)"
   }
   labels {
     label = "traefik.http.routers.homer.tls"
