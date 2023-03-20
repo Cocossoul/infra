@@ -12,6 +12,12 @@
     - { role: firewall, tags: firewall }
     - { role: mosquitto, tags: mosquitto }
     - { role: waker, tags: waker }
+  tasks:
+    - name: Allow all access to Mosquitto MQTT server port 1883
+      become: true
+      community.general.ufw:
+        rule: allow
+        port: 1883
   vars:
     ssh_pam_support: false
     ssh_use_pam: false
