@@ -12,17 +12,17 @@ terraform {
 }
 
 resource "cloudflare_record" "homer" {
-  zone_id = var.domain_zone_id
+  zone_id = var.domain.zone_id
   name    = "@"
-  value   = var.machine_dyndns_domain
+  value   = var.machine.dyndns_domain
   type    = "CNAME"
   ttl     = 3600
 }
 
 resource "cloudflare_record" "homer_alias" {
-  zone_id = var.domain_zone_id
+  zone_id = var.domain.zone_id
   name    = "home"
-  value   = var.domain_name
+  value   = var.domain.name
   type    = "CNAME"
   ttl     = 3600
 }
@@ -35,14 +35,14 @@ resource "null_resource" "homer_build" {
   provisioner "local-exec" {
     working_dir = "${path.module}/src"
     environment = {
-      MACHINE_NAME = var.machine_name
+      MACHINE_NAME = var.machine.name
     }
     command = "./build.sh"
   }
 }
 
 data "docker_registry_image" "homer" {
-  name = "cocopaps/homer${var.machine_name}"
+  name = "cocopaps/homer${var.machine.name}"
   depends_on = [
     null_resource.homer_build // On this data source bc otherwise the docker provider tries to fetch it and gets a 401 if it does not exist yet
   ]
@@ -73,7 +73,7 @@ resource "docker_container" "homer" {
   }
   labels {
     label = "traefik.http.routers.homer.rule"
-    value = "Host(`home.${var.domain_name}`,`${var.domain_name}`)"
+    value = "Host(`home.${var.domain.name}`,`${var.domain.name}`)"
   }
   labels {
     label = "traefik.http.routers.homer.tls"

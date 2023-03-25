@@ -27,18 +27,15 @@ module "vultr_reverse-proxy" {
   providers = {
     docker = docker.vultr_machine
   }
-  machine_name = local.vultr_machine.name
 }
 module "vultr_netdata" {
   source                = "./netdata"
-  domain_name           = data.cloudflare_zone.cocopaps.name
-  domain_zone_id        = data.cloudflare_zone.cocopaps.zone_id
-  machine_dyndns_domain = local.vultr_machine.dyndns_domain
+  domain           = data.cloudflare_zone.cocopaps
+  machine = local.vultr_machine
   subdomain             = "monitoring.vultr"
   providers = {
     docker = docker.vultr_machine
   }
-  machine_name = local.vultr_machine.name
 }
 # -----------------------------------------------------------------------------
 locals {
@@ -71,17 +68,14 @@ module "homeserver_reverse-proxy" {
   providers = {
     docker = docker.homeserver_machine
   }
-  machine_name = local.homeserver_machine.name
 }
 module "homeserver_netdata" {
   source                = "./netdata"
-  domain_name           = data.cloudflare_zone.cocopaps.name
-  domain_zone_id        = data.cloudflare_zone.cocopaps.zone_id
-  machine_dyndns_domain = local.homeserver_machine.dyndns_domain
+  domain           = data.cloudflare_zone.cocopaps
+  machine = local.homeserver_machine
   subdomain             = "monitoring.homeserver"
   providers = {
     docker = docker.homeserver_machine
   }
-  machine_name = local.homeserver_machine.name
 }
 # -----------------------------------------------------------------------------

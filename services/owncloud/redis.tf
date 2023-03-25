@@ -29,6 +29,7 @@ resource "docker_container" "redis" {
 
   restart = "unless-stopped"
 }
+
 resource "docker_volume" "redis" {
   name   = "redis_static"
   driver = "local"

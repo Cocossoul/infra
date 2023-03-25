@@ -12,9 +12,9 @@ terraform {
 }
 
 resource "cloudflare_record" "gatus" {
-  zone_id = var.domain_zone_id
+  zone_id = var.domain.zone_id
   name    = var.subdomain
-  value   = var.machine_dyndns_domain
+  value   = var.machine.dyndns_domain
   type    = "CNAME"
   ttl     = 3600
 }
@@ -27,14 +27,14 @@ resource "null_resource" "gatus_build" {
   provisioner "local-exec" {
     working_dir = "${path.module}/src"
     environment = {
-      MACHINE_NAME = var.machine_name
+      MACHINE_NAME = var.machine.name
     }
     command = "./build.sh"
   }
 }
 
 data "docker_registry_image" "gatus" {
-  name = "cocopaps/gatus${var.machine_name}"
+  name = "cocopaps/gatus${var.machine.name}"
   depends_on = [
     null_resource.gatus_build // On this data source bc otherwise the docker provider tries to fetch it and gets a 401 if it does not exist yet
   ]
@@ -65,7 +65,7 @@ resource "docker_container" "gatus" {
   }
   labels {
     label = "traefik.http.routers.gatus.rule"
-    value = "Host(`${var.subdomain}.${var.domain_name}`)"
+    value = "Host(`${var.subdomain}.${var.domain.name}`)"
   }
   labels {
     label = "traefik.http.routers.gatus.tls"

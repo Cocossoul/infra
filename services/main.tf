@@ -1,10 +1,8 @@
 module "owncloud" {
   source                  = "./owncloud"
-  domain_name             = data.cloudflare_zone.cocopaps.name
-  domain_zone_id          = data.cloudflare_zone.cocopaps.zone_id
+  domain             = data.cloudflare_zone.cocopaps
   subdomain               = "cloud"
-  machine_name            = local.homeserver_machine.name
-  machine_dyndns_domain   = local.homeserver_machine.dyndns_domain
+  machine            = local.homeserver_machine
   owncloud_admin_username = var.owncloud_admin_username
   owncloud_admin_password = var.owncloud_admin_password
   providers = {
@@ -14,11 +12,9 @@ module "owncloud" {
 
 module "gatus" {
   source                = "./gatus"
-  domain_name           = data.cloudflare_zone.cocopaps.name
-  domain_zone_id        = data.cloudflare_zone.cocopaps.zone_id
+  domain           = data.cloudflare_zone.cocopaps
   subdomain             = "gatus"
-  machine_name          = local.vultr_machine.name
-  machine_dyndns_domain = local.vultr_machine.dyndns_domain
+  machine          = local.vultr_machine
   providers = {
     docker = docker.vultr_machine
   }
@@ -26,22 +22,28 @@ module "gatus" {
 
 module "home" {
   source                = "./homer"
-  domain_name           = data.cloudflare_zone.cocopaps.name
-  domain_zone_id        = data.cloudflare_zone.cocopaps.zone_id
-  machine_name          = local.vultr_machine.name
-  machine_dyndns_domain = local.vultr_machine.dyndns_domain
+  domain           = data.cloudflare_zone.cocopaps
+  machine          = local.vultr_machine
   providers = {
     docker = docker.vultr_machine
   }
 }
 
+module "vault" {
+  source                  = "./vault"
+  domain             = data.cloudflare_zone.cocopaps
+  subdomain               = "vault"
+  machine            = local.vultr_machine
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
+
 # module "minecraft_server" {
 #   source                = "./minecraft_server"
-#   domain_name           = data.cloudflare_zone.cocopaps.name
-#   domain_zone_id        = data.cloudflare_zone.cocopaps.zone_id
+#   domain           = data.cloudflare_zone.cocopaps
 #   subdomain             = "mc"
-#   machine_name          = local.homeserver_machine.name
-#   machine_dyndns_domain = local.homeserver_machine.dyndns_domain
+#   machine          = local.homeserver_machine
 #   providers = {
 #     docker = docker.homeserver_machine
 #   }

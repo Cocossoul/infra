@@ -12,9 +12,9 @@ terraform {
 }
 
 resource "cloudflare_record" "netdata" {
-  zone_id = var.domain_zone_id
+  zone_id = var.domain.zone_id
   name    = var.subdomain
-  value   = var.machine_dyndns_domain
+  value   = var.machine.dyndns_domain
   type    = "CNAME"
   ttl     = 3600
 }
@@ -48,7 +48,7 @@ resource "docker_container" "netdata" {
   }
   labels {
     label = "traefik.http.routers.netdata.rule"
-    value = "Host(`${var.subdomain}.${var.domain_name}`)"
+    value = "Host(`${var.subdomain}.${var.domain.name}`)"
   }
   labels {
     label = "traefik.http.routers.netdata.tls"

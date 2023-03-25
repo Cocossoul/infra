@@ -12,9 +12,9 @@ terraform {
 }
 
 resource "cloudflare_record" "minecraft_server" {
-  zone_id = var.domain_zone_id
+  zone_id = var.domain.zone_id
   name    = var.subdomain
-  value   = var.machine_dyndns_domain
+  value   = var.machine.dyndns_domain
   type    = "CNAME"
   ttl     = 3600
 }
@@ -27,7 +27,7 @@ resource "null_resource" "minecraft_server_build" {
   provisioner "local-exec" {
     working_dir = "${path.module}/src"
     environment = {
-      MACHINE_NAME = var.machine_name
+      MACHINE_NAME = var.machine.name
     }
     command = "./build.sh"
   }

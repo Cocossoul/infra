@@ -12,9 +12,9 @@ terraform {
 }
 
 resource "cloudflare_record" "owncloud" {
-  zone_id = var.domain_zone_id
+  zone_id = var.domain.zone_id
   name    = var.subdomain
-  value   = var.machine_dyndns_domain
+  value   = var.machine.dyndns_domain
   type    = "CNAME"
   ttl     = 3600
 }
@@ -35,8 +35,8 @@ resource "docker_container" "owncloud" {
     internal = 8080
   }
   env = [
-    "OWNCLOUD_DOMAIN=${var.subdomain}.${var.domain_name}",
-    "OWNCLOUD_TRUSTED_DOMAINS=${var.subdomain}.${var.domain_name}",
+    "OWNCLOUD_DOMAIN=${var.subdomain}.${var.domain.name}",
+    "OWNCLOUD_TRUSTED_DOMAINS=${var.subdomain}.${var.domain.name}",
     "OWNCLOUD_ADMIN_USERNAME=${var.owncloud_admin_username}",
     "OWNCLOUD_ADMIN_PASSWORD=${var.owncloud_admin_password}",
     "OWNCLOUD_REDIS_ENABLED=true",
@@ -58,7 +58,7 @@ resource "docker_container" "owncloud" {
   }
   labels {
     label = "traefik.http.routers.owncloud.rule"
-    value = "Host(`${var.subdomain}.${var.domain_name}`)"
+    value = "Host(`${var.subdomain}.${var.domain.name}`)"
   }
   labels {
     label = "traefik.http.routers.owncloud.tls"
