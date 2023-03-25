@@ -30,10 +30,10 @@ module "home" {
 }
 
 module "vault" {
-  source                  = "./vault"
-  domain             = data.cloudflare_zone.cocopaps
-  subdomain               = "vault"
-  machine            = local.vultr_machine
+  source    = "./vault"
+  domain    = data.cloudflare_zone.cocopaps
+  subdomain = "vault"
+  machine   = local.vultr_machine
   providers = {
     docker = docker.homeserver_machine
   }
