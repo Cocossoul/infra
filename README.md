@@ -78,37 +78,46 @@ The following secrets should be exported in the env:
 ## Architecture
 
     infra/
-    ├─ services/
-    │  ├─ gatus/
-    │  │  ├─ Dockerfile
-    │  │  ├─ default.tf
-    │  │  ├─ config/
-    │  │  │  ├─ config.yaml
-    │  ├─ owncloud/
-    │  │  ├─ default.tf
-    ├─ machines/
-    │  ├─ homeserver/
-    │  │  ├─ playbook.yml
-    │  │  ├─ inventory.yml
-    │  │  ├─ dns.tf
-    │  │  ├─ configure.tf
-    │  │  ├─ reverse-proxy.tf
+    ├─ bootstrap/ # Bootstrapping Terraform (save tfstate on AWS)
+    ├─ machines/ # Contains machine declarations
+    │  ├─ init.tf
+    │  ├─ main.tf # Call the machines' modules
+    │  ├─ output.tf # Variables required for setting-up the services (DynDNS domains, ports, ...)
+    │  ├─ variables.tf # Variables needed to deploy machines
     │  ├─ vultr/
-    │  │  ├─ playbook.yml
-    │  │  ├─ inventory.yml
-    │  │  ├─ dns.tf
-    │  │  ├─ configure.tf
-    │  │  ├─ reverse-proxy.tf
-    │  │  ├─ deploy.tf
-    ├─ reverse-proxy/
-    │  ├─ Dockerfile
-    │  ├─ traefik.yml
-    │  ├─ default.tf
-    ├─ init.tf
-    ├─ services.tf
-    ├─ machines.tf
-    ├─ ansible/
-    │  ├─ roles/
+    │  │  ├─ ansible/ # Ansible configuration
+    │  │  │  ├─ playbook.yml
+    │  │  │  ├─ inventory.yml
+    │  │  │  ├─ ansible_script.sh
+    │  │  ├─ configure.tf # Use Ansible to configure the machine, with Terraform to detect configuration changes
+    │  │  ├─ outputs.tf # DynDNS domain to avoid variable declaration repeatition
+    │  │  ├─ variables.tf # Inputs variable (DNS token mostly)
+    │  ├─ homeserver/
+    │  │  ├─ ansible/
+    │  │  │  ├─ playbook.yml
+    │  │  │  ├─ inventory.yml
+    │  │  │  ├─ ansible_script.sh
+    │  │  ├─ configure.tf # Use Ansible to configure the machine, with Terraform to detect configuration changes
+    │  │  ├─ outputs.tf # DynDNS domain to avoid variable declaration repeatition
+    │  │  ├─ variables.tf # Inputs variable (DNS token mostly)
+    ├─ ansible/ # Shared Ansible resources
+    │  ├─ roles/ # Declaration of shared Ansible roles
     │  ├─ ansible.cfg
-    ├─ bootstrap/
-    │  ├─ tfstate_storage.tf
+    │  ├─ requirements.yml
+    ├─ services/ # Find all the services here, as Terraform module to deploy multiple of them if necessary
+    │  ├─ init.tf
+    │  ├─ machines.tf # Initialize machine's related providers (Docker providers), and machine related services like reverse-proxies
+    │  ├─ main.tf # Call the services's modules to deploy them on a machine
+    │  ├─ dns_domains.tf # Data sources of DNS zones to be used
+    │  ├─ variables.tf # Variables needed to deploy services
+    │  ├─ gatus/
+    │  │  ├─ variables.tf # Module's input variables (mostly for DNS config)
+    │  │  ├─ app.tf # Terraform code (Docker image and container). Use provider inheritance to deploy on the correct machine.
+    │  │  ├─ src/ # Source files to build the Docker image
+    │  │  │  ├─ Dockerfile
+    │  │  │  ├─ build.sh # Docker build commands
+    │  │  │  ├─ config.yaml # Actual config
+    │  ├─ owncloud/
+    │  │  ├─ app.tf # Some apps do not need configuration
+    │  │  ├─ redis.tf # One service can be comprised of multiple Docker containers
+    │  │  ├─ variables.tf
