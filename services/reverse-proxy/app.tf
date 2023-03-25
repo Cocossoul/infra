@@ -7,9 +7,15 @@ terraform {
   }
 }
 
+data "archive_file" "src" {
+  type        = "zip"
+  source_dir  = "${path.module}/src/"
+  output_path = "${path.module}/src.zip"
+}
+
 resource "null_resource" "reverse-proxy_build" {
   triggers = {
-    build_dir_sha1 = sha1(join("", [for f in fileset("${path.module}/src", "*") : filesha1("${path.module}/src/${f}")]))
+    src_hash = "${data.archive_file.src.output_sha}"
   }
 
   provisioner "local-exec" {

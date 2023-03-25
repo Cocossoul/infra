@@ -29,10 +29,10 @@ module "vultr_reverse-proxy" {
   }
 }
 module "vultr_netdata" {
-  source                = "./netdata"
-  domain           = data.cloudflare_zone.cocopaps
-  machine = local.vultr_machine
-  subdomain             = "monitoring.vultr"
+  source    = "./netdata"
+  domain    = data.cloudflare_zone.cocopaps
+  machine   = local.vultr_machine
+  subdomain = "monitoring.vultr"
   providers = {
     docker = docker.vultr_machine
   }
@@ -70,10 +70,10 @@ module "homeserver_reverse-proxy" {
   }
 }
 module "homeserver_netdata" {
-  source                = "./netdata"
-  domain           = data.cloudflare_zone.cocopaps
-  machine = local.homeserver_machine
-  subdomain             = "monitoring.homeserver"
+  source    = "./netdata"
+  domain    = data.cloudflare_zone.cocopaps
+  machine   = local.homeserver_machine
+  subdomain = "monitoring.homeserver"
   providers = {
     docker = docker.homeserver_machine
   }
