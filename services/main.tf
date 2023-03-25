@@ -29,16 +29,6 @@ module "home" {
   }
 }
 
-module "vault" {
-  source                  = "./vault"
-  domain             = data.cloudflare_zone.cocopaps
-  subdomain               = "vault"
-  machine            = local.vultr_machine
-  providers = {
-    docker = docker.homeserver_machine
-  }
-}
-
 # module "minecraft_server" {
 #   source                = "./minecraft_server"
 #   domain           = data.cloudflare_zone.cocopaps
