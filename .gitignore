@@ -1,5 +1,9 @@
+# Sensitive files
 secrets.sh
 terraform.tfstate
 terraform.tfstate.backup
+
+# Trashfiles
 .terraform
 .terraform.lock.hcl
+src.zip
