@@ -3,9 +3,7 @@
 ## Usage
 
 - bootstrap Terraform (see the [bootstrap folder](./bootstrap/))
-- `./init.sh` to initialize the providers
-- `./apply.sh` to run Terraform apply for the machines and the services
-- `./destroy.sh` to destroy everything (except the physical machines)
+- `./deploy.sh` to deploy configuration (can add `-auto-approve` for automated deployments)
 
 ## Manual intervention
 
