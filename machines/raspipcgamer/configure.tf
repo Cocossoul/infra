@@ -11,10 +11,10 @@ resource "null_resource" "ansible_configuration" {
     working_dir = "${path.module}/ansible"
     command     = "./ansible_script.sh"
     environment = {
-      DYNDNS_DOMAIN = local.dyndns_domain
-      DYNDNS_TOKEN  = var.dyndns_token
-      MOSQUITTO_USER = var.mosquitto_user
-      MOSQUITTO_PASSWORD = var.mosquitto_password
+      DYNDNS_DOMAIN        = local.dyndns_domain
+      DYNDNS_TOKEN         = var.dyndns_token
+      MOSQUITTO_USER       = var.mosquitto_user
+      MOSQUITTO_PASSWORD   = var.mosquitto_password
       WAKER_PC_MAC_ADDRESS = var.gamerpc_mac_address
     }
   }
