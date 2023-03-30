@@ -1,0 +1,11 @@
+http:
+  routers:
+    ${ machine }:
+      rule: Host(`${ domain }`)
+      service: ${ machine }
+
+  services:
+    ${ machine }:
+      loadBalancer:
+        servers:
+          - url: "${ ip }"

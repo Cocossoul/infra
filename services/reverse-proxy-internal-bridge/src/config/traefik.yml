@@ -1,0 +1,19 @@
+global:
+  sendAnonymousUsage: false
+
+log:
+  level: "INFO"
+  format: "common"
+
+providers:
+  file:
+    filename: "/traefik_dynconfig.yml"
+
+api:
+  dashboard: true
+  debug: false
+  insecure: false
+
+entryPoints:
+  insecure:
+    address: ":80"
