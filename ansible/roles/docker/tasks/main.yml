@@ -9,20 +9,20 @@
       - gnupg
     state: present
 
-- name: Store Ubuntu release name
+- name: Store Distro release name
   ansible.builtin.shell: lsb_release -cs
   register: lsb_release
 
 - name: Add Docker GPG apt Key
   become: true
   ansible.builtin.apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
+    url: https://download.docker.com/linux/{{ ansible_distribution|lower }}/gpg
     state: present
 
 - name: Add Docker Repository
   become: true
   ansible.builtin.apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable
+    repo: deb https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ lsb_release.stdout }} stable
     state: present
 
 - name: Update apt with the new cache and install docker-ce
