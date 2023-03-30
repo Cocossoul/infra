@@ -1,0 +1,22 @@
+global:
+  sendAnonymousUsage: false
+
+log:
+  level: "INFO"
+  format: "common"
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    watch: true
+    exposedByDefault: false
+    swarmMode: false
+
+api:
+  dashboard: true
+  debug: false
+  insecure: false
+
+entryPoints:
+  insecure:
+    address: ":80"
