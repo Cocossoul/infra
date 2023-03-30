@@ -74,6 +74,7 @@ The following secrets should be exported in the env:
 - TF_VAR_mosquitto_user
 - TF_VAR_mosquitto_password
 - TF_VAR_gamerpc_mac_address
+- TF_VAR_rcon_password
 
 ## Architecture
 

@@ -5,7 +5,7 @@ set -e
 mkdir -p config
 cd config
 
-paper_version='1.19.3'
+paper_version='1.19.4'
 
 # Fetch Paper Minecraft server from official website
 LATEST_BUILD=$(curl -X GET "https://papermc.io/api/v2/projects/paper/versions/${paper_version}" -H  "accept: application/json" | jq '.builds[-1]')

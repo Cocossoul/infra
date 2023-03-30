@@ -7,3 +7,6 @@ variable "owncloud_admin_username" {
 variable "owncloud_admin_password" {
   type = string
 }
+variable "rcon_password" {
+  type = string
+}

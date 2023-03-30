@@ -58,6 +58,10 @@ resource "docker_container" "minecraft_server" {
     external = 25565
     internal = 25565
   }
+  ports {
+    external = 25575
+    internal = 25575
+  }
   volumes {
     container_path = "/server/runtime"
     host_path      = "/minecraft_server_data"

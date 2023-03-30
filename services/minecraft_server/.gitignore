@@ -1,1 +1,5 @@
+# Sensitive files
+server.properties
+
+# Trashfiles
 paperclip.jar

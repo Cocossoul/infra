@@ -29,12 +29,13 @@ module "home" {
   }
 }
 
-# module "minecraft_server" {
-#   source                = "./minecraft_server"
-#   domain           = data.cloudflare_zone.cocopaps
-#   subdomain             = "mc"
-#   machine          = local.homeserver_machine
-#   providers = {
-#     docker = docker.homeserver_machine
-#   }
-# }
+module "minecraft_server" {
+  source                = "./minecraft_server"
+  domain           = data.cloudflare_zone.cocopaps
+  subdomain             = "mc"
+  machine          = local.homeserver_machine
+  rcon_password = var.rcon_password
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
