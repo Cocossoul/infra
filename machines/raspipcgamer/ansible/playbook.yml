@@ -12,6 +12,7 @@
     - { role: firewall, tags: firewall }
     - { role: mosquitto, tags: mosquitto }
     - { role: waker, tags: waker }
+    - { role: docker, tags: docker }
   tasks:
     - name: Allow all access to Mosquitto MQTT server port 1883
       become: true
