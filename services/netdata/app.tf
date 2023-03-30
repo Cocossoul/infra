@@ -44,18 +44,18 @@ resource "docker_container" "netdata" {
   }
   labels {
     label = "traefik.http.routers.netdata.entryPoints"
-    value = "secure"
+    value = var.entrypoint
   }
   labels {
     label = "traefik.http.routers.netdata.rule"
     value = "Host(`${var.subdomain}.${var.domain.name}`)"
   }
   labels {
-    label = "traefik.http.routers.netdata.tls"
+    label = (var.entrypoint == "secure") ? "traefik.http.routers.netdata.tls" : "dummy_no_tls"
     value = "true"
   }
   labels {
-    label = "traefik.http.routers.netdata.tls.certresolver"
+    label = (var.entrypoint == "secure") ? "traefik.http.routers.netdata.tls.certresolver" : "dummy_no_certresolver"
     value = "letsencrypt"
   }
   networks_advanced {
