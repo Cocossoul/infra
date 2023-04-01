@@ -51,6 +51,11 @@ resource "cloudflare_record" "broker" {
   type    = "CNAME"
   ttl     = 3600
 }
+provider "docker" {
+  host     = "ssh://pi@${local.raspipcgamer_machine.dyndns_domain}:1882"
+  ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
+  alias    = "raspipcgamer_machine"
+}
 # -----------------------------------------------------------------------------
 locals {
   homeserver_machine = {
