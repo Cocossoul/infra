@@ -1,5 +1,5 @@
 # Sensitive files
-secrets.sh
+.secrets.sh
 terraform.tfstate
 terraform.tfstate.backup
 
