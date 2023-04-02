@@ -39,3 +39,13 @@ module "minecraft_server" {
     docker = docker.homeserver_machine
   }
 }
+
+module "passbolt" {
+  source                = "./passbolt"
+  domain           = data.cloudflare_zone.cocopaps
+  subdomain             = "passbolt"
+  machine          = local.vultr_machine
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
