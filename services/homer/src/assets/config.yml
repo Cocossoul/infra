@@ -103,6 +103,10 @@ services:
         icon: "fa-solid fa-hard-drive"
         subtitle: "Owncloud server"
         url: "https://cloud.cocopaps.com"
+      - name: "Passbolt"
+        icon: "fa-solid fa-vault"
+        subtitle: "Passbolt password vault"
+        url: "https://passbolt.cocopaps.com"
   - name: "Tools"
     icon: "fa-solid fa-screwdriver-wrench"
     items:
@@ -117,4 +121,4 @@ services:
       - name: "Raspi Monitoring"
         icon: "fa-brands fa-watchman-monitoring"
         subtitle: "Monitoring my Raspi with Netdata"
-        url: "http://monitoring.raspipcgamer.cocopaps.com"
+        url: "http://monitoring.raspi.cocopaps.com"
