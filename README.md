@@ -76,6 +76,9 @@ The following secrets should be exported in the env:
 - TF_VAR_gamerpc_mac_address
 - TF_VAR_rcon_password
 
+Use the `fetch_secrets.sh` script to export them from Passbolt.
+The only prerequisite is configuring *go-passbolt-cli* with the proper gpg key and password.
+
 ## Architecture
 
     infra/
