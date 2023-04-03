@@ -23,6 +23,13 @@
       community.general.ufw:
         rule: allow
         port: 25575
+    - name: Mount RAID storage device
+      become: true
+      ansible.posix.mount:
+        path: /mnt/raid
+        src: /dev/md0
+        fstype: ext4
+        state: mounted
   vars:
     ssh_pam_support: false
     ssh_use_pam: false
