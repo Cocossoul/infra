@@ -74,7 +74,7 @@ resource "docker_container" "owncloud" {
 
   volumes {
     container_path = "/mnt/data"
-    host_path      = "/owncloud_data"
+    host_path      = "/mnt/raid/owncloud_data"
   }
 
   healthcheck {
