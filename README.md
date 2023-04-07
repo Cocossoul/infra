@@ -1,5 +1,7 @@
 # Infra
 
+Infrastructure as code for [cocopaps.com](https://cocopaps.com)
+
 ## Usage
 
 - bootstrap Terraform (see the [bootstrap folder](./bootstrap/))
@@ -8,7 +10,7 @@
 ## Manual intervention
 
 - Bootstrap Terraform by modifying the backend (first local, then S3)
-- Setup the dyndns on [duckdns](duckdns.org)
+- Setup the dyndns on [duckdns](https://duckdns.org)
 - Wiring the machines and flashing the OSes (except the Vultr one)
 
 ## Service deployment
