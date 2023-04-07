@@ -7,28 +7,8 @@ terraform {
   }
 }
 
-data "archive_file" "src" {
-  type        = "zip"
-  source_dir  = "${path.module}/src/"
-  output_path = "${path.module}/src.zip"
-}
-
-resource "null_resource" "reverse-proxy_build" {
-  triggers = {
-    src_hash = "${data.archive_file.src.output_sha}"
-  }
-
-  provisioner "local-exec" {
-    working_dir = "${path.module}/src"
-    command     = "./build.sh"
-  }
-}
-
 data "docker_registry_image" "reverse-proxy" {
-  name = "cocopaps/reverse-proxy"
-  depends_on = [
-    null_resource.reverse-proxy_build // On this data source bc otherwise the docker provider tries to fetch it and gets a 401 if it does not exist yet
-  ]
+  name = "traefik:v2.9.8"
 }
 
 resource "docker_image" "reverse-proxy" {
@@ -57,6 +37,12 @@ resource "docker_container" "reverse-proxy" {
   }
   networks_advanced {
     name = "gateway"
+  }
+
+  upload {
+    file = "/traefik.yml"
+    source = "${path.module}/src/traefik.yml"
+    source_hash = filesha256("${path.module}/src/traefik.yml")
   }
 
   volumes {
