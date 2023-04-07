@@ -75,6 +75,9 @@ The following secrets should be exported in the env:
 - TF_VAR_mosquitto_password
 - TF_VAR_gamerpc_mac_address
 - TF_VAR_rcon_password
+- TF_VAR_discord_webhook_vultr
+- TF_VAR_discord_webhook_homeserver
+- TF_VAR_discord_webhook_raspi
 
 Use the `fetch_secrets.sh` script to export them from Passbolt.
 The only prerequisite is configuring *go-passbolt-cli* with the proper gpg key and password.
