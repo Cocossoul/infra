@@ -19,31 +19,8 @@ resource "cloudflare_record" "gatus" {
   ttl     = 3600
 }
 
-data "archive_file" "src" {
-  type        = "zip"
-  source_dir  = "${path.module}/src/"
-  output_path = "${path.module}/src.zip"
-}
-
-resource "null_resource" "gatus_build" {
-  triggers = {
-    src_hash = "${data.archive_file.src.output_sha}"
-  }
-
-  provisioner "local-exec" {
-    working_dir = "${path.module}/src"
-    environment = {
-      MACHINE_NAME = var.machine.name
-    }
-    command = "./build.sh"
-  }
-}
-
 data "docker_registry_image" "gatus" {
-  name = "cocopaps/gatus${var.machine.name}"
-  depends_on = [
-    null_resource.gatus_build // On this data source bc otherwise the docker provider tries to fetch it and gets a 401 if it does not exist yet
-  ]
+  name = "twinproduction/gatus:v5.3.1"
 }
 
 resource "docker_image" "gatus" {
@@ -83,6 +60,12 @@ resource "docker_container" "gatus" {
   }
   networks_advanced {
     name = "gateway"
+  }
+
+  upload {
+    file = "/config/config.yaml"
+    source = "${path.module}/src/config.yaml"
+    source_hash = filesha256("${path.module}/src/config.yaml")
   }
 
   volumes {

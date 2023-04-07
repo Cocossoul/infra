@@ -27,31 +27,8 @@ resource "cloudflare_record" "homer_alias" {
   ttl     = 3600
 }
 
-data "archive_file" "src" {
-  type        = "zip"
-  source_dir  = "${path.module}/src/"
-  output_path = "${path.module}/src.zip"
-}
-
-resource "null_resource" "homer_build" {
-  triggers = {
-    src_hash = "${data.archive_file.src.output_sha}"
-  }
-
-  provisioner "local-exec" {
-    working_dir = "${path.module}/src"
-    environment = {
-      MACHINE_NAME = var.machine.name
-    }
-    command = "./build.sh"
-  }
-}
-
 data "docker_registry_image" "homer" {
-  name = "cocopaps/homer${var.machine.name}"
-  depends_on = [
-    null_resource.homer_build // On this data source bc otherwise the docker provider tries to fetch it and gets a 401 if it does not exist yet
-  ]
+  name = "b4bz/homer:v23.02.2"
 }
 
 resource "docker_image" "homer" {
@@ -91,6 +68,12 @@ resource "docker_container" "homer" {
   }
   networks_advanced {
     name = "gateway"
+  }
+
+  upload {
+    file = "/www/assets/config.yml"
+    source = "${path.module}/src/config.yml"
+    source_hash = filesha256("${path.module}/src/config.yml")
   }
 
   restart = "unless-stopped"
