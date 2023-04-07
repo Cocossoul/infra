@@ -33,6 +33,10 @@ module "vultr_netdata" {
   domain    = data.cloudflare_zone.cocopaps
   machine   = local.vultr_machine
   subdomain = "monitoring.vultr"
+  discord_notification_settings = {
+    webhook_url = var.discord_webhook_vultr
+    channel = "vultr"
+  }
   providers = {
     docker = docker.vultr_machine
   }
@@ -79,6 +83,10 @@ module "homeserver_netdata" {
   domain    = data.cloudflare_zone.cocopaps
   machine   = local.homeserver_machine
   subdomain = "monitoring.homeserver"
+  discord_notification_settings = {
+    webhook_url = var.discord_webhook_homeserver
+    channel = "homeserver"
+  }
   providers = {
     docker = docker.homeserver_machine
   }

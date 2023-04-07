@@ -10,3 +10,6 @@ variable "owncloud_admin_password" {
 variable "rcon_password" {
   type = string
 }
+variable "discord_webhook_homeserver" {}
+variable "discord_webhook_vultr" {}
+variable "discord_webhook_raspi" {}

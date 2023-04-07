@@ -89,5 +89,10 @@ resource "docker_container" "netdata" {
 
   security_opts = ["apparmor:unconfined"]
 
+  upload {
+    file = "/usr/lib/netdata/conf.d/health_alarm_notify.conf"
+    content_base64 = local.health_alarm_notify
+  }
+
   restart = "unless-stopped"
 }
