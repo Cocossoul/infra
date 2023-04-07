@@ -32,18 +32,13 @@ resource "docker_container" "owncloud_db" {
 
   volumes {
     container_path = "/var/lib/mysql"
-    volume_name    = docker_volume.owncloud_db.name
+    host_path      = "/mnt/raid/owncloud_data/owncloud_db"
   }
   networks_advanced {
     name = "gateway"
   }
 
   restart = "unless-stopped"
-}
-
-resource "docker_volume" "owncloud_db" {
-  name   = "owncloud_db_static"
-  driver = "local"
 }
 
 resource "random_integer" "owncloud_db_password_length" {
