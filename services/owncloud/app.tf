@@ -41,6 +41,12 @@ resource "docker_container" "owncloud" {
     "OWNCLOUD_ADMIN_PASSWORD=${var.owncloud_admin_password}",
     "OWNCLOUD_REDIS_ENABLED=true",
     "OWNCLOUD_REDIS_HOST=${resource.docker_container.redis.name}",
+    "OWNCLOUD_DB_TYPE=mysql",
+    "OWNCLOUD_DB_NAME=owncloud",
+    "OWNCLOUD_DB_USERNAME=owncloud",
+    "OWNCLOUD_DB_PASSWORD=${random_password.owncloud_db_password.result}",
+    "OWNCLOUD_DB_HOST=${docker_container.owncloud_db.name}",
+    "OWNCLOUD_MYSQL_UTF8MB4=true",
     "HTTP_PORT=8080"
   ]
 
