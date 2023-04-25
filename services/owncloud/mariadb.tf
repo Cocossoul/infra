@@ -18,7 +18,7 @@ resource "docker_container" "owncloud_db" {
       "MYSQL_RANDOM_ROOT_PASSWORD=\"true\"",
       "MYSQL_DATABASE=owncloud",
       "MYSQL_USER=owncloud",
-      "MYSQL_PASSWORD=${random_password.owncloud_db_password.result}"
+      "MYSQL_PASSWORD=${var.owncloud_db_password}"
   ]
 
   command = ["--max-allowed-packet=128M", "--innodb-log-file-size=64M"]
@@ -40,14 +40,3 @@ resource "docker_container" "owncloud_db" {
 
   restart = "unless-stopped"
 }
-
-resource "random_integer" "owncloud_db_password_length" {
-  min = 12
-  max = 20
-}
-resource "random_password" "owncloud_db_password" {
-  length           = random_integer.owncloud_db_password_length.result
-  special          = false
-}
-
-

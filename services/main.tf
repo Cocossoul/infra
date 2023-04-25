@@ -5,6 +5,7 @@ module "owncloud" {
   machine                 = local.homeserver_machine
   owncloud_admin_username = var.owncloud_admin_username
   owncloud_admin_password = var.owncloud_admin_password
+  owncloud_db_password = var.owncloud_db_password
   providers = {
     docker = docker.homeserver_machine
   }

@@ -71,6 +71,7 @@ The following secrets should be exported in the env:
 - TF_VAR_dyndns_token
 - TF_VAR_owncloud_admin_username
 - TF_VAR_owncloud_admin_password
+- TF_VAR_owncloud_db_password
 - AWS_ACCESS_KEY_ID
 - AWS_SECRET_ACCESS_KEY
 - TF_VAR_mosquitto_user
