@@ -50,3 +50,12 @@ module "passbolt" {
     docker = docker.vultr_machine
   }
 }
+
+module "tbeteouquoi" {
+  source                = "./tbeteouquoi"
+  domain           = data.cloudflare_zone.tbeteouquoi
+  machine          = local.vultr_machine
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
