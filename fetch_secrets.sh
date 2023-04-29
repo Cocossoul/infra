@@ -3,7 +3,7 @@ RESOURCE_LIST="$(go-passbolt-cli list resource)"
 fetch_secret() {
     SECRET_TO_FETCH="$1"
     # Get passbolt resource ID from passbolt resource name and username
-    ID="$(echo $RESOURCE_LIST\
+    ID="$(printf "%s" "$RESOURCE_LIST"\
     | grep "${SECRET_TO_FETCH}" | head -n1 | awk '{print $1}')"
 
     # Get passbolt resource password from its ID
@@ -23,3 +23,4 @@ export TF_VAR_gamerpc_mac_address="$(fetch_secret gamerpc_mac_address)"
 export TF_VAR_rcon_password="$(fetch_secret rcon_password)"
 export TF_VAR_discord_webhook_vultr="$(fetch_secret discord_webhook_vultr)"
 export TF_VAR_discord_webhook_homeserver="$(fetch_secret discord_webhook_homeserver)"
+export DOCKER_PASSWORD="$(fetch_secret DOCKER_PASSWORD)"
