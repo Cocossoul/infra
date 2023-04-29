@@ -5,6 +5,7 @@ set -v
 
 # Configure SSH
 echo "Configure SSH"
+mkdir -p ~/.ssh
 SSH_KEY_PATH=~/.ssh/ssh_key
 printf "%s" "$SSH_CI_PRIVATEKEY_BASE64" | base64 -d > "$SSH_KEY_PATH"
 chmod 0400 "$SSH_KEY_PATH"
