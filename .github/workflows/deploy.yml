@@ -6,7 +6,8 @@ on:
 jobs:
   deploy:
     name: deploy
-    runs-on: cocopaps/ci-tools:latest
+    runs-on: ubuntu-latest
+    container: cocopaps/ci-tools:latest
     steps:
       - uses: actions/checkout@v2
       - name: Deployment
