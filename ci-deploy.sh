@@ -22,3 +22,6 @@ docker login -u cocopaps -p "$DOCKER_PASSWORD"
 
 # Start deployment
 ./deploy.sh -auto-approve
+
+# Cleanup after deployment
+rm passbolt_ci_user.acs
