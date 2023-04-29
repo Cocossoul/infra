@@ -3,6 +3,15 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/')
+def home():
+    index = b''
+    with open("index.html", 'rb') as f:
+        index = f.read()
+    resp = app.make_response(index)
+    resp.mimetype = "text/html"
+    return resp
+
+@app.route('/bete')
 def bete():
     photo = b''
     with open("bete.png", 'rb') as f:
