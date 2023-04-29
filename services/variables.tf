@@ -13,4 +13,3 @@ variable "rcon_password" {
 }
 variable "discord_webhook_homeserver" {}
 variable "discord_webhook_vultr" {}
-variable "discord_webhook_raspi" {}

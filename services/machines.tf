@@ -43,25 +43,6 @@ module "vultr_netdata" {
 }
 # -----------------------------------------------------------------------------
 locals {
-  raspipcgamer_machine = {
-    dyndns_domain = data.terraform_remote_state.machines.outputs.raspipcgamer_dyndns_domain
-    name          = "raspipcgamer"
-  }
-}
-resource "cloudflare_record" "broker" {
-  zone_id = data.cloudflare_zone.cocopaps.zone_id
-  name    = "broker"
-  value   = local.raspipcgamer_machine.dyndns_domain
-  type    = "CNAME"
-  ttl     = 3600
-}
-provider "docker" {
-  host     = "ssh://pi@${local.raspipcgamer_machine.dyndns_domain}:1882"
-  ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
-  alias    = "raspipcgamer_machine"
-}
-# -----------------------------------------------------------------------------
-locals {
   homeserver_machine = {
     dyndns_domain = data.terraform_remote_state.machines.outputs.homeserver_dyndns_domain
     name          = "homeserver"
@@ -91,4 +72,3 @@ module "homeserver_netdata" {
     docker = docker.homeserver_machine
   }
 }
-# -----------------------------------------------------------------------------
