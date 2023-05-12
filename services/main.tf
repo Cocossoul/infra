@@ -59,3 +59,13 @@ module "tbeteouquoi" {
     docker = docker.vultr_machine
   }
 }
+
+module "portfolio" {
+  source    = "./portfolio"
+  domain    = data.cloudflare_zone.cocopaps
+  subdomain = "portfolio"
+  machine   = local.vultr_machine
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
