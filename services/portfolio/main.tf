@@ -13,7 +13,7 @@ terraform {
 
 resource "cloudflare_record" "portfolio" {
   zone_id = var.domain.zone_id
-  name    = "@"
+  name    = var.subdomain
   value   = var.machine.dyndns_domain
   type    = "CNAME"
   ttl     = 3600
@@ -71,7 +71,7 @@ resource "docker_container" "portfolio" {
   }
   labels {
     label = "traefik.http.routers.portfolio.rule"
-    value = "Host(`${var.domain.name}`)"
+    value = "Host(`${var.subdomain}.${var.domain.name}`)"
   }
   labels {
     label = "traefik.http.routers.portfolio.tls"
