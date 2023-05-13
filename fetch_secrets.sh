@@ -1,6 +1,9 @@
 RESOURCE_LIST="$(go-passbolt-cli list resource)"
 
 fetch_secret() {
+    (
+    set -e
+    set -o pipefail
     SECRET_TO_FETCH="$1"
     # Get passbolt resource ID from passbolt resource name and username
     ID="$(printf "%s" "$RESOURCE_LIST"\
@@ -9,6 +12,7 @@ fetch_secret() {
     # Get passbolt resource password from its ID
     PASSWORD=$(go-passbolt-cli get resource --id "${ID}" | grep Password | sed 's/^Password: //g')
     echo ${PASSWORD}
+    )
 }
 
 TF_VAR_cloudflare_token="$(fetch_secret cloudflare_token)"
