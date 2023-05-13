@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container: cocopaps/ci-tools:latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Deployment
         env:
           PASSBOLT_CI_ACS_BASE64: ${{secrets.PASSBOLT_CI_ACS_BASE64}}
