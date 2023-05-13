@@ -1,0 +1,3 @@
+{
+  "enabledManagers": ["dockerfile", "ansible-galaxy", "terraform", "pip_requirements", "github-actions"]
+}
