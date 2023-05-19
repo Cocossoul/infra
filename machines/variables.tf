@@ -1,5 +1,5 @@
 variable "dyndns_token" {
-  type = string
+  sensitive = true
 }
 variable "gamerpc_mac_address" {
   type = string
