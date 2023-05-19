@@ -60,9 +60,9 @@ resource "docker_container" "rwol" {
   }
   env = [
       "APACHE2_PORT=8080",
-      "PASSPHRASE=${var.rwol_password}"
-      "RWSOLS_COMPUTER_NAME='PC Gamer'"
-      "RWSOLS_COMPUTER_MAC='${var.gamerpc_mac_address}'"
+      "PASSPHRASE=${var.rwol_password}",
+      "RWSOLS_COMPUTER_NAME='PC Gamer'",
+      "RWSOLS_COMPUTER_MAC='${var.gamerpc_mac_address}'",
       "RWSOLS_COMPUTER_IP='192.168.1.75'"
   ]
   networks_advanced {
