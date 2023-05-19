@@ -20,9 +20,6 @@ variable "rcon_password" {
 variable "gamerpc_mac_address" {
   sensitve = true
 }
-variable "gamerpc_ip_address" {
-  sensitive = true
-}
 variable "rwol_password" {
   sensitve = true
 }

@@ -9,6 +9,3 @@ variable "rwol_password" {
 variable "gamerpc_mac_address" {
   sensitive = true
 }
-variable "gamerpc_ip_address" {
-  sensitive = true
-}
