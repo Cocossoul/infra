@@ -42,9 +42,6 @@ export AWS_SECRET_ACCESS_KEY
 TF_VAR_gamerpc_mac_address="$(fetch_secret gamerpc_mac_address)"
 export TF_VAR_gamerpc_mac_address
 
-TF_VAR_gamerpc_ip_address="$(fetch_secret gamerpc_ip_address)"
-export TF_VAR_gamerpc_ip_address
-
 TF_VAR_rwol_password="$(fetch_secret rwol_password)"
 export TF_VAR_rwol_password
 

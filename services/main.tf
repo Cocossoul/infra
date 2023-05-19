@@ -17,7 +17,6 @@ module "rwol" {
   subdomain = "rwol"
   machine   = local.homeserver_machine
   gamerpc_mac_address = var.gamerpc_mac_address
-  gamerpc_ip_address = var.gamerpc_ip_address
   rwol_password = var.rwol_password
   providers = {
     docker = docker.homeserver_machine

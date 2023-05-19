@@ -63,7 +63,7 @@ resource "docker_container" "rwol" {
       "PASSPHRASE=${var.rwol_password}"
       "RWSOLS_COMPUTER_NAME='PC Gamer'"
       "RWSOLS_COMPUTER_MAC='${var.gamerpc_mac_address}'"
-      "RWSOLS_COMPUTER_IP='${var.gamerpc_ip_address}'"
+      "RWSOLS_COMPUTER_IP='192.168.1.75'"
   ]
   networks_advanced {
     name = "gateway"
