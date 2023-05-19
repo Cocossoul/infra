@@ -1,31 +1,27 @@
 variable "cloudflare_token" {
-  type = string
-  sensitve = true
+  sensitive = true
 }
 variable "owncloud_admin_username" {
-  type = string
-  sensitve = true
+  sensitive = true
 }
 variable "owncloud_admin_password" {
-  type = string
-  sensitve = true
+  sensitive = true
 }
 variable "owncloud_db_password" {
-  sensitve = true
+  sensitive = true
 }
 variable "rcon_password" {
-  type = string
-  sensitve = true
+  sensitive = true
 }
 variable "gamerpc_mac_address" {
-  sensitve = true
+  sensitive = true
 }
 variable "rwol_password" {
-  sensitve = true
+  sensitive = true
 }
 variable "discord_webhook_homeserver" {
-  sensitve = true
+  sensitive = true
 }
 variable "discord_webhook_vultr" {
-  sensitve = true
+  sensitive = true
 }
