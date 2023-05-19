@@ -41,6 +41,14 @@ endpoints:
       - "[STATUS] == 200"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
 
+  - name: rwol
+    url: "https://rwol.cocopaps.com"
+    interval: 30s
+    group: 2. private
+    conditions:
+      - "[STATUS] == 200"         # Status must be 200
+      - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+
   - name: minecraft dns
     url: "8.8.8.8"
     interval: 30s
@@ -87,6 +95,16 @@ endpoints:
     group: 3. dns
     dns:
       query-name: "gatus.cocopaps.com"
+      query-type: "A"
+    conditions:
+      - "[DNS_RCODE] == NOERROR"
+
+  - name: rwol dns
+    url: "8.8.8.8"
+    interval: 30s
+    group: 3. dns
+    dns:
+      query-name: "rwol.cocopaps.com"
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
