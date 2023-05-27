@@ -3,9 +3,9 @@
   "regexManagers": [
     {
       "datasourceTemplate": "docker",
-      "fileMatch": ["^.+\\.tf$"],
+      "fileMatch": ["\\.tf"],
       "matchStrings": [
-        "data\\s\"docker_registry_image\"\\s\".*\"\\s?{\\s*name\\s?=\\s?\"(?<depName>.*?):(?<currentValue>.*?)\""
+        "data \"docker_registry_image\" \".*\" {\\s*name = \"(?<depName>.*?):(?<currentValue>.*?)\""
       ]
     }
   ]
