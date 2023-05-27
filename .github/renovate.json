@@ -1,5 +1,5 @@
 {
-  "enabledManagers": ["dockerfile", "ansible-galaxy", "terraform", "pip_requirements", "github-actions"],
+  "enabledManagers": ["dockerfile", "ansible-galaxy", "terraform", "pip_requirements", "github-actions", "regex"],
   "regexManagers": [
     {
       "datasourceTemplate": "docker",
