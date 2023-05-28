@@ -2,7 +2,7 @@ storage:
   type: sqlite
   path: /srv/data.db
 
-alerting.discord.webhook-url: ${ discord_webhook }
+alerting.discord.webhook-url: "${ discord_webhook }"
 
 endpoints:
   - name: blog
