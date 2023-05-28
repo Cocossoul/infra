@@ -66,5 +66,11 @@ resource "docker_container" "minecraft_server" {
     container_path = "/server/runtime"
     host_path      = "/minecraft_server_data"
   }
+
+  upload {
+    file = "/server/config/server.properties"
+    content = local.serverproperties
+  }
+
   restart = "unless-stopped"
 }
