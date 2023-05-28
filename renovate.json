@@ -1,6 +1,12 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
+  "enabledManagers": ["dockerfile", "ansible-galaxy", "terraform", "pip_requirements", "github-actions", "regex"],
+  "regexManagers": [
+    {
+      "fileMatch": ["(^|/)*\\.tf$"],
+      "matchStrings": [
+        "\\s*name\\s*=\\s*\"(?<depName>.*?):(?<currentValue>.*?)\"\\s*#\\s*renovate\\n"
+      ],
+      "datasourceTemplate": "docker"
+    }
   ]
 }
