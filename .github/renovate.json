@@ -1,5 +1,5 @@
 {
-  "enabledManagers": [],
+  "enabledManagers": ["dockerfile", "ansible-galaxy", "terraform", "pip_requirements", "github-actions", "regex"],
   "regexManagers": [
     {
       "fileMatch": ["(^|/)*\\.tf$"],
