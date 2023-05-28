@@ -25,3 +25,6 @@ variable "discord_webhook_homeserver" {
 variable "discord_webhook_vultr" {
   sensitive = true
 }
+variable "discord_webhook_gatus" {
+  sensitive = true
+}

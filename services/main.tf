@@ -28,6 +28,7 @@ module "gatus" {
   domain    = data.cloudflare_zone.cocopaps
   subdomain = "gatus"
   machine   = local.vultr_machine
+  discord_webhook = var.discord_webhook_gatus
   providers = {
     docker = docker.vultr_machine
   }

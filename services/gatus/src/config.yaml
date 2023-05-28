@@ -1,6 +1,9 @@
 storage:
   type: sqlite
   path: /srv/data.db
+
+alerting.discord.webhook-url: ${ discord_webhook }
+
 endpoints:
   - name: blog
     url: "https://blog.cocopaps.com"
@@ -9,6 +12,12 @@ endpoints:
     conditions:
       - "[STATUS] == 200"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: minecraft
     url: "tcp://mc.cocopaps.com:25565"
@@ -16,6 +25,12 @@ endpoints:
     group: 2. private
     conditions:
       - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: homepage
     url: "https://cocopaps.com"
@@ -24,6 +39,12 @@ endpoints:
     conditions:
       - "[STATUS] == 200"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: cloud
     url: "https://cloud.cocopaps.com"
@@ -32,6 +53,12 @@ endpoints:
     conditions:
       - "[STATUS] == 200"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: passbolt
     url: "https://passbolt.cocopaps.com"
@@ -40,6 +67,12 @@ endpoints:
     conditions:
       - "[STATUS] == 200"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: rwol
     url: "https://rwol.cocopaps.com"
@@ -48,6 +81,12 @@ endpoints:
     conditions:
       - "[STATUS] == 200"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: minecraft dns
     url: "8.8.8.8"
@@ -58,6 +97,12 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: cloud dns
     url: "8.8.8.8"
@@ -68,6 +113,12 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: passbolt dns
     url: "8.8.8.8"
@@ -78,6 +129,12 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: homepage dns
     url: "8.8.8.8"
@@ -88,6 +145,12 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: gatus dns
     url: "8.8.8.8"
@@ -98,6 +161,12 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
 
   - name: rwol dns
     url: "8.8.8.8"
@@ -108,3 +177,9 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
+    alerts:
+      - type: discord
+        description: "healthcheck failed"
+        send-on-resolved: true
+        failure-threshold: 3
+        success-threshold: 3
