@@ -54,5 +54,8 @@ export TF_VAR_discord_webhook_vultr
 TF_VAR_discord_webhook_homeserver="$(fetch_secret discord_webhook_homeserver)"
 export TF_VAR_discord_webhook_homeserver
 
+TF_VAR_discord_webhook_gatus="$(fetch_secret discord_webhook_gatus)"
+export TF_VAR_discord_webhook_gatus
+
 DOCKER_PASSWORD="$(fetch_secret DOCKER_PASSWORD)"
 export DOCKER_PASSWORD

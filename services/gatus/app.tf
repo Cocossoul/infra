@@ -64,8 +64,11 @@ resource "docker_container" "gatus" {
 
   upload {
     file = "/config/config.yaml"
-    source = "${path.module}/src/config.yaml"
-    source_hash = filesha256("${path.module}/src/config.yaml")
+    content = templatefile("${path.module}/src/config.yaml",
+        {
+            discord_webhook = var.discord_webhook
+        }
+    )
   }
 
   volumes {
