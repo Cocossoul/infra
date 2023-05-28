@@ -2,11 +2,11 @@
   "enabledManagers": ["dockerfile", "ansible-galaxy", "terraform", "pip_requirements", "github-actions", "regex"],
   "regexManagers": [
     {
-      "datasourceTemplate": "docker",
-      "fileMatch": ["\\.tf"],
+      "fileMatch": ["(^|/)*\\.tf$"],
       "matchStrings": [
-        "data \"docker_registry_image\" \".*\" {\\s*name = \"(?<depName>.*?):(?<currentValue>.*?)\""
-      ]
+        "\\s*name\\s*=\\s*\"(?<depName>.*?):(?<currentValue>.*?)\"\\s*#\\s*renovate\\n"
+      ],
+      "datasourceTemplate": "docker"
     }
   ]
 }
