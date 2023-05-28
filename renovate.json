@@ -4,7 +4,7 @@
     {
       "fileMatch": ["(^|/)*\\.tf$"],
       "matchStrings": [
-        "\\s*name\\s*=\\s*\"(?<depName>.*?):(?<currentValue>.*?)\"\\s*#\\s*renovate\\n"
+        "data\\s\"docker_registry_image\"\\s\".*\"\\s?{\\n\\s*name\\s*=\\s*\"(?<depName>.*?):(?<currentValue>.*?)\""
       ],
       "datasourceTemplate": "docker"
     }
