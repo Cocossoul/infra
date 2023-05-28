@@ -1,5 +1,5 @@
 data "docker_registry_image" "passbolt_db" {
-  name = "mariadb:10.3"
+  name = "mariadb:10.3" # renovate_docker
 }
 
 resource "docker_image" "passbolt_db" {

@@ -20,7 +20,7 @@ resource "cloudflare_record" "passbolt" {
 }
 
 data "docker_registry_image" "passbolt" {
-  name = "passbolt/passbolt:3.12.0-3-ce"
+  name = "passbolt/passbolt:3.12.0-3-ce" # renovate_docker
 }
 
 resource "docker_image" "passbolt" {

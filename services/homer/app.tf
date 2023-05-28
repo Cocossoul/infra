@@ -28,7 +28,7 @@ resource "cloudflare_record" "homer_alias" {
 }
 
 data "docker_registry_image" "homer" {
-  name = "b4bz/homer:v23.02.2"
+  name = "b4bz/homer:v23.02.2" # renovate_docker
 }
 
 resource "docker_image" "homer" {

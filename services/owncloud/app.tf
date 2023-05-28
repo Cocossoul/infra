@@ -20,7 +20,7 @@ resource "cloudflare_record" "owncloud" {
 }
 
 data "docker_registry_image" "owncloud" {
-  name = "owncloud/server:10.11"
+  name = "owncloud/server:10.11" # renovate_docker
 }
 
 resource "docker_image" "owncloud" {

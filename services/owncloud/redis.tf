@@ -1,5 +1,5 @@
 data "docker_registry_image" "redis" {
-  name = "redis:6"
+  name = "redis:6" # renovate_docker
 }
 
 resource "docker_image" "redis" {
