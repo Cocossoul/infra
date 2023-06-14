@@ -20,7 +20,7 @@ resource "cloudflare_record" "netdata" {
 }
 
 data "docker_registry_image" "netdata" {
-  name = "netdata/netdata:v1.39.1" # renovate_docker
+  name = "netdata/netdata:v1.40.0" # renovate_docker
 }
 
 resource "docker_image" "netdata" {
