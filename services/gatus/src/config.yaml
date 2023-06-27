@@ -99,12 +99,6 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
-    alerts:
-      - type: discord
-        description: "healthcheck failed"
-        send-on-resolved: true
-        failure-threshold: 3
-        success-threshold: 3
 
   - name: cloud dns
     url: "8.8.8.8"
@@ -115,12 +109,6 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
-    alerts:
-      - type: discord
-        description: "healthcheck failed"
-        send-on-resolved: true
-        failure-threshold: 3
-        success-threshold: 3
 
   - name: passbolt dns
     url: "8.8.8.8"
@@ -131,12 +119,6 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
-    alerts:
-      - type: discord
-        description: "healthcheck failed"
-        send-on-resolved: true
-        failure-threshold: 3
-        success-threshold: 3
 
   - name: homepage dns
     url: "8.8.8.8"
@@ -147,12 +129,6 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
-    alerts:
-      - type: discord
-        description: "healthcheck failed"
-        send-on-resolved: true
-        failure-threshold: 3
-        success-threshold: 3
 
   - name: gatus dns
     url: "8.8.8.8"
@@ -163,13 +139,7 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
-    alerts:
-      - type: discord
-        description: "healthcheck failed"
-        send-on-resolved: true
-        failure-threshold: 3
-        success-threshold: 3
-
+      
   - name: rwol dns
     url: "8.8.8.8"
     interval: 30s
@@ -179,9 +149,3 @@ endpoints:
       query-type: "A"
     conditions:
       - "[DNS_RCODE] == NOERROR"
-    alerts:
-      - type: discord
-        description: "healthcheck failed"
-        send-on-resolved: true
-        failure-threshold: 3
-        success-threshold: 3
