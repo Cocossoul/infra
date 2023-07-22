@@ -14,10 +14,10 @@ def home():
 @app.route('/bete')
 def bete():
     photo = b''
-    with open("bete.png", 'rb') as f:
+    with open("bete.jpg", 'rb') as f:
         photo = f.read()
     resp = app.make_response(photo)
-    resp.mimetype = "image/png"
+    resp.mimetype = "image/jpg"
     return resp
 
 if __name__ == '__main__':
