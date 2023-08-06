@@ -5,6 +5,8 @@ log:
   level: "INFO"
   format: "common"
 
+accessLog:
+
 providers:
   docker:
     endpoint: "unix:///var/run/docker.sock"
