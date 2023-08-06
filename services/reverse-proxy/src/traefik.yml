@@ -6,6 +6,7 @@ log:
   format: "common"
 
 accessLog:
+  format: "common"
 
 providers:
   docker:
@@ -40,3 +41,10 @@ certificatesResolvers:
       keyType: "EC256"
       httpChallenge:
         entryPoint: "insecure"
+
+http:
+  middlewares:
+    ratelimiter:
+      rateLimit:
+        average: 30
+        burst: 25
