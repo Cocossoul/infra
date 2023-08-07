@@ -33,7 +33,7 @@ resource "docker_container" "fail2ban" {
 
   volumes {
     container_path = "/var/log/traefik"
-    volume_name    = docker_volume.reverse-proxy_access_logs.name
+    volume_name    = docker_volume.reverse-proxy_logs.name
     read_only = true
   }
 
