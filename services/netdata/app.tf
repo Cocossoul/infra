@@ -60,7 +60,7 @@ resource "docker_container" "netdata" {
   }
   labels {
     label = "traefik.http.middlewares.basicauth.basicauth.users"
-    value = "monitoring_admin:${monitoring_admin_password_hash}"
+    value = "monitoring_admin:${var.monitoring_admin_password_hash}"
   }
   labels {
     label = "traefik.http.middlewares.basicauth.basicauth.removeheader"
