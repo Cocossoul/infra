@@ -26,7 +26,7 @@ resource "docker_container" "fail2ban" {
   }
 
   upload {
-    file = "/data/filter.d/treafik_auth.conf"
+    file = "/data/filter.d/treafik-basic-auth.conf"
     source = "${path.module}/src/fail2ban_filter_auth.conf"
     source_hash = filesha256("${path.module}/src/fail2ban_filter_auth.conf")
   }
