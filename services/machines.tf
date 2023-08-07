@@ -24,6 +24,7 @@ provider "docker" {
 }
 module "vultr_reverse-proxy" {
   source = "./reverse-proxy"
+  monitoring_admin_password_hash = htpasswd_password.monitoring_admin.bcrypt
   providers = {
     docker = docker.vultr_machine
   }
@@ -33,7 +34,6 @@ module "vultr_netdata" {
   domain    = data.cloudflare_zone.cocopaps
   machine   = local.vultr_machine
   subdomain = "monitoring.vultr"
-  monitoring_admin_password_hash = htpasswd_password.monitoring_admin.bcrypt
   discord_notification_settings = {
     webhook_url = var.discord_webhook_vultr
     channel = "vultr"
@@ -56,6 +56,7 @@ provider "docker" {
 }
 module "homeserver_reverse-proxy" {
   source = "./reverse-proxy"
+  monitoring_admin_password_hash = htpasswd_password.monitoring_admin.bcrypt
   providers = {
     docker = docker.homeserver_machine
   }
@@ -65,7 +66,6 @@ module "homeserver_netdata" {
   domain    = data.cloudflare_zone.cocopaps
   machine   = local.homeserver_machine
   subdomain = "monitoring.homeserver"
-  monitoring_admin_password_hash = htpasswd_password.monitoring_admin.bcrypt
   discord_notification_settings = {
     webhook_url = var.discord_webhook_homeserver
     channel = "homeserver"

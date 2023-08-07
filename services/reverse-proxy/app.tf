@@ -35,6 +35,15 @@ resource "docker_container" "reverse-proxy" {
     label = "traefik.docker.network"
     value = "gateway"
   }
+  labels {
+    label = "traefik.http.middlewares.auth.basicauth.users"
+    value = "monitoring_admin:${var.monitoring_admin_password_hash}"
+  }
+  labels {
+    label = "traefik.http.middlewares.auth.basicauth.removeheader"
+    value = "true"
+  }
+
   networks_advanced {
     name = "gateway"
   }

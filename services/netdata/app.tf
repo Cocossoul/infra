@@ -60,15 +60,7 @@ resource "docker_container" "netdata" {
   }
   labels {
     label = "traefik.http.routers.netdata.middlewares"
-    value = "netdata-auth"
-  }
-  labels {
-    label = "traefik.http.middlewares.netdata-auth.basicauth.users"
-    value = "monitoring_admin:${var.monitoring_admin_password_hash}"
-  }
-  labels {
-    label = "traefik.http.middlewares.netdata-auth.basicauth.removeheader"
-    value = "true"
+    value = "auth"
   }
   networks_advanced {
     name = "gateway"
