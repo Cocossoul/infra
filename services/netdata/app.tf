@@ -59,11 +59,15 @@ resource "docker_container" "netdata" {
     value = "letsencrypt"
   }
   labels {
-    label = "traefik.http.middlewares.basicauth.basicauth.users"
+    label = "traefik.http.routers.netdata.middlewares"
+    value = "netdata-auth"
+  }
+  labels {
+    label = "traefik.http.middlewares.netdata-auth.basicauth.users"
     value = "monitoring_admin:${var.monitoring_admin_password_hash}"
   }
   labels {
-    label = "traefik.http.middlewares.basicauth.basicauth.removeheader"
+    label = "traefik.http.middlewares.netdata-auth.basicauth.removeheader"
     value = "true"
   }
   networks_advanced {
