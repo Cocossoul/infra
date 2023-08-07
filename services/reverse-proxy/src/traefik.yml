@@ -2,7 +2,7 @@ global:
   sendAnonymousUsage: false
 
 log:
-  level: "INFO"
+  level: "DEBUG"
   format: json
 
 accessLog:
