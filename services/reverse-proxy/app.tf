@@ -46,8 +46,13 @@ resource "docker_container" "reverse-proxy" {
   }
 
   volumes {
-    container_path = "/srv/"
+    container_path = "/srv"
     volume_name    = docker_volume.reverse-proxy.name
+  }
+
+  volumes {
+    container_path = "/var/log/traefik"
+    volume_name    = docker_volume.reverse-proxy_logs.name
   }
 
   volumes {
@@ -61,6 +66,11 @@ resource "docker_container" "reverse-proxy" {
 
 resource "docker_volume" "reverse-proxy" {
   name   = "reverse-proxy_static"
+  driver = "local"
+}
+
+resource "docker_volume" "reverse-proxy_logs" {
+  name   = "reverse-proxy_logs"
   driver = "local"
 }
 
