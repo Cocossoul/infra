@@ -58,6 +58,14 @@ resource "docker_container" "netdata" {
     label = "traefik.http.routers.netdata.tls.certresolver"
     value = "letsencrypt"
   }
+  labels {
+    label = "traefik.http.middlewares.basicauth.basicauth.users"
+    value = "monitoring_admin:{monitoring_admin_password_hash}"
+  }
+  labels {
+    label = "traefik.http.middlewares.basicauth.basicauth.removeheader"
+    value = "true"
+  }
   networks_advanced {
     name = "gateway"
   }
