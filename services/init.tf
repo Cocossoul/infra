@@ -15,6 +15,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 4.5"
     }
+    htpasswd = {
+      source = "loafoe/htpasswd"
+      version = "1.0.4"
+    }
   }
 }
 
