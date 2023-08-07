@@ -4,3 +4,4 @@ variable "subdomain" {
 }
 variable "machine" {}
 variable "discord_notification_settings" {}
+variable "monitoring_admin_password_hash" {}
