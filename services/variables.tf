@@ -19,6 +19,9 @@ variable "gamerpc_mac_address" {
 variable "rwol_password" {
   sensitive = true
 }
+variable "monitoring_admin_password" {
+  sensitive = true
+}
 variable "discord_webhook_homeserver" {
   sensitive = true
 }

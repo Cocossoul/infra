@@ -48,6 +48,9 @@ export TF_VAR_rwol_password
 TF_VAR_rcon_password="$(fetch_secret rcon_password)"
 export TF_VAR_rcon_password
 
+TF_VAR_monitoring_admin_password="$(fetch_secret monitoring_admin_password)"
+export TF_VAR_monitoring_admin_password
+
 TF_VAR_discord_webhook_vultr="$(fetch_secret discord_webhook_vultr)"
 export TF_VAR_discord_webhook_vultr
 
