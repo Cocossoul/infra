@@ -31,3 +31,6 @@ variable "discord_webhook_vultr" {
 variable "discord_webhook_gatus" {
   sensitive = true
 }
+variable "deploy_workflow_token" {
+  sensitive = true
+}

@@ -82,3 +82,11 @@ module "portfolio" {
     docker = docker.vultr_machine
   }
 }
+
+module "nightly_maintenance" {
+  source                = "./nightly_maintenance"
+  deploy_workflow_webhook = var.deploy_workflow_webhook
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
