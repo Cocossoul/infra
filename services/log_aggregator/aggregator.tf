@@ -63,8 +63,8 @@ resource "docker_container" "log_aggregator" {
   }
   env = [
       "discovery.type=single-node",
-      "xpack.security.http.ssl.enabled=false"
-      "ELASTIC_USERNAME=elastic"
+      "xpack.security.http.ssl.enabled=false",
+      "ELASTIC_USERNAME=elastic",
       "ELASTIC_PASSWORD=changeme"
   ]
 
