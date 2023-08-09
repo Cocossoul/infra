@@ -50,6 +50,11 @@ resource "docker_container" "nightly_maintenance" {
     executable = true
   }
 
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "nightly_maintenance"
+  }
 
   restart = "unless-stopped"
 }

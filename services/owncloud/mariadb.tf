@@ -38,5 +38,11 @@ resource "docker_container" "owncloud_db" {
     name = "gateway"
   }
 
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "owncloud_db"
+  }
+
   restart = "unless-stopped"
 }

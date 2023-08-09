@@ -91,5 +91,11 @@ resource "docker_container" "owncloud" {
 
   }
 
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "owncloud"
+  }
+
   restart = "unless-stopped"
 }

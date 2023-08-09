@@ -79,6 +79,12 @@ resource "docker_container" "passbolt" {
   }
   command = ["/usr/bin/wait-for.sh", "-t", "0", "${docker_container.passbolt_db.name}:3306", "--", "/docker-entrypoint.sh"]
 
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "passbolt"
+  }
+
   restart = "unless-stopped"
 }
 

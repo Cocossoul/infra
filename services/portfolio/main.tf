@@ -84,5 +84,12 @@ resource "docker_container" "portfolio" {
   networks_advanced {
     name = "gateway"
   }
+
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "portfolio"
+  }
+
   restart = "unless-stopped"
 }

@@ -81,6 +81,13 @@ resource "docker_container" "tbeteouquoi" {
     label = "traefik.http.routers.tbeteouquoi.tls.certresolver"
     value = "letsencrypt"
   }
+
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "tbeteouquoi"
+  }
+
   networks_advanced {
     name = "gateway"
   }

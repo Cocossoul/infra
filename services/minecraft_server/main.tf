@@ -72,5 +72,11 @@ resource "docker_container" "minecraft_server" {
     content = local.serverproperties
   }
 
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "minecraft_server"
+  }
+
   restart = "unless-stopped"
 }

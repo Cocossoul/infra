@@ -27,6 +27,12 @@ resource "docker_container" "redis" {
     retries  = 5
   }
 
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "owncloud_redis"
+  }
+
   restart = "unless-stopped"
 }
 

@@ -70,6 +70,13 @@ resource "docker_container" "reverse-proxy" {
     read_only      = true
   }
 
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "traefik"
+  }
+
+
   restart = "unless-stopped"
 }
 

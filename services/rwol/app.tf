@@ -69,5 +69,11 @@ resource "docker_container" "rwol" {
     name = "gateway"
   }
 
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "rwol"
+  }
+
   restart = "unless-stopped"
 }
