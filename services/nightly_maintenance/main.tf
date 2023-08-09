@@ -24,9 +24,6 @@ resource "null_resource" "nightly_maintenance_build" {
 
   provisioner "local-exec" {
     working_dir = "${path.module}/src"
-    environment = {
-      MACHINE_NAME = var.machine.name
-    }
     command = "./build.sh"
   }
 }
