@@ -11,6 +11,7 @@
     - { role: core, tags: core }
     - { role: dyndns, tags: dyndns }
     - { role: firewall, tags: firewall }
+    - { role: fail2ban_tweaks, tags: fail2ban_tweaks }
     - { role: docker, tags: docker }
   vars:
     ssh_pam_support: false
