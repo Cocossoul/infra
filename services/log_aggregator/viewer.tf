@@ -54,12 +54,7 @@ resource "docker_container" "log_viewer" {
   }
   env = [
     "ELASTICSEARCH_HOSTS=http://log_aggregator:9200",
-    "ELASTICSEARCH_URL=http://elasticsearch:9200",
-    "XPACK_MONITORING_ENABLED=\"true\"",
-    "XPACK_MONITORING_COLLECTION_ENABLED=\"true\"",
-    "XPACK_SECURITY_ENABLED=\"true\"",
-    "ELASTICSEARCH_USERNAME=\"elastic\"",
-    "ELASTICSEARCH_PASSWORD=${var.elasticsearch_password}"
+    "ELASTICSEARCH_URL=http://elasticsearch:9200"
   ]
 
   restart = "unless-stopped"
