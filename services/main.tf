@@ -11,18 +11,6 @@ module "owncloud" {
   }
 }
 
-module "rwol" {
-  source    = "./rwol"
-  domain    = data.cloudflare_zone.cocopaps
-  subdomain = "rwol"
-  machine   = local.homeserver_machine
-  gamerpc_mac_address = var.gamerpc_mac_address
-  rwol_password = var.rwol_password
-  providers = {
-    docker = docker.homeserver_machine
-  }
-}
-
 module "gatus" {
   source    = "./gatus"
   domain    = data.cloudflare_zone.cocopaps
@@ -40,17 +28,6 @@ module "home" {
   machine = local.vultr_machine
   providers = {
     docker = docker.vultr_machine
-  }
-}
-
-module "minecraft_server" {
-  source                = "./minecraft_server"
-  domain           = data.cloudflare_zone.cocopaps
-  subdomain             = "mc"
-  machine          = local.homeserver_machine
-  rcon_password = var.rcon_password
-  providers = {
-    docker = docker.homeserver_machine
   }
 }
 
