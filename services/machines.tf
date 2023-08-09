@@ -42,6 +42,18 @@ module "vultr_netdata" {
     docker = docker.vultr_machine
   }
 }
+module "vultr_log_collector" {
+  source = "./log_collector"
+  machine = local.vultr_machine
+  log_aggregator = {
+    host = "log_aggregator"
+    port = 9200
+    scheme = "http"
+  }
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
 # -----------------------------------------------------------------------------
 locals {
   homeserver_machine = {
@@ -69,6 +81,18 @@ module "homeserver_netdata" {
   discord_notification_settings = {
     webhook_url = var.discord_webhook_homeserver
     channel = "homeserver"
+  }
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
+module "homeserver_log_collector" {
+  source = "./log_collector"
+  machine = local.homeserver_machine
+  log_aggregator = {
+    host = "aggregator.logs.cocopaps.com"
+    port = 443
+    scheme = "https"
   }
   providers = {
     docker = docker.homeserver_machine
