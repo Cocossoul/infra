@@ -63,6 +63,7 @@ resource "docker_container" "log_aggregator" {
   }
   env = [
       "discovery.type=single-node"
+      "xpack.security.http.ssl.enabled=false"
   ]
 
   restart = "unless-stopped"
