@@ -65,7 +65,7 @@ resource "docker_container" "log_aggregator" {
       "discovery.type=single-node",
       "xpack.security.http.ssl.enabled=false",
       "ELASTIC_USERNAME=elastic",
-      "ELASTIC_PASSWORD=changeme"
+      "ELASTIC_PASSWORD=${var.elasticsearch_password}"
   ]
 
   restart = "unless-stopped"

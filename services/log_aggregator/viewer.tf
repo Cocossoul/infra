@@ -59,7 +59,7 @@ resource "docker_container" "log_viewer" {
     "XPACK_MONITORING_COLLECTION_ENABLED=\"true\"",
     "XPACK_SECURITY_ENABLED=\"true\"",
     "ELASTICSEARCH_USERNAME=\"elastic\"",
-    "ELASTICSEARCH_PASSWORD=\"changeme\"
+    "ELASTICSEARCH_PASSWORD=${var.elasticsearch_password}"
   ]
 
   restart = "unless-stopped"

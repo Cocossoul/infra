@@ -49,6 +49,7 @@ module "vultr_log_collector" {
     host = "log_aggregator"
     port = 9200
     scheme = "http"
+    password = random_password.elasticsearch_password.result
   }
   providers = {
     docker = docker.vultr_machine
@@ -93,6 +94,7 @@ module "homeserver_log_collector" {
     host = "aggregator.logs.cocopaps.com"
     port = 443
     scheme = "https"
+    password = random_password.elasticsearch_password.result
   }
   providers = {
     docker = docker.homeserver_machine
