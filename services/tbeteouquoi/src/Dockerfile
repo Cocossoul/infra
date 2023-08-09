@@ -1,4 +1,4 @@
-FROM alpine:3.18.2
+FROM alpine:3.18.3
 
 RUN apk add --no-cache tini python3 py3-pip
 ENTRYPOINT [ "/sbin/tini", "--" ]
