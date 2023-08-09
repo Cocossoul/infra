@@ -47,6 +47,7 @@ resource "docker_container" "nightly_maintenance" {
   upload {
     file = "/task.sh"
     content = local.task
+    executable = true
   }
 
 
