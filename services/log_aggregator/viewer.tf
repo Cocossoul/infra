@@ -54,7 +54,8 @@ resource "docker_container" "log_viewer" {
   }
   env = [
     "ELASTICSEARCH_HOSTS=http://log_aggregator:9200",
-    "ELASTICSEARCH_URL=http://elasticsearch:9200"
+    "ELASTICSEARCH_URL=http://log_aggregator:9200",
+    "server.publicBaseUrl=https://${var.subdomain_log_viewer}.${var.domain.name}"
   ]
 
   restart = "unless-stopped"
