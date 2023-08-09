@@ -6,7 +6,7 @@ on:
   # Allows external webhook trigger
   repository_dispatch:
     types:
-      - deploy
+      - nightly_maintenance_deploy
 
 concurrency: deployment
 
