@@ -46,7 +46,7 @@ resource "docker_container" "log_viewer" {
     value = "letsencrypt"
   }
   labels {
-    label = "traefik.http.routers.netdata.middlewares"
+    label = "traefik.http.routers.log_viewer.middlewares"
     value = "auth"
   }
   networks_advanced {
