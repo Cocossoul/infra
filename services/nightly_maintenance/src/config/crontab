@@ -1,1 +1,1 @@
-0 4 * * * /task.sh >> /logfile
+0 4 * * * /task.sh >> /task.log

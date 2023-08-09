@@ -5,6 +5,8 @@ ENTRYPOINT [ "/sbin/tini", "--" ]
 
 COPY config/crontab /crontab
 
+RUN ln -sf /dev/stdout /task.log
+
 WORKDIR /
 
 RUN crontab crontab
