@@ -62,7 +62,7 @@ resource "docker_container" "log_aggregator" {
     name = "gateway"
   }
   env = [
-      "discovery.type=single-node"
+      "discovery.type=single-node",
       "xpack.security.http.ssl.enabled=false"
   ]
 
