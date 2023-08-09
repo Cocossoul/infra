@@ -90,3 +90,13 @@ module "nightly_maintenance" {
     docker = docker.vultr_machine
   }
 }
+
+module "log_aggregator" {
+  source                = "./log_aggregator"
+  domain    = data.cloudflare_zone.cocopaps
+  subdomain_log_viewer = "logs"
+  subdomain_log_aggregator = "aggregator.logs"
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
