@@ -13,7 +13,7 @@ terraform {
 
 resource "cloudflare_record" "log_aggregator" {
   zone_id = var.domain.zone_id
-  name    = "home"
+  name    = var.subdomain_log_aggregator
   value   = var.domain.name
   type    = "CNAME"
   ttl     = 3600
