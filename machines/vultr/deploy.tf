@@ -5,7 +5,7 @@ provider "vultr" {
 }
 
 resource "vultr_instance" "vultr_machine" {
-  plan        = "vc2-1c-1gb"
+  plan        = "vhf-1c-2gb"
   region      = "cdg"
   os_id       = 1743
   label       = "vultr-machine"
