@@ -76,5 +76,11 @@ resource "docker_container" "homer" {
     source_hash = filesha256("${path.module}/src/config.yml")
   }
 
+  log_driver = "fluentd"
+  log_opts = {
+    fluentd-address = "localhost:24224"
+    tag = "homer"
+  }
+
   restart = "unless-stopped"
 }
