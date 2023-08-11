@@ -62,6 +62,10 @@ resource "docker_container" "log_aggregator" {
     label = "traefik.http.routers.log_aggregator.tls.certresolver"
     value = "letsencrypt"
   }
+  volumes {
+    container_path = "/usr/share/elasticsearch/data"
+    volume_name    = docker_volume.elasticsearch.name
+  }
   networks_advanced {
     name = "gateway"
   }
@@ -73,4 +77,9 @@ resource "docker_container" "log_aggregator" {
   ]
 
   restart = "unless-stopped"
+}
+
+resource "docker_volume" "elasticsearch" {
+  name   = "elasticsearch_static"
+  driver = "local"
 }
