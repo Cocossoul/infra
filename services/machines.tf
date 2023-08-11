@@ -25,6 +25,7 @@ provider "docker" {
 module "vultr_reverse-proxy" {
   source = "./reverse-proxy"
   monitoring_admin_password_hash = htpasswd_password.monitoring_admin.bcrypt
+  elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
   providers = {
     docker = docker.vultr_machine
   }
@@ -49,7 +50,6 @@ module "vultr_log_collector" {
     host = "log_aggregator"
     port = 9200
     scheme = "http"
-    password = random_password.elasticsearch_password.result
   }
   providers = {
     docker = docker.vultr_machine
@@ -70,6 +70,7 @@ provider "docker" {
 module "homeserver_reverse-proxy" {
   source = "./reverse-proxy"
   monitoring_admin_password_hash = htpasswd_password.monitoring_admin.bcrypt
+  elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
   providers = {
     docker = docker.homeserver_machine
   }
@@ -94,7 +95,7 @@ module "homeserver_log_collector" {
     host = "aggregator.logs.cocopaps.com"
     port = 443
     scheme = "https"
-    password = random_password.elasticsearch_password.result
+    password = random_password.elasticsearch.result
   }
   providers = {
     docker = docker.homeserver_machine

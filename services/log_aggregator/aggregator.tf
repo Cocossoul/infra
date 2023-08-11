@@ -55,6 +55,10 @@ resource "docker_container" "log_aggregator" {
     value = "true"
   }
   labels {
+    label = "traefik.http.routers.log_viewer.middlewares"
+    value = "elasticsearch_auth"
+  }
+  labels {
     label = "traefik.http.routers.log_aggregator.tls.certresolver"
     value = "letsencrypt"
   }

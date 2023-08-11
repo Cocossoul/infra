@@ -57,7 +57,7 @@ resource "docker_container" "log_collector" {
 
   upload {
     file = "/fluentd/etc/fluent.conf"
-    content = local.fluentconf
+    content = can(var.aggregator.password) ? local.fluent_basic_auth_conf : local.fluentconf
   }
 
   networks_advanced {
