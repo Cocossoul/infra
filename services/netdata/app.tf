@@ -98,5 +98,11 @@ resource "docker_container" "netdata" {
     content_base64 = local.health_alarm_notify
   }
 
+  log_driver = "json-file"
+  log_opts = {
+    max-size: "15m"
+    max-file: 3
+  }
+
   restart = "unless-stopped"
 }

@@ -76,6 +76,13 @@ resource "docker_container" "log_aggregator" {
       "xpack.security.transport.ssl.enabled=false"
   ]
 
+
+  log_driver = "json-file"
+  log_opts = {
+    max-size: "15m"
+    max-file: 3
+  }
+
   restart = "unless-stopped"
 }
 

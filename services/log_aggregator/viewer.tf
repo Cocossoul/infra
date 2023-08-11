@@ -52,6 +52,13 @@ resource "docker_container" "log_viewer" {
   networks_advanced {
     name = "gateway"
   }
+
+  log_driver = "json-file"
+  log_opts = {
+    max-size: "15m"
+    max-file: 3
+  }
+
   env = [
     "ELASTICSEARCH_HOSTS=http://log_aggregator:9200",
     "ELASTICSEARCH_URL=http://log_aggregator:9200",

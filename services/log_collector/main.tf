@@ -63,6 +63,11 @@ resource "docker_container" "log_collector" {
   networks_advanced {
     name = "gateway"
   }
+  log_driver = "json-file"
+  log_opts = {
+    max-size: "15m"
+    max-file: 3
+  }
 
   restart = "unless-stopped"
 }
