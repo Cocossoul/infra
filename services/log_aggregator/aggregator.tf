@@ -55,7 +55,7 @@ resource "docker_container" "log_aggregator" {
     value = "true"
   }
   labels {
-    label = "traefik.http.routers.log_viewer.middlewares"
+    label = "traefik.http.routers.log_aggregator.middlewares"
     value = "elasticsearch_auth"
   }
   labels {
