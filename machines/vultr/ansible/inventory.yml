@@ -1,7 +1,7 @@
 all:
   hosts:
     vultr:
-      ansible_host: 104.238.188.131
+      ansible_host: 136.244.114.97
       ansible_port: 22
   vars:
     ansible_user: coco
