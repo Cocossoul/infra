@@ -60,7 +60,7 @@ resource "docker_container" "netdata" {
   }
   labels {
     label = "traefik.http.routers.netdata.middlewares"
-    value = "auth"
+    value = "monitoring_auth"
   }
   networks_advanced {
     name = "gateway"

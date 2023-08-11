@@ -36,11 +36,19 @@ resource "docker_container" "reverse-proxy" {
     value = "gateway"
   }
   labels {
-    label = "traefik.http.middlewares.auth.basicauth.users"
+    label = "traefik.http.middlewares.monitoring_auth.basicauth.users"
     value = "monitoring_admin:${var.monitoring_admin_password_hash}"
   }
   labels {
-    label = "traefik.http.middlewares.auth.basicauth.removeheader"
+    label = "traefik.http.middlewares.monitoring_auth.basicauth.removeheader"
+    value = "true"
+  }
+  labels {
+    label = "traefik.http.middlewares.elasticsearch_auth.basicauth.users"
+    value = "elastic:${var.elasticsearch_password_hash}"
+  }
+  labels {
+    label = "traefik.http.middlewares.elasticsearch_auth.basicauth.removeheader"
     value = "true"
   }
 

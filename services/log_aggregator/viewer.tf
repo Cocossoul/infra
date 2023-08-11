@@ -47,7 +47,7 @@ resource "docker_container" "log_viewer" {
   }
   labels {
     label = "traefik.http.routers.log_viewer.middlewares"
-    value = "auth"
+    value = "monitoring_auth"
   }
   networks_advanced {
     name = "gateway"
