@@ -4,7 +4,7 @@ set -e
 
 cd machines
 terraform init
-terraform $@
+#terraform $@
 cd ..
 cd services
 terraform init
