@@ -77,3 +77,13 @@ module "log_aggregator" {
     docker = docker.vultr_machine
   }
 }
+
+module "mealie" {
+  source    = "./mealie"
+  domain    = data.cloudflare_zone.cocopaps
+  subdomain = "mealie"
+  machine   = local.homeserver_machine
+  providers = {
+    docker = docker.mealie_machine
+  }
+}
