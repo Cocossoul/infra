@@ -28,7 +28,7 @@ resource "docker_container" "mealie_backend" {
 
   volumes {
     container_path = "/app/data/"
-    volume_name    = docker_volume.mealie_backend.name
+    volume_name    = docker_volume.mealie.name
   }
 
   log_driver = "fluentd"
@@ -38,9 +38,4 @@ resource "docker_container" "mealie_backend" {
   }
 
   restart = "unless-stopped"
-}
-
-resource "docker_volume" "mealie_backend" {
-  name   = "mealie_backend_static"
-  driver = "local"
 }
