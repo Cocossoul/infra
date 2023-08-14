@@ -14,6 +14,7 @@ resource "docker_container" "mealie_backend" {
     internal = 9000
   }
   env = [
+    "ALLOW_SIGNUP=false",
     "API_URL=http://${docker_container.mealie_backend.name}:9000",
     "PUID=1000",
     "PGID=1000",

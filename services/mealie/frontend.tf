@@ -35,6 +35,7 @@ resource "docker_container" "mealie_frontend" {
     internal = 3000
   }
   env = [
+    "ALLOW_SIGNUP=false",
     "API_URL=http://${docker_container.mealie_backend.name}:9000"
   ]
   labels {
