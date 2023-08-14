@@ -84,6 +84,6 @@ module "mealie" {
   subdomain = "mealie"
   machine   = local.homeserver_machine
   providers = {
-    docker = docker.mealie_machine
+    docker = docker.homeserver_machine
   }
 }
