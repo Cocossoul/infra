@@ -20,7 +20,7 @@ resource "cloudflare_record" "log_aggregator" {
 }
 
 data "docker_registry_image" "log_aggregator" {
-  name = "docker.elastic.co/elasticsearch/elasticsearch:8.9.0" # renovate_docker
+  name = "docker.elastic.co/elasticsearch/elasticsearch:8.9.1" # renovate_docker
 }
 
 resource "docker_image" "log_aggregator" {
