@@ -1,5 +1,5 @@
 data "docker_registry_image" "owncloud_db" {
-  name = "mariadb:10.6" # renovate_docker
+  name = "mariadb:11.1" # renovate_docker
 }
 
 resource "docker_image" "owncloud_db" {
