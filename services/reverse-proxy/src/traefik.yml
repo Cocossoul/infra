@@ -46,8 +46,9 @@ certificatesResolvers:
       storage: "/srv/acme.json"
       caServer: "https://acme-v02.api.letsencrypt.org/directory"
       keyType: "EC256"
-      httpChallenge:
-        entryPoint: "insecure"
+      dnsChallenge:
+        provider: cloudflare
+        delayBeforeCheck: 0
 
 http:
   middlewares:
