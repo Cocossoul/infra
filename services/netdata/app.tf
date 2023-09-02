@@ -16,7 +16,7 @@ resource "cloudflare_record" "netdata" {
   name    = var.subdomain
   value   = var.machine.dyndns_domain
   type    = "CNAME"
-  ttl     = 3600
+  ttl     = 1
   proxied = true
 }
 

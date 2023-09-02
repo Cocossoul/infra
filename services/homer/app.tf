@@ -16,7 +16,7 @@ resource "cloudflare_record" "homer" {
   name    = "@"
   value   = var.machine.dyndns_domain
   type    = "CNAME"
-  ttl     = 3600
+  ttl     = 1
   proxied = true
 }
 
@@ -25,7 +25,7 @@ resource "cloudflare_record" "homer_alias" {
   name    = "home"
   value   = var.domain.name
   type    = "CNAME"
-  ttl     = 3600
+  ttl     = 1
   proxied = true
 }
 

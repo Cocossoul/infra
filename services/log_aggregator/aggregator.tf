@@ -16,7 +16,7 @@ resource "cloudflare_record" "log_aggregator" {
   name    = var.subdomain_log_aggregator
   value   = var.domain.name
   type    = "CNAME"
-  ttl     = 3600
+  ttl     = 1
   proxied = true
 }
 

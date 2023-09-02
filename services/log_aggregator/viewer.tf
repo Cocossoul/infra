@@ -3,7 +3,7 @@ resource "cloudflare_record" "log_viewer" {
   name    = var.subdomain_log_viewer
   value   = var.domain.name
   type    = "CNAME"
-  ttl     = 3600
+  ttl     = 1
   proxied = true
 }
 
