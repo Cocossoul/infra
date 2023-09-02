@@ -54,7 +54,7 @@ resource "docker_container" "reverse-proxy" {
 
   env = [
     "CLOUDFLARE_EMAIL=corentin0pape@gmail.com",
-    "CLOUDFLARE_API_KEY=${var.cloudflare_token}"
+    "CLOUDFLARE_API_KEY=${var.cloudflare_global_api_key}"
   ]
 
   networks_advanced {

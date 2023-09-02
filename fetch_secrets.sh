@@ -18,6 +18,9 @@ fetch_secret() {
 TF_VAR_cloudflare_token="$(fetch_secret cloudflare_token)"
 export TF_VAR_cloudflare_token
 
+TF_VAR_cloudflare_global_api_key="$(fetch_secret cloudflare_global_api_key)"
+export TF_VAR_cloudflare_global_api_key
+
 VULTR_API_KEY="$(fetch_secret vultr_api_key)"
 export VULTR_API_KEY
 
