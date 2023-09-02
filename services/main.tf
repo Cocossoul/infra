@@ -50,16 +50,6 @@ module "tbeteouquoi" {
   }
 }
 
-module "portfolio" {
-  source    = "./portfolio"
-  domain    = data.cloudflare_zone.cocopaps
-  subdomain = "portfolio"
-  machine   = local.vultr_machine
-  providers = {
-    docker = docker.vultr_machine
-  }
-}
-
 module "nightly_maintenance" {
   source                = "./nightly_maintenance"
   deploy_workflow_token = var.deploy_workflow_token
