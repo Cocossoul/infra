@@ -17,6 +17,7 @@ resource "cloudflare_record" "tbeteouquoi" {
   value   = var.machine.dyndns_domain
   type    = "CNAME"
   ttl     = 3600
+  proxied = true
 }
 
 data "archive_file" "src" {

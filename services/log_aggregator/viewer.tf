@@ -4,6 +4,7 @@ resource "cloudflare_record" "log_viewer" {
   value   = var.domain.name
   type    = "CNAME"
   ttl     = 3600
+  proxied = true
 }
 
 data "docker_registry_image" "log_viewer" {

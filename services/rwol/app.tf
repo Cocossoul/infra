@@ -17,6 +17,7 @@ resource "cloudflare_record" "rwol" {
   value   = var.machine.dyndns_domain
   type    = "CNAME"
   ttl     = 3600
+  proxied = true
 }
 
 data "docker_registry_image" "rwol" {

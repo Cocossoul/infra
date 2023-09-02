@@ -17,6 +17,7 @@ resource "cloudflare_record" "homer" {
   value   = var.machine.dyndns_domain
   type    = "CNAME"
   ttl     = 3600
+  proxied = true
 }
 
 resource "cloudflare_record" "homer_alias" {
@@ -25,6 +26,7 @@ resource "cloudflare_record" "homer_alias" {
   value   = var.domain.name
   type    = "CNAME"
   ttl     = 3600
+  proxied = true
 }
 
 data "docker_registry_image" "homer" {
