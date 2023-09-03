@@ -14,7 +14,7 @@ terraform {
 resource "cloudflare_record" "log_aggregator" {
   zone_id = var.domain.zone_id
   name    = var.subdomain_log_aggregator
-  value   = var.domain.name
+  value   = var.machine.address
   type    = "CNAME"
   ttl     = 1
   proxied = true

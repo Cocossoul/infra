@@ -14,7 +14,7 @@ terraform {
 resource "cloudflare_record" "tbeteouquoi" {
   zone_id = var.domain.zone_id
   name    = "@"
-  value   = var.machine.dyndns_domain
+  value   = var.machine.address
   type    = "CNAME"
   ttl     = 1
   proxied = true

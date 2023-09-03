@@ -14,7 +14,7 @@ terraform {
 resource "cloudflare_record" "homer" {
   zone_id = var.domain.zone_id
   name    = "@"
-  value   = var.machine.dyndns_domain
+  value   = var.machine.address
   type    = "CNAME"
   ttl     = 1
   proxied = true
@@ -23,7 +23,7 @@ resource "cloudflare_record" "homer" {
 resource "cloudflare_record" "homer_alias" {
   zone_id = var.domain.zone_id
   name    = "home"
-  value   = var.domain.name
+  value   = var.machine.address
   type    = "CNAME"
   ttl     = 1
   proxied = true

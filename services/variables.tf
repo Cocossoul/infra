@@ -4,6 +4,9 @@ variable "cloudflare_token" {
 variable "cloudflare_global_api_key" {
   sensitive = true
 }
+variable "cloudflare_account_id" {
+    sensitive = true
+}
 variable "owncloud_admin_username" {
   sensitive = true
 }
