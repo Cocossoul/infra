@@ -1,5 +1,10 @@
-locals {
-  dyndns_domain = "cocopapshomeserver.duckdns.org"
+resource "local_file" "ansible_inventory" {
+  content = templatefile("${path.module}/ansible/inventory.template.yml",
+    {
+      dyndns_address = var.dyndns_address
+    }
+  )
+  filename = "${path.module}/ansible/inventory.yml"
 }
 
 resource "null_resource" "ansible_configuration" {
@@ -11,7 +16,7 @@ resource "null_resource" "ansible_configuration" {
     working_dir = "${path.module}/ansible/"
     command     = "./ansible_script.sh"
     environment = {
-      DYNDNS_DOMAIN = local.dyndns_domain
+      DYNDNS_DOMAIN = var.dyndns_address
       DYNDNS_TOKEN  = var.dyndns_token
     }
   }

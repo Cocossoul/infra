@@ -1,7 +1,7 @@
 all:
   hosts:
     homeserver:
-      ansible_host: cocopapshomeserver.duckdns.org
+      ansible_host: ${ dyndns_address }
       ansible_port: 1844
   vars:
     ansible_user: coco

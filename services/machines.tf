@@ -1,25 +1,12 @@
-data "terraform_remote_state" "machines" {
-  backend = "s3"
-
-  config = {
-    bucket         = "cocopaps-terraform-states"
-    key            = "infra/machines.tf"
-    region         = "eu-west-3"
-    dynamodb_table = "cocopaps-terraform-locks"
-    encrypt        = true
-  }
-}
-
-# -----------------------------------------------------------------------------
 locals {
   vultr_machine = {
-    dyndns_domain = data.terraform_remote_state.machines.outputs.vultr_dyndns_domain
+    dyndns_address = var.vultr_dyndns_address
     name          = "vultr"
     address = module.vultr_cloudflare_tunnel.tunnel_address
   }
 }
 provider "docker" {
-  host     = "ssh://coco@${local.vultr_machine.dyndns_domain}:22"
+  host     = "ssh://coco@${local.vultr_machine.dyndns_address}:22"
   ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
   alias    = "vultr_machine"
 }
@@ -68,13 +55,13 @@ module "vultr_cloudflare_tunnel" {
 # -----------------------------------------------------------------------------
 locals {
   homeserver_machine = {
-    dyndns_domain = data.terraform_remote_state.machines.outputs.homeserver_dyndns_domain
+    dyndns_address = var.homeserver_dyndns_address
     name          = "homeserver"
     address = module.homeserver_cloudflare_tunnel.tunnel_address
   }
 }
 provider "docker" {
-  host     = "ssh://coco@${local.homeserver_machine.dyndns_domain}:1844"
+  host     = "ssh://coco@${local.homeserver_machine.dyndns_address}:1844"
   ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
   alias    = "homeserver_machine"
 }
