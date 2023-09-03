@@ -15,6 +15,7 @@ locals {
   vultr_machine = {
     dyndns_domain = data.terraform_remote_state.machines.outputs.vultr_dyndns_domain
     name          = "vultr"
+    address = module.vultr_cloudflare_tunnel.tunnel_address
   }
 }
 provider "docker" {
@@ -56,11 +57,20 @@ module "vultr_log_collector" {
     docker = docker.vultr_machine
   }
 }
+module "vultr_cloudflare_tunnel" {
+  source = "./cloudflare_tunnel"
+  tunnel_name = "vultr"
+  cloudflare_account_id = var.cloudflare_account_id
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
 # -----------------------------------------------------------------------------
 locals {
   homeserver_machine = {
     dyndns_domain = data.terraform_remote_state.machines.outputs.homeserver_dyndns_domain
     name          = "homeserver"
+    address = module.homeserver_cloudflare_tunnel.tunnel_address
   }
 }
 provider "docker" {
@@ -99,6 +109,14 @@ module "homeserver_log_collector" {
     scheme = "https"
     password = random_password.elasticsearch.result
   }
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
+module "homeserver_cloudflare_tunnel" {
+  source = "./cloudflare_tunnel"
+  tunnel_name = "homeserver"
+  cloudflare_account_id = var.cloudflare_account_id
   providers = {
     docker = docker.homeserver_machine
   }

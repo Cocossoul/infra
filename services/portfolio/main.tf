@@ -14,7 +14,7 @@ terraform {
 resource "cloudflare_record" "portfolio" {
   zone_id = var.domain.zone_id
   name    = var.subdomain
-  value   = var.machine.dyndns_domain
+  value   = var.machine.address
   type    = "CNAME"
   ttl     = 1
   proxied = true

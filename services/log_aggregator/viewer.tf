@@ -1,7 +1,7 @@
 resource "cloudflare_record" "log_viewer" {
   zone_id = var.domain.zone_id
   name    = var.subdomain_log_viewer
-  value   = var.domain.name
+  value   = var.machine.address
   type    = "CNAME"
   ttl     = 1
   proxied = true

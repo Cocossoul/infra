@@ -21,6 +21,9 @@ export TF_VAR_cloudflare_token
 TF_VAR_cloudflare_global_api_key="$(fetch_secret cloudflare_global_api_key)"
 export TF_VAR_cloudflare_global_api_key
 
+TF_VAR_cloudflare_account_id="$(fetch_secret cloudflare_account_id)"
+export TF_VAR_cloudflare_account_id
+
 VULTR_API_KEY="$(fetch_secret vultr_api_key)"
 export VULTR_API_KEY
 

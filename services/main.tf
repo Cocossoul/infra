@@ -61,6 +61,7 @@ module "nightly_maintenance" {
 module "log_aggregator" {
   source                = "./log_aggregator"
   domain    = data.cloudflare_zone.cocopaps
+  machine = local.vultr_machine
   subdomain_log_viewer = "logs"
   subdomain_log_aggregator = "aggregator.logs"
   providers = {
