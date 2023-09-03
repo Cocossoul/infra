@@ -30,6 +30,12 @@ export VULTR_API_KEY
 TF_VAR_dyndns_token="$(fetch_secret dyndns_token)"
 export TF_VAR_dyndns_token
 
+TF_VAR_vultr_dyndns_address="$(fetch_secret vultr_dyndns_address)"
+export TF_VAR_vultr_dyndns_address
+
+TF_VAR_homeserver_dyndns_address="$(fetch_secret homeserver_dyndns_address)"
+export TF_VAR_homeserver_dyndns_address
+
 TF_VAR_owncloud_admin_username="$(fetch_secret owncloud_admin_username)"
 export TF_VAR_owncloud_admin_username
 
