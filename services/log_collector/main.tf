@@ -69,5 +69,7 @@ resource "docker_container" "log_collector" {
     max-file: 3
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }

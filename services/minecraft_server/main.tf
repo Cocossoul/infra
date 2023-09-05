@@ -78,5 +78,7 @@ resource "docker_container" "minecraft_server" {
     tag = "minecraft_server"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }

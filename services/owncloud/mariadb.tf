@@ -44,5 +44,7 @@ resource "docker_container" "owncloud_db" {
     tag = "owncloud_db"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }

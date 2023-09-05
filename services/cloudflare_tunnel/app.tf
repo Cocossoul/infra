@@ -26,6 +26,7 @@ resource "docker_container" "cloudflared" {
     fluentd-address = "localhost:24224"
     tag = "cloudflared"
   }
+  destroy_grace_seconds = 60
 
   restart = "unless-stopped"
 }

@@ -83,6 +83,8 @@ resource "docker_container" "gatus" {
     tag = "gatus"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }
 

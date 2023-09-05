@@ -56,5 +56,7 @@ resource "docker_container" "nightly_maintenance" {
     tag = "nightly_maintenance"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }

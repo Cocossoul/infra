@@ -84,5 +84,7 @@ resource "docker_container" "homer" {
     tag = "homer"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }

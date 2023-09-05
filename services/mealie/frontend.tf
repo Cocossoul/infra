@@ -78,6 +78,8 @@ resource "docker_container" "mealie_frontend" {
     tag = "mealie_frontend"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }
 

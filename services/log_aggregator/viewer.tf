@@ -66,5 +66,7 @@ resource "docker_container" "log_viewer" {
     "server.publicBaseUrl=https://${var.subdomain_log_viewer}.${var.domain.name}"
   ]
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }

@@ -92,5 +92,7 @@ resource "docker_container" "portfolio" {
     tag = "portfolio"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }
