@@ -76,5 +76,7 @@ resource "docker_container" "rwol" {
     tag = "rwol"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }

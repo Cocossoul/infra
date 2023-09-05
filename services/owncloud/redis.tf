@@ -33,6 +33,8 @@ resource "docker_container" "redis" {
     tag = "owncloud_redis"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }
 

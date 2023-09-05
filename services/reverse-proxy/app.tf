@@ -89,6 +89,7 @@ resource "docker_container" "reverse-proxy" {
     tag = "traefik"
   }
 
+  destroy_grace_seconds = 60
 
   restart = "unless-stopped"
 }

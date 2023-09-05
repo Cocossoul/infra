@@ -37,5 +37,7 @@ resource "docker_container" "mealie_backend" {
     tag = "mealie_backend"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }

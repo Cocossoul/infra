@@ -86,6 +86,8 @@ resource "docker_container" "passbolt" {
     tag = "passbolt"
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }
 

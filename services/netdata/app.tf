@@ -105,5 +105,7 @@ resource "docker_container" "netdata" {
     max-file: 3
   }
 
+  destroy_grace_seconds = 60
+
   restart = "unless-stopped"
 }
