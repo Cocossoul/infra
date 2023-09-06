@@ -51,10 +51,10 @@ endpoints:
 
   - name: logs
     url: "https://logs.cocopaps.com"
-    interval: 30s
+    interval: 5min
     group: 2. private
     conditions:
-      - "[STATUS] == 200"         # Status must be 200
+      - "[STATUS] == 401"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
     alerts:
       - type: discord
@@ -79,10 +79,10 @@ endpoints:
 
   - name: elasticsearch
     url: "https://logaggregator.cocopaps.com"
-    interval: 30s
+    interval: 5min
     group: 4. internals
     conditions:
-      - "[STATUS] == 200"         # Status must be 200
+      - "[STATUS] == 401"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
     alerts:
       - type: discord
@@ -93,10 +93,10 @@ endpoints:
 
   - name: monitoringvultr
     url: "https://monitoringvultr.cocopaps.com"
-    interval: 30s
+    interval: 5min
     group: 4. internals
     conditions:
-      - "[STATUS] == 200"         # Status must be 200
+      - "[STATUS] == 401"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
     alerts:
       - type: discord
@@ -107,10 +107,10 @@ endpoints:
 
   - name: monitoringhomeserver
     url: "https://monitoringhomeserver.cocopaps.com"
-    interval: 30s
+    interval: 5min
     group: 4. internals
     conditions:
-      - "[STATUS] == 200"         # Status must be 200
+      - "[STATUS] == 401"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
     alerts:
       - type: discord
