@@ -38,10 +38,10 @@ resource "cloudflare_tunnel_config" "config" {
       service  = "https://reverse-proxy:443"
     }
     ingress_rule {
-      hostname = "aggregator.logs.cocopaps.com"
+      hostname = "logaggregator.cocopaps.com"
       origin_request {
         http2_origin = true
-        origin_server_name = "aggregator.logs.cocopaps.com"
+        origin_server_name = "logaggregator.cocopaps.com"
       }
       service  = "https://reverse-proxy:443"
     }
@@ -54,18 +54,18 @@ resource "cloudflare_tunnel_config" "config" {
       service  = "https://reverse-proxy:443"
     }
     ingress_rule {
-      hostname = "monitoring.vultr.cocopaps.com"
+      hostname = "monitoringvultr.cocopaps.com"
       origin_request {
         http2_origin = true
-        origin_server_name = "monitoring.vultr.cocopaps.com"
+        origin_server_name = "monitoringvultr.cocopaps.com"
       }
       service  = "https://reverse-proxy:443"
     }
     ingress_rule {
-      hostname = "monitoring.homeserver.cocopaps.com"
+      hostname = "monitoringhomeserver.cocopaps.com"
       origin_request {
         http2_origin = true
-        origin_server_name = "monitoring.homeserver.cocopaps.com"
+        origin_server_name = "monitoringhomeserver.cocopaps.com"
       }
       service  = "https://reverse-proxy:443"
     }
