@@ -78,7 +78,7 @@ endpoints:
         success-threshold: 3
 
   - name: elasticsearch
-    url: "https://elastic.cocopaps.com"
+    url: "https://logaggregator.cocopaps.com"
     interval: 30s
     group: 4. internals
     conditions:
