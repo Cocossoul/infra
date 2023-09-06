@@ -23,7 +23,7 @@ module "vultr_netdata" {
   source    = "./netdata"
   domain    = data.cloudflare_zone.cocopaps
   machine   = local.vultr_machine
-  subdomain = "monitoring.vultr"
+  subdomain = "monitoringvultr"
   discord_notification_settings = {
     webhook_url = var.discord_webhook_vultr
     channel = "vultr"
@@ -78,7 +78,7 @@ module "homeserver_netdata" {
   source    = "./netdata"
   domain    = data.cloudflare_zone.cocopaps
   machine   = local.homeserver_machine
-  subdomain = "monitoring.homeserver"
+  subdomain = "monitoringhomeserver"
   discord_notification_settings = {
     webhook_url = var.discord_webhook_homeserver
     channel = "homeserver"
@@ -91,7 +91,7 @@ module "homeserver_log_collector" {
   source = "./log_collector"
   machine = local.homeserver_machine
   log_aggregator = {
-    host = "aggregator.logs.cocopaps.com"
+    host = "logaggregator.cocopaps.com"
     port = 443
     scheme = "https"
     password = random_password.elasticsearch.result
