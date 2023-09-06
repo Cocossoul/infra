@@ -51,7 +51,7 @@ endpoints:
 
   - name: logs
     url: "https://logs.cocopaps.com"
-    interval: 5min
+    interval: 5m
     group: 2. private
     conditions:
       - "[STATUS] == 401"         # Status must be 200
@@ -79,7 +79,7 @@ endpoints:
 
   - name: elasticsearch
     url: "https://logaggregator.cocopaps.com"
-    interval: 5min
+    interval: 5m
     group: 4. internals
     conditions:
       - "[STATUS] == 401"         # Status must be 200
@@ -93,7 +93,7 @@ endpoints:
 
   - name: monitoringvultr
     url: "https://monitoringvultr.cocopaps.com"
-    interval: 5min
+    interval: 5m
     group: 4. internals
     conditions:
       - "[STATUS] == 401"         # Status must be 200
@@ -107,7 +107,7 @@ endpoints:
 
   - name: monitoringhomeserver
     url: "https://monitoringhomeserver.cocopaps.com"
-    interval: 5min
+    interval: 5m
     group: 4. internals
     conditions:
       - "[STATUS] == 401"         # Status must be 200
