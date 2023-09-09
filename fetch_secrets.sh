@@ -75,5 +75,8 @@ export TF_VAR_discord_webhook_gatus
 TF_VAR_deploy_workflow_token="$(fetch_secret deploy_workflow_token)"
 export TF_VAR_deploy_workflow_token
 
+TF_VAR_ru19h_token="$(fetch_secret ru19h_token)"
+export TF_VAR_ru19h_token
+
 DOCKER_PASSWORD="$(fetch_secret DOCKER_PASSWORD)"
 export DOCKER_PASSWORD
