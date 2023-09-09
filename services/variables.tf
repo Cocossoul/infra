@@ -46,3 +46,6 @@ variable "vultr_dyndns_address" {
 variable "homeserver_dyndns_address" {
   sensitive = true
 }
+variable "ru19h_token" {
+  sensitive = true
+}

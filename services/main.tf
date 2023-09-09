@@ -78,3 +78,11 @@ module "mealie" {
     docker = docker.homeserver_machine
   }
 }
+
+module "ru19h" {
+  source                = "./ru19h"
+  ru19h_token = var.ru19h_token
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
