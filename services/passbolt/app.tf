@@ -94,8 +94,16 @@ resource "docker_container" "passbolt" {
 resource "docker_volume" "passbolt_gpg" {
   name   = "passbolt_gpg_static"
   driver = "local"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 resource "docker_volume" "passbolt_jwt" {
   name   = "passbolt_jwt_static"
   driver = "local"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }

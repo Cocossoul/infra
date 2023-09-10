@@ -86,4 +86,8 @@ resource "docker_container" "mealie_frontend" {
 resource "docker_volume" "mealie" {
   name   = "mealie_data"
   driver = "local"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }

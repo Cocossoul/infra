@@ -42,6 +42,10 @@ resource "docker_container" "passbolt_db" {
 resource "docker_volume" "passbolt_db" {
   name   = "passbolt_db_static"
   driver = "local"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "random_integer" "passbolt_db_password_length" {
