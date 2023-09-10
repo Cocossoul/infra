@@ -31,12 +31,6 @@ resource "docker_container" "mealie_backend" {
     volume_name    = docker_volume.mealie.name
   }
 
-  log_driver = "fluentd"
-  log_opts = {
-    fluentd-address = "localhost:24224"
-    tag = "mealie_backend"
-  }
-
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"

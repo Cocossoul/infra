@@ -83,12 +83,6 @@ resource "docker_container" "tbeteouquoi" {
     value = "letsencrypt"
   }
 
-  log_driver = "fluentd"
-  log_opts = {
-    fluentd-address = "localhost:24224"
-    tag = "tbeteouquoi"
-  }
-
   networks_advanced {
     name = "gateway"
   }

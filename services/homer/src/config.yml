@@ -117,7 +117,3 @@ services:
         icon: "fa-brands fa-watchman-monitoring"
         subtitle: "Monitoring my Cloud Server with Netdata"
         url: "https://monitoring.vultr.cocopaps.com"
-      - name: "Kibana"
-        icon: "fa-solid fa-magnifying-glass"
-        subtitle: "Search logs with ELK Stack Kibana"
-        url: "https://logs.cocopaps.com"

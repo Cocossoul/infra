@@ -48,12 +48,6 @@ resource "docker_container" "ru19h" {
     "RU19H_TOKEN=${var.ru19h_token}"
   ]
 
-  log_driver = "fluentd"
-  log_opts = {
-    fluentd-address = "localhost:24224"
-    tag = "ru19h"
-  }
-
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"

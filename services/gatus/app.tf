@@ -77,12 +77,6 @@ resource "docker_container" "gatus" {
     volume_name    = docker_volume.gatus.name
   }
 
-  log_driver = "fluentd"
-  log_opts = {
-    fluentd-address = "localhost:24224"
-    tag = "gatus"
-  }
-
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"

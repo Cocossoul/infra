@@ -30,22 +30,6 @@ resource "cloudflare_tunnel_config" "config" {
       service  = "https://reverse-proxy:443"
     }
     ingress_rule {
-      hostname = "logs.cocopaps.com"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "logs.cocopaps.com"
-      }
-      service  = "https://reverse-proxy:443"
-    }
-    ingress_rule {
-      hostname = "logaggregator.cocopaps.com"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "logaggregator.cocopaps.com"
-      }
-      service  = "https://reverse-proxy:443"
-    }
-    ingress_rule {
       hostname = "mealie.cocopaps.com"
       origin_request {
         http2_origin = true

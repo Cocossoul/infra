@@ -28,12 +28,6 @@ resource "docker_container" "passbolt_db" {
     name = "gateway"
   }
 
-  log_driver = "fluentd"
-  log_opts = {
-    fluentd-address = "localhost:24224"
-    tag = "passbolt_db"
-  }
-
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"

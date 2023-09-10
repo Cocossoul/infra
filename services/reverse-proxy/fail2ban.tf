@@ -42,12 +42,6 @@ resource "docker_container" "fail2ban" {
     volume_name    = docker_volume.fail2ban.name
   }
 
-  log_driver = "fluentd"
-  log_opts = {
-    fluentd-address = "localhost:24224"
-    tag = "fail2ban"
-  }
-
   network_mode = "host"
 
   destroy_grace_seconds = 60

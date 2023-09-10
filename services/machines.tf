@@ -32,18 +32,6 @@ module "vultr_netdata" {
     docker = docker.vultr_machine
   }
 }
-module "vultr_log_collector" {
-  source = "./log_collector"
-  machine = local.vultr_machine
-  log_aggregator = {
-    host = "log_aggregator"
-    port = 9200
-    scheme = "http"
-  }
-  providers = {
-    docker = docker.vultr_machine
-  }
-}
 module "vultr_cloudflare_tunnel" {
   source = "./cloudflare_tunnel"
   tunnel_name = "vultr"
@@ -82,19 +70,6 @@ module "homeserver_netdata" {
   discord_notification_settings = {
     webhook_url = var.discord_webhook_homeserver
     channel = "homeserver"
-  }
-  providers = {
-    docker = docker.homeserver_machine
-  }
-}
-module "homeserver_log_collector" {
-  source = "./log_collector"
-  machine = local.homeserver_machine
-  log_aggregator = {
-    host = "logaggregator.cocopaps.com"
-    port = 443
-    scheme = "https"
-    password = random_password.elasticsearch.result
   }
   providers = {
     docker = docker.homeserver_machine
