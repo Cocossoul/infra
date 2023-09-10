@@ -20,11 +20,9 @@ resource "docker_container" "reverse-proxy" {
   image = docker_image.reverse-proxy.image_id
   name  = "reverse-proxy"
   ports {
-    external = 80
     internal = 80
   }
   ports {
-    external = 443
     internal = 443
   }
   labels {
