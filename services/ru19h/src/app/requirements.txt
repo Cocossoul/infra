@@ -1,4 +1,4 @@
-anyio==3.7.0
+anyio==3.7.1
 certifi==2023.7.22
 exceptiongroup==1.1.1
 h11==0.14.0
