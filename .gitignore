@@ -2,6 +2,7 @@
 .secrets.sh
 terraform.tfstate
 terraform.tfstate.backup
+inventory.yml
 
 # Trashfiles
 .terraform
