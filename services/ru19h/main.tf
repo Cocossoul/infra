@@ -45,7 +45,8 @@ resource "docker_container" "ru19h" {
   name  = "ru19h"
 
   env = [
-    "RU19H_TOKEN=${var.ru19h_token}"
+    "RU19H_TOKEN=${var.ru19h_token}",
+    "TZ=Europe/Paris"
   ]
 
   destroy_grace_seconds = 60
