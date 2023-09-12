@@ -28,3 +28,9 @@
   community.general.ufw:
     rule: allow
     port: ssh
+
+- name: Allow all access to port 6443 for k3s
+  become: true
+  community.general.ufw:
+    rule: allow
+    port: '6443'
