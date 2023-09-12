@@ -13,6 +13,7 @@
     - { role: firewall, tags: firewall }
     - { role: fail2ban_tweaks, tags: fail2ban_tweaks }
     - { role: docker, tags: docker }
+    - { role: k3s, tags: k3s }
   vars:
     ssh_pam_support: false
     ssh_use_pam: false
