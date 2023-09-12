@@ -19,6 +19,14 @@ rm passbolt_ci_user.acs
 # Fetch secrets from Passbolt
 source fetch_secrets.sh
 
+# Fetch Kube config from machines
+scp "coco@${TF_VAR_vultr_dyndns_address}:/home/coco/.kube/config" services/vultr_k3s.config
+sed -E "s/server: https:\/\/[0-9.]+:[0-9]+/server: https:\/\/${TF_VAR_vultr_dyndns_address}:6443/g" -i.bak services/vultr_k3s.config
+rm services/vultr_k3s.config.bak
+#scp -P 1844 "coco@${TF_VAR_homeserver_dyndns_address}:/home/coco/.kube/config" services/homeserver_k3s.config
+#sed -E "s/server: https:\/\/[0-9.]+:[0-9]+/server: https:\/\/${TF_VAR_homeserver_dyndns_address}:1843/g" -i.bak services/homeserver_k3s.config
+rm services/homeserver_k3s.config.bak
+
 # Docker login
 docker login -u cocopaps -p "$DOCKER_PASSWORD"
 
