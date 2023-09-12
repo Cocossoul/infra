@@ -1,0 +1,11 @@
+---
+- name: Download k3s installer
+  ansible.builtin.get_url:
+    url: https://get.k3s.io
+    dest: /tmp/k3s_setup.sh
+    owner: coco
+    mode: 0755
+
+- name: Install k3s
+  become: true
+  ansible.builtin.command: /tmp/k3s_setup.sh --write-kubeconfig-mode 644
