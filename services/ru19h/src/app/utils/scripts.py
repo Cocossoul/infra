@@ -20,10 +20,10 @@ def get_poll_desc():
     print(time)
     print(RU_MIDI, RU_SOIR)
     if time < RU_MIDI or time > RU_SOIR:
-        title = f"RU 11h45 ? Heure actuelle: {time}"
+        title = "RU 11h45 ?"
         questions = ['Pharma', 'RUFL', 'RU ENS', 'LDV', 'Non', get_truc_random()]
     else:
-        title = f"RU 19h ? Heure actuelle: {time}"
+        title = "RU 19h ?"
         questions = ['Oui', 'Non', get_truc_random()]
     return title, questions
 
