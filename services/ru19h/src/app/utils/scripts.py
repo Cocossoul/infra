@@ -9,14 +9,14 @@ def convert_time(time_str):
     date = date.replace(hour = int(time[0]), minute = int(time[1]), second = int(time[2]))
     return date
 
-RU_MIDI = convert_time("11:45:00")
-RU_SOIR = convert_time("19:00:00")
 
 def get_token():
     return os.environ[TOKEN_ENV_VAR_NAME]
 
 def get_poll_desc():
     time = datetime.now()
+    RU_SOIR = convert_time("19:00:00")
+    RU_MIDI = convert_time("11:45:00")
     print(time)
     print(RU_MIDI, RU_SOIR)
     if time < RU_MIDI or time > RU_SOIR:
