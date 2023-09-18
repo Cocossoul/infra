@@ -40,6 +40,13 @@ module "vultr_cloudflare_tunnel" {
     docker = docker.vultr_machine
   }
 }
+module "vultr_watchtower" {
+  source                = "./watchtower"
+  docker_password = var.docker_password
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
 # -----------------------------------------------------------------------------
 locals {
   homeserver_machine = {
@@ -79,6 +86,13 @@ module "homeserver_cloudflare_tunnel" {
   source = "./cloudflare_tunnel"
   tunnel_name = "homeserver"
   cloudflare_account_id = var.cloudflare_account_id
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
+module "homeserver_watchtower" {
+  source                = "./watchtower"
+  docker_password = var.docker_password
   providers = {
     docker = docker.homeserver_machine
   }
