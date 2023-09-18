@@ -92,7 +92,7 @@ services:
         subtitle: "Monitor availability with Gatus"
         url: "https://gatus.cocopaps.com"
   - name: "Private"
-    icon: "fa-solid fa-globe"
+    icon: "fa-solid fa-people-roof"
     items:
       - name: "Home Cloud"
         icon: "fa-solid fa-hard-drive"
