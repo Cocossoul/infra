@@ -1,6 +1,6 @@
 name: Check Terraform plan
 on:
-  pull_requests:
+  pull_request:
     branches:
       - main
 jobs:
