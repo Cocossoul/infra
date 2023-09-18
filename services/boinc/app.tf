@@ -59,6 +59,10 @@ resource "docker_container" "boinc" {
     label = "traefik.http.routers.boinc.tls.certresolver"
     value = "letsencrypt"
   }
+  labels {
+    label = "traefik.http.routers.boinc.middlewares"
+    value = "boinc_auth"
+  }
   networks_advanced {
     name = "gateway"
   }
@@ -66,8 +70,6 @@ resource "docker_container" "boinc" {
   cpu_shares = 256
 
   env = [
-    "CUSTOM_USER=boinc",
-    "PASSWORD=${var.boinc_password}",
     "TZ=Europe/Paris"
   ]
 
