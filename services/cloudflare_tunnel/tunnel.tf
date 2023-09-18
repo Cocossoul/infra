@@ -31,8 +31,8 @@ resource "cloudflare_tunnel_config" "config" {
     dynamic "ingress_rule" {
       for_each = local.hostnames
       content {
+        hostname = ingress_rule.value
         origin_request {
-          hostname = ingress_rule.value
           http2_origin = true
           origin_server_name = ingress_rule.value
         }
