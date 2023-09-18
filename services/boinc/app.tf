@@ -13,7 +13,7 @@ terraform {
 
 resource "cloudflare_record" "boinc" {
   zone_id = var.domain.zone_id
-  name    = "boinc"
+  name    = var.subdomain
   value   = var.machine.address
   type    = "CNAME"
   ttl     = 1
@@ -48,8 +48,8 @@ resource "docker_container" "boinc" {
     value = "secure"
   }
   labels {
-    label = "traefik.http.routers.boinc.rule"
-    value = "Host(`home.${var.domain.name}`,`${var.domain.name}`)"
+    label = "traefik.http.routers.gatus.rule"
+    value = "Host(`${var.subdomain}.${var.domain.name}`)"
   }
   labels {
     label = "traefik.http.routers.boinc.tls"
