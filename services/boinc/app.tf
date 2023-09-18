@@ -48,7 +48,7 @@ resource "docker_container" "boinc" {
     value = "secure"
   }
   labels {
-    label = "traefik.http.routers.gatus.rule"
+    label = "traefik.http.routers.boinc.rule"
     value = "Host(`${var.subdomain}.${var.domain.name}`)"
   }
   labels {
