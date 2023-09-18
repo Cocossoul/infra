@@ -37,10 +37,10 @@ endpoints:
 
   - name: boinc
     url: "https://boinc.cocopaps.com"
-    interval: 30s
+    interval: 5m
     group: 2. private
     conditions:
-      - "[STATUS] == 200"         # Status must be 200
+      - "[STATUS] == 401"
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
     alerts:
       - type: discord
