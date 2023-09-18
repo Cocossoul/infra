@@ -80,3 +80,4 @@ export TF_VAR_ru19h_token
 
 DOCKER_PASSWORD="$(fetch_secret DOCKER_PASSWORD)"
 export DOCKER_PASSWORD
+export TF_VAR_docker_password="$DOCKER_PASSWORD"

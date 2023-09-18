@@ -50,14 +50,6 @@ module "tbeteouquoi" {
   }
 }
 
-module "nightly_maintenance" {
-  source                = "./nightly_maintenance"
-  deploy_workflow_token = var.deploy_workflow_token
-  providers = {
-    docker = docker.vultr_machine
-  }
-}
-
 module "mealie" {
   source    = "./mealie"
   domain    = data.cloudflare_zone.cocopaps
