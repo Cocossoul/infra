@@ -21,7 +21,7 @@ resource "cloudflare_record" "boinc" {
 }
 
 data "docker_registry_image" "boinc" {
-  name = "linuxserver/boinc:7.20.5" # renovate_docker
+  name = "linuxserver/boinc:18.04.1" # renovate_docker
 }
 
 resource "docker_image" "boinc" {
