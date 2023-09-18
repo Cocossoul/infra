@@ -78,6 +78,9 @@ export TF_VAR_deploy_workflow_token
 TF_VAR_ru19h_token="$(fetch_secret ru19h_token)"
 export TF_VAR_ru19h_token
 
+TF_VAR_boinc_password="$(fetch_secret boinc_password)"
+export TF_VAR_boinc_password
+
 DOCKER_PASSWORD="$(fetch_secret DOCKER_PASSWORD)"
 export DOCKER_PASSWORD
 export TF_VAR_docker_password="$DOCKER_PASSWORD"
