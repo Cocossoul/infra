@@ -67,3 +67,13 @@ module "ru19h" {
     docker = docker.vultr_machine
   }
 }
+
+module "boinc" {
+  source  = "./boinc"
+  domain    = data.cloudflare_zone.cocopaps
+  machine   = local.vultr_machine
+  boinc_password = var.boinc_password
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
