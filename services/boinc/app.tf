@@ -63,6 +63,8 @@ resource "docker_container" "boinc" {
     name = "gateway"
   }
 
+  cpu_shares = 256
+
   env = [
     "CUSTOM_USER=boinc",
     "PASSWORD=${var.boinc_password}",
