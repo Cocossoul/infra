@@ -13,17 +13,23 @@ def convert_time(time_str):
 def get_token():
     return os.environ[TOKEN_ENV_VAR_NAME]
 
-def get_poll_desc():
+def get_poll_desc(args):
     time = datetime.now()
     RU_SOIR = convert_time("19:00:00")
     RU_MIDI = convert_time("11:45:00")
     print(time)
     print(RU_MIDI, RU_SOIR)
     if time < RU_MIDI or time > RU_SOIR:
-        title = "RU 11h45 ?"
+        if len(args) == 0:
+            title = "RU 11h45 ?"
+        else:
+            title = f"RU {args[0]} ?"
         questions = ['Pharma', 'RUFL', 'RU ENS', 'LDV', 'Non', get_truc_random()]
     else:
-        title = "RU 19h ?"
+        if len(args) == 0:
+            title = "RU 19h ?"
+        else:
+            title = f"RU {args[0]} ?"
         questions = ['Oui', 'Non', get_truc_random()]
     return title, questions
 
