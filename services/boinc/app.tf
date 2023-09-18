@@ -32,9 +32,11 @@ resource "docker_image" "boinc" {
 resource "docker_container" "boinc" {
   image = docker_image.boinc.image_id
   name  = "boinc"
+
   ports {
     internal = 8080
   }
+
   labels {
     label = "traefik.enable"
     value = "true"
@@ -54,6 +56,14 @@ resource "docker_container" "boinc" {
   labels {
     label = "traefik.http.routers.boinc.tls"
     value = "true"
+  }
+  labels {
+    label = "traefik.http.services.boinc.loadbalancer.server.port"
+    value = "8080"
+  }
+  labels {
+    label = "traefik.http.routers.boinc.service"
+    value = "boinc"
   }
   labels {
     label = "traefik.http.routers.boinc.tls.certresolver"
