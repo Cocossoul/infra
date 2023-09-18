@@ -62,10 +62,6 @@ resource "docker_container" "boinc" {
     value = "8080"
   }
   labels {
-    label = "traefik.http.routers.boinc.service"
-    value = "boinc"
-  }
-  labels {
     label = "traefik.http.routers.boinc.tls.certresolver"
     value = "letsencrypt"
   }
