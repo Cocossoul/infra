@@ -1,4 +1,4 @@
-FROM amazoncorretto:20-alpine-full
+FROM amazoncorretto:21-alpine-full
 
 RUN apk add --no-cache tini
 ENTRYPOINT [ "/sbin/tini", "--" ]
