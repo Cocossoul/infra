@@ -77,3 +77,13 @@ module "boinc" {
     docker = docker.vultr_machine
   }
 }
+
+module "commander" {
+  source    = "./commander"
+  domain    = data.cloudflare_zone.cocopaps
+  subdomain = "commander"
+  machine   = local.homeserver_machine
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
