@@ -1,7 +1,7 @@
 logLevel: "DEBUG"
 actions:
 - title: Search annuary (see logs for result)
-  shell: grep "{{ phone }},.*,{{ name }},{{ surname }},.*" "/srv/annuary/{{ country }}"
+  shell: grep "{{ phone }},{{ name }} {{ surname }},.*" "/srv/annuary/{{ country }}"
   icon: "&#128241;"
   timeout: 10
   arguments:
