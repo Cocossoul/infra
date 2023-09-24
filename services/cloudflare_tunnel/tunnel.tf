@@ -19,6 +19,7 @@ locals {
       "mealie.cocopaps.com",
       "cocopaps.com",
       "home.cocopaps.com",
+      "commander.cocopaps.com",
       "boinc.cocopaps.com"
     ]
 }
