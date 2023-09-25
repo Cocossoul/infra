@@ -8,82 +8,37 @@ resource "cloudflare_tunnel" "tunnel" {
   secret     = random_id.tunnel_secret.b64_std
 }
 
+locals {
+    hostnames = [
+      "tbeteouquoi.fr",
+      "passbolt.cocopaps.com",
+      "cloud.cocopaps.com",
+      "gatus.cocopaps.com",
+      "monitoringhomeserver.cocopaps.com",
+      "monitoringvultr.cocopaps.com",
+      "mealie.cocopaps.com",
+      "cocopaps.com",
+      "home.cocopaps.com",
+      "commander.cocopaps.com",
+      "boinc.cocopaps.com"
+    ]
+}
+
 resource "cloudflare_tunnel_config" "config" {
   account_id = var.cloudflare_account_id
   tunnel_id  = cloudflare_tunnel.tunnel.id
 
   config {
-    ingress_rule {
-      hostname = "home.cocopaps.com"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "home.cocopaps.com"
+    dynamic "ingress_rule" {
+      for_each = local.hostnames
+      content {
+        hostname = ingress_rule.value
+        origin_request {
+          http2_origin = true
+          origin_server_name = ingress_rule.value
+        }
+        service  = "https://reverse-proxy:443"
       }
-      service  = "https://reverse-proxy:443"
-    }
-    ingress_rule {
-      hostname = "cocopaps.com"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "cocopaps.com"
-      }
-      service  = "https://reverse-proxy:443"
-    }
-    ingress_rule {
-      hostname = "mealie.cocopaps.com"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "mealie.cocopaps.com"
-      }
-      service  = "https://reverse-proxy:443"
-    }
-    ingress_rule {
-      hostname = "monitoringvultr.cocopaps.com"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "monitoringvultr.cocopaps.com"
-      }
-      service  = "https://reverse-proxy:443"
-    }
-    ingress_rule {
-      hostname = "monitoringhomeserver.cocopaps.com"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "monitoringhomeserver.cocopaps.com"
-      }
-      service  = "https://reverse-proxy:443"
-    }
-    ingress_rule {
-      hostname = "gatus.cocopaps.com"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "gatus.cocopaps.com"
-      }
-      service  = "https://reverse-proxy:443"
-    }
-    ingress_rule {
-      hostname = "cloud.cocopaps.com"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "cloud.cocopaps.com"
-      }
-      service  = "https://reverse-proxy:443"
-    }
-    ingress_rule {
-      hostname = "passbolt.cocopaps.com"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "passbolt.cocopaps.com"
-      }
-      service  = "https://reverse-proxy:443"
-    }
-    ingress_rule {
-      hostname = "tbeteouquoi.fr"
-      origin_request {
-        http2_origin = true
-        origin_server_name = "tbeteouquoi.fr"
-      }
-      service  = "https://reverse-proxy:443"
     }
 
     ingress_rule {

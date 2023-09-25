@@ -49,6 +49,14 @@ resource "docker_container" "reverse-proxy" {
     label = "traefik.http.middlewares.elasticsearch_auth.basicauth.removeheader"
     value = "true"
   }
+  labels {
+    label = "traefik.http.middlewares.boinc_auth.basicauth.users"
+    value = "boinc:${var.boinc_password_hash}"
+  }
+  labels {
+    label = "traefik.http.middlewares.boinc_auth.basicauth.removeheader"
+    value = "true"
+  }
 
   env = [
     "CLOUDFLARE_EMAIL=corentin0pape@gmail.com",

@@ -49,3 +49,9 @@ variable "homeserver_dyndns_address" {
 variable "ru19h_token" {
   sensitive = true
 }
+variable "boinc_password" {
+  sensitive = true
+}
+variable "docker_password" {
+  sensitive = true
+}
