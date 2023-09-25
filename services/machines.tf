@@ -14,6 +14,7 @@ module "vultr_reverse-proxy" {
   source = "./reverse-proxy"
   monitoring_admin_password_hash = htpasswd_password.monitoring_admin.bcrypt
   elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
+  boinc_password_hash = htpasswd_password.boinc.bcrypt
   cloudflare_global_api_key = var.cloudflare_global_api_key
   providers = {
     docker = docker.vultr_machine
@@ -40,6 +41,13 @@ module "vultr_cloudflare_tunnel" {
     docker = docker.vultr_machine
   }
 }
+module "vultr_watchtower" {
+  source                = "./watchtower"
+  docker_password = var.docker_password
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
 # -----------------------------------------------------------------------------
 locals {
   homeserver_machine = {
@@ -57,6 +65,7 @@ module "homeserver_reverse-proxy" {
   source = "./reverse-proxy"
   monitoring_admin_password_hash = htpasswd_password.monitoring_admin.bcrypt
   elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
+  boinc_password_hash = htpasswd_password.boinc.bcrypt
   cloudflare_global_api_key = var.cloudflare_global_api_key
   providers = {
     docker = docker.homeserver_machine
@@ -79,6 +88,13 @@ module "homeserver_cloudflare_tunnel" {
   source = "./cloudflare_tunnel"
   tunnel_name = "homeserver"
   cloudflare_account_id = var.cloudflare_account_id
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
+module "homeserver_watchtower" {
+  source                = "./watchtower"
+  docker_password = var.docker_password
   providers = {
     docker = docker.homeserver_machine
   }

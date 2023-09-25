@@ -8,7 +8,7 @@ resource "cloudflare_record" "log_viewer" {
 }
 
 data "docker_registry_image" "log_viewer" {
-  name = "docker.elastic.co/kibana/kibana:8.9.1" # renovate_docker
+  name = "docker.elastic.co/kibana/kibana:8.10.2" # renovate_docker
 }
 
 resource "docker_image" "log_viewer" {
