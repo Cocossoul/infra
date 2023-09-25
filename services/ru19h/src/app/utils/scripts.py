@@ -15,13 +15,13 @@ def get_token():
 
 def get_poll_desc(args):
     time = datetime.now()
-    RU_SOIR = convert_time("19:00:00")
-    RU_MIDI = convert_time("11:45:00")
+    RU_SOIR = convert_time("20:00:00")
+    RU_MIDI = convert_time("12:00:00")
     print(time)
     print(RU_MIDI, RU_SOIR)
     if time < RU_MIDI or time > RU_SOIR:
         if len(args) == 0:
-            title = "RU 11h45 ?"
+            title = "RU 11h30 ?"
         else:
             title = f"RU {args[0]} ?"
         questions = ['Pharma', 'RUFL', 'RU ENS', 'LDV', 'Non', get_truc_random()]
