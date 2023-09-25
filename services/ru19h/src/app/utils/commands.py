@@ -10,7 +10,7 @@ async def start(update, context) -> None:
 
 async def poll(update, context) -> None:
     """Sends a predefined poll"""
-    title, questions = get_poll_desc()
+    title, questions = get_poll_desc(context.args)
     message = await context.bot.send_poll(
         update.effective_chat.id,
         title,
