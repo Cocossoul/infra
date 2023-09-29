@@ -21,7 +21,7 @@ resource "cloudflare_record" "gatus" {
 }
 
 data "docker_registry_image" "gatus" {
-  name = "twinproduction/gatus:v5.5.1" # renovate_docker
+  name = "twinproduction/gatus:v5.6.0" # renovate_docker
 }
 
 resource "docker_image" "gatus" {
