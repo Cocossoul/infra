@@ -31,6 +31,11 @@ resource "docker_container" "fail2ban" {
     source_hash = filesha256("${path.module}/src/fail2ban_filter_auth.conf")
   }
 
+  upload {
+    file = "/etc/fail2ban/action.d/cloudflare.conf"
+    content_base64 = base64encode(local.fail2ban_cloudflare_action)
+  }
+
   volumes {
     container_path = "/var/log/traefik"
     volume_name    = docker_volume.reverse-proxy_logs.name
