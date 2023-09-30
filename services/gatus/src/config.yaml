@@ -35,20 +35,6 @@ endpoints:
         failure-threshold: 3
         success-threshold: 3
 
-  - name: boinc
-    url: "https://boinc.cocopaps.com"
-    interval: 5m
-    group: 2. private
-    conditions:
-      - "[STATUS] == 401"
-      - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
-    alerts:
-      - type: discord
-        description: "healthcheck failed"
-        send-on-resolved: true
-        failure-threshold: 3
-        success-threshold: 3
-
   - name: cloud
     url: "https://cloud.cocopaps.com"
     interval: 30s
@@ -69,34 +55,6 @@ endpoints:
     group: 2. private
     conditions:
       - "[STATUS] == 200"         # Status must be 200
-      - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
-    alerts:
-      - type: discord
-        description: "healthcheck failed"
-        send-on-resolved: true
-        failure-threshold: 3
-        success-threshold: 3
-
-  - name: monitoringvultr
-    url: "https://monitoringvultr.cocopaps.com"
-    interval: 5m
-    group: 4. internals
-    conditions:
-      - "[STATUS] == 401"         # Status must be 200
-      - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
-    alerts:
-      - type: discord
-        description: "healthcheck failed"
-        send-on-resolved: true
-        failure-threshold: 3
-        success-threshold: 3
-
-  - name: monitoringhomeserver
-    url: "https://monitoringhomeserver.cocopaps.com"
-    interval: 5m
-    group: 4. internals
-    conditions:
-      - "[STATUS] == 401"         # Status must be 200
       - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
     alerts:
       - type: discord
