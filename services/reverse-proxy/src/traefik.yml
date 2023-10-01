@@ -16,6 +16,7 @@ accessLog:
         User-Agent: keep
         Cf-Connecting-Ip: keep
         X-Forwarded-For: keep
+        X-Real-Ip: keep
 
 providers:
   docker:
