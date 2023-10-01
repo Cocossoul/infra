@@ -52,3 +52,11 @@ variable "ru19h_token" {
 variable "docker_password" {
   sensitive = true
 }
+variable "vultr_crowdsec_api_key" {
+  sensitive = true
+  default = "undefined"
+}
+variable "homeserver_crowdsec_api_key" {
+  sensitive = true
+  default = "undefined"
+}

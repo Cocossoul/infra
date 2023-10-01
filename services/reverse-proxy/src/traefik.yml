@@ -15,6 +15,7 @@ accessLog:
       names:
         User-Agent: keep
         Cf-Connecting-Ip: keep
+        X-Forwarded-For: keep
 
 providers:
   docker:
@@ -39,6 +40,10 @@ entryPoints:
           permanent: true
   secure:
     address: ":443"
+    http:
+      middlewares:
+        - crowdsec-bouncer
+        - ratelimiter
 
 certificatesResolvers:
   letsencrypt:
@@ -53,6 +58,10 @@ certificatesResolvers:
 
 http:
   middlewares:
+    crowdsec-bouncer:
+      forwardauth:
+        address: http://crowdsec_bouncer:8080/api/v1/forwardAuth
+        trustForwardHeader: true
     ratelimiter:
       rateLimit:
         average: 30

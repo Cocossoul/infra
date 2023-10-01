@@ -10,3 +10,6 @@ variable "cloudflare_global_api_key" {
 variable "cloudflare_account_id" {
   sensitive = true
 }
+variable "crowdsec_api_key" {
+  sensitive = true
+}

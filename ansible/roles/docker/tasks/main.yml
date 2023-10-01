@@ -47,3 +47,10 @@
     name: '{{ ansible_user }}'
     groups: docker
     append: true
+
+- name: Ensure Crowdsec collections are up-to-date
+  ansible.builtin.cron:
+    name: "update crowdsec collections"
+    minute: "0"
+    hour: "2"
+    job: "docker exec crowdsec cscli hub update && docker exec crowdsec cscli hub upgrade"
