@@ -87,3 +87,13 @@ module "commander" {
     docker = docker.homeserver_machine
   }
 }
+
+module "pdf" {
+  source  = "./pdf-tools"
+  domain    = data.cloudflare_zone.cocopaps
+  machine   = local.vultr_machine
+  subdomain = "pdf"
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
