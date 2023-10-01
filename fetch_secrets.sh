@@ -78,6 +78,12 @@ export TF_VAR_deploy_workflow_token
 TF_VAR_ru19h_token="$(fetch_secret ru19h_token)"
 export TF_VAR_ru19h_token
 
+TF_VAR_homeserver_crowdsec_api_key="$(fetch_secret homeserver_crowdsec_api_key)"
+export TF_VAR_homeserver_crowdsec_api_key
+
+TF_VAR_vultr_crowdsec_api_key="$(fetch_secret vultr_crowdsec_api_key)"
+export TF_VAR_vultr_crowdsec_api_key
+
 DOCKER_PASSWORD="$(fetch_secret DOCKER_PASSWORD)"
 export DOCKER_PASSWORD
 export TF_VAR_docker_password="$DOCKER_PASSWORD"
