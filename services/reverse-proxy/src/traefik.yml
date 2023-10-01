@@ -23,6 +23,8 @@ providers:
     watch: true
     exposedByDefault: false
     swarmMode: false
+  file:
+    filename: /traefik_config.yml
 
 api:
   dashboard: true
@@ -42,8 +44,8 @@ entryPoints:
     address: ":443"
     http:
       middlewares:
-        - crowdsec-bouncer
-        - ratelimiter
+        - crowdsec-bouncer@file
+        - ratelimiter@file
 
 certificatesResolvers:
   letsencrypt:
@@ -55,14 +57,3 @@ certificatesResolvers:
       dnsChallenge:
         provider: cloudflare
         delayBeforeCheck: 0
-
-http:
-  middlewares:
-    crowdsec-bouncer:
-      forwardauth:
-        address: http://crowdsec_bouncer:8080/api/v1/forwardAuth
-        trustForwardHeader: true
-    ratelimiter:
-      rateLimit:
-        average: 30
-        burst: 25

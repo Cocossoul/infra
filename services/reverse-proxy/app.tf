@@ -64,6 +64,11 @@ resource "docker_container" "reverse-proxy" {
     source = "${path.module}/src/traefik.yml"
     source_hash = filesha256("${path.module}/src/traefik.yml")
   }
+  upload {
+    file = "/traefik_config.yml"
+    source = "${path.module}/src/traefik_config.yml"
+    source_hash = filesha256("${path.module}/src/traefik_config.yml")
+  }
 
   volumes {
     container_path = "/srv"
