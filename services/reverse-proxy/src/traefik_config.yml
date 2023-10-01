@@ -1,5 +1,18 @@
 http:
   middlewares:
+    secured-chain:
+      chain:
+        middlewares:
+          - real-ip@file
+          - crowdsec-bouncer@file
+          - ratelimiter@file
+    real-ip:
+      plugin:
+        cloudflarewarp:
+          disableDefault: true
+          trustip:
+            - "::/0"
+            - "0.0.0.0/0"
     crowdsec-bouncer:
       forwardauth:
         address: http://crowdsec_bouncer:8080/api/v1/forwardAuth
