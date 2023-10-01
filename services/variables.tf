@@ -25,7 +25,7 @@ variable "gamerpc_mac_address" {
 variable "rwol_password" {
   sensitive = true
 }
-variable "monitoring_admin_password" {
+variable "sso_password" {
   sensitive = true
 }
 variable "discord_webhook_homeserver" {
@@ -47,9 +47,6 @@ variable "homeserver_dyndns_address" {
   sensitive = true
 }
 variable "ru19h_token" {
-  sensitive = true
-}
-variable "boinc_password" {
   sensitive = true
 }
 variable "docker_password" {

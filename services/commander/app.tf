@@ -61,7 +61,7 @@ resource "docker_container" "commander" {
   }
   labels {
     label = "traefik.http.routers.commander.middlewares"
-    value = "monitoring_auth"
+    value = "sso"
   }
   networks_advanced {
     name = "gateway"
