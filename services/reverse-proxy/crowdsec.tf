@@ -25,7 +25,7 @@ resource "docker_container" "crowdsec" {
   }
 
   env = [
-      "COLLECTIONS=crowdsecurity/linux crowdsecurity/traefik"
+      "COLLECTIONS=crowdsecurity/traefik"
   ]
 
   upload {
