@@ -43,6 +43,7 @@ entryPoints:
     http:
       middlewares:
         - crowdsec-bouncer
+        - ratelimiter
 
 certificatesResolvers:
   letsencrypt:
