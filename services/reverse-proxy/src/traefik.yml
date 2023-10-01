@@ -44,8 +44,7 @@ entryPoints:
     address: ":443"
     http:
       middlewares:
-        - crowdsec-bouncer@file
-        - ratelimiter@file
+        - secured-chain@file
 
 certificatesResolvers:
   letsencrypt:
@@ -57,3 +56,9 @@ certificatesResolvers:
       dnsChallenge:
         provider: cloudflare
         delayBeforeCheck: 0
+
+experimental:
+  plugins:
+    cloudflarewarp:
+      modulename: github.com/BetterCorp/cloudflarewarp
+      version: v1.3.0
