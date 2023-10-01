@@ -16,6 +16,7 @@ module "vultr_reverse-proxy" {
   elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
   boinc_password_hash = htpasswd_password.boinc.bcrypt
   cloudflare_global_api_key = var.cloudflare_global_api_key
+  cloudflare_account_id = var.cloudflare_account_id
   providers = {
     docker = docker.vultr_machine
   }
@@ -67,6 +68,7 @@ module "homeserver_reverse-proxy" {
   elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
   boinc_password_hash = htpasswd_password.boinc.bcrypt
   cloudflare_global_api_key = var.cloudflare_global_api_key
+  cloudflare_account_id = var.cloudflare_account_id
   providers = {
     docker = docker.homeserver_machine
   }
