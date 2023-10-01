@@ -34,11 +34,11 @@ resource "docker_container" "reverse-proxy" {
     value = "gateway"
   }
   labels {
-    label = "traefik.http.middlewares.monitoring_auth.basicauth.users"
-    value = "monitoring_admin:${var.monitoring_admin_password_hash}"
+    label = "traefik.http.middlewares.sso.basicauth.users"
+    value = "corentin_sso:${var.sso_password_hash}"
   }
   labels {
-    label = "traefik.http.middlewares.monitoring_auth.basicauth.removeheader"
+    label = "traefik.http.middlewares.sso.basicauth.removeheader"
     value = "true"
   }
   labels {
@@ -47,14 +47,6 @@ resource "docker_container" "reverse-proxy" {
   }
   labels {
     label = "traefik.http.middlewares.elasticsearch_auth.basicauth.removeheader"
-    value = "true"
-  }
-  labels {
-    label = "traefik.http.middlewares.boinc_auth.basicauth.users"
-    value = "boinc:${var.boinc_password_hash}"
-  }
-  labels {
-    label = "traefik.http.middlewares.boinc_auth.basicauth.removeheader"
     value = "true"
   }
 

@@ -67,7 +67,7 @@ resource "docker_container" "boinc" {
   }
   labels {
     label = "traefik.http.routers.boinc.middlewares"
-    value = "boinc_auth"
+    value = "sso"
   }
   networks_advanced {
     name = "gateway"

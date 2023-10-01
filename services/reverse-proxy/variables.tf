@@ -1,7 +1,4 @@
-variable "monitoring_admin_password_hash" {
-  sensitive = true
-}
-variable "boinc_password_hash" {
+variable "sso_password_hash" {
   sensitive = true
 }
 variable "elasticsearch_password_hash" {

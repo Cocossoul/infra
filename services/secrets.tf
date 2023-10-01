@@ -1,17 +1,9 @@
-resource "random_password" "monitoring_admin_salt" {
+resource "random_password" "sso_salt" {
   length = 8
 }
-resource "htpasswd_password" "monitoring_admin" {
-  password = var.monitoring_admin_password
-  salt     = random_password.monitoring_admin_salt.result
-}
-
-resource "random_password" "boinc_salt" {
-  length = 8
-}
-resource "htpasswd_password" "boinc" {
-  password = var.boinc_password
-  salt     = random_password.boinc_salt.result
+resource "htpasswd_password" "sso" {
+  password = var.sso_password
+  salt     = random_password.sso_salt.result
 }
 
 resource "random_password" "elasticsearch_salt" {
