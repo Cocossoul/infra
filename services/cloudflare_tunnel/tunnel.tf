@@ -20,6 +20,7 @@ locals {
       "cocopaps.com",
       "home.cocopaps.com",
       "commander.cocopaps.com",
+      "pdf.cocopaps.com",
       "boinc.cocopaps.com"
     ]
 }
