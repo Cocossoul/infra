@@ -11,10 +11,6 @@ resource "docker_container" "fail2ban" {
   image = docker_image.fail2ban.image_id
   name  = "fail2ban"
 
-  capabilities {
-    add = ["NET_ADMIN","NET_RAW"]
-  }
-
   env = [
       "F2B_DB_PURGE_AGE=14d"
   ]
