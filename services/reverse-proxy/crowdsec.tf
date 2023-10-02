@@ -60,7 +60,7 @@ resource "docker_container" "crowdsec_bouncer" {
 
   env = [
     "CROWDSEC_BOUNCER_API_KEY=${var.crowdsec_api_key}",
-    "CROWDSEC_AGENT_HOST=${docker_container.crowdsec.name}:${docker_container.crowdsec.ports.0.internal}"
+    "CROWDSEC_AGENT_HOST=${docker_container.crowdsec.name}:8080"
   ]
 
   networks_advanced {
