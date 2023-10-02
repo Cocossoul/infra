@@ -55,9 +55,6 @@ resource "docker_image" "portfolio" {
 resource "docker_container" "portfolio" {
   image = docker_image.portfolio.image_id
   name  = "portfolio"
-  ports {
-    internal = 8080
-  }
   labels {
     label = "traefik.enable"
     value = "true"

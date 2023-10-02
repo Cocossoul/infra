@@ -41,9 +41,6 @@ resource "docker_image" "homer" {
 resource "docker_container" "homer" {
   image = docker_image.homer.image_id
   name  = "homer"
-  ports {
-    internal = 8080
-  }
   labels {
     label = "traefik.enable"
     value = "true"

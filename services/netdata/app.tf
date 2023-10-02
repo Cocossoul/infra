@@ -32,9 +32,6 @@ resource "docker_image" "netdata" {
 resource "docker_container" "netdata" {
   image = docker_image.netdata.image_id
   name  = "netdata"
-  ports {
-    internal = 19999
-  }
   labels {
     label = "traefik.enable"
     value = "true"

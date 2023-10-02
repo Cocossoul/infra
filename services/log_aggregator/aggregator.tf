@@ -32,9 +32,6 @@ resource "docker_image" "log_aggregator" {
 resource "docker_container" "log_aggregator" {
   image = docker_image.log_aggregator.image_id
   name  = "log_aggregator"
-  ports {
-    internal = 9200
-  }
   labels {
     label = "traefik.enable"
     value = "true"

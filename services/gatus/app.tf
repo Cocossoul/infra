@@ -32,9 +32,6 @@ resource "docker_image" "gatus" {
 resource "docker_container" "gatus" {
   image = docker_image.gatus.image_id
   name  = "gatus"
-  ports {
-    internal = 8080
-  }
   labels {
     label = "traefik.enable"
     value = "true"

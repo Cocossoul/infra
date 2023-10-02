@@ -19,9 +19,6 @@ resource "docker_image" "log_viewer" {
 resource "docker_container" "log_viewer" {
   image = docker_image.log_viewer.image_id
   name  = "log_viewer"
-  ports {
-    internal = 5601
-  }
   labels {
     label = "traefik.enable"
     value = "true"

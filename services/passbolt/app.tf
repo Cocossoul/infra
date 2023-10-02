@@ -32,9 +32,6 @@ resource "docker_image" "passbolt" {
 resource "docker_container" "passbolt" {
   image = docker_image.passbolt.image_id
   name  = "passbolt"
-  ports {
-    internal = 80
-  }
   env = [
 "APP_FULL_BASE_URL=https://${var.subdomain}.${var.domain.name}",
     "DATASOURCES_DEFAULT_HOST=${docker_container.passbolt_db.name}:3306",

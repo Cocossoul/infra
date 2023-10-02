@@ -33,10 +33,6 @@ resource "docker_container" "boinc" {
   image = docker_image.boinc.image_id
   name  = "boinc"
 
-  ports {
-    internal = 8080
-  }
-
   labels {
     label = "traefik.enable"
     value = "true"

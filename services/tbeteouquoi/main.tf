@@ -55,9 +55,6 @@ resource "docker_image" "tbeteouquoi" {
 resource "docker_container" "tbeteouquoi" {
   image = docker_image.tbeteouquoi.image_id
   name  = "tbeteouquoi"
-  ports {
-    internal = 8080
-  }
   labels {
     label = "traefik.enable"
     value = "true"

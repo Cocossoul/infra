@@ -10,9 +10,6 @@ resource "docker_image" "owncloud_db" {
 resource "docker_container" "owncloud_db" {
   image = docker_image.owncloud_db.image_id
   name  = "owncloud_db"
-  ports {
-    internal = 3306
-  }
 
   env = [
       "MYSQL_RANDOM_ROOT_PASSWORD=\"true\"",

@@ -10,9 +10,6 @@ resource "docker_image" "passbolt_db" {
 resource "docker_container" "passbolt_db" {
   image = docker_image.passbolt_db.image_id
   name  = "passbolt_db"
-  ports {
-    internal = 3306
-  }
 
   env = [
       "MYSQL_RANDOM_ROOT_PASSWORD=\"true\"",

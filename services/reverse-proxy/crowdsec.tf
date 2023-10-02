@@ -20,10 +20,6 @@ resource "docker_container" "crowdsec" {
   image = docker_image.crowdsec.image_id
   name  = "crowdsec"
 
-  ports {
-    internal = 8080
-  }
-
   env = [
       "COLLECTIONS=crowdsecurity/traefik"
   ]
@@ -61,10 +57,6 @@ resource "docker_container" "crowdsec" {
 resource "docker_container" "crowdsec_bouncer" {
   image = docker_image.crowdsec_bouncer.image_id
   name  = "crowdsec_bouncer"
-
-  ports {
-    internal = 8080
-  }
 
   env = [
     "CROWDSEC_BOUNCER_API_KEY=${var.crowdsec_api_key}",

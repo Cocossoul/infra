@@ -10,9 +10,6 @@ resource "docker_image" "mealie_backend" {
 resource "docker_container" "mealie_backend" {
   image = docker_image.mealie_backend.image_id
   name  = "mealie_backend"
-  ports {
-    internal = 9000
-  }
   env = [
     "ALLOW_SIGNUP=false",
     "PUID=1000",

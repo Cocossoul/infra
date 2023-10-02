@@ -33,10 +33,6 @@ resource "docker_container" "pdf-tools" {
   image = docker_image.pdf-tools.image_id
   name  = "pdf-tools"
 
-  ports {
-    internal = 8080
-  }
-
   labels {
     label = "traefik.enable"
     value = "true"

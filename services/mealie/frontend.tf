@@ -32,9 +32,7 @@ resource "docker_image" "mealie_frontend" {
 resource "docker_container" "mealie_frontend" {
   image = docker_image.mealie_frontend.image_id
   name  = "mealie_frontend"
-  ports {
-    internal = 3000
-  }
+
   env = [
     "ALLOW_SIGNUP=false",
     "API_URL=http://${docker_container.mealie_backend.name}:9000"

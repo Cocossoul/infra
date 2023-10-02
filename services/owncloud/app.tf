@@ -32,9 +32,7 @@ resource "docker_image" "owncloud" {
 resource "docker_container" "owncloud" {
   image = docker_image.owncloud.image_id
   name  = "owncloud"
-  ports {
-    internal = 8080
-  }
+
   env = [
     "OWNCLOUD_DOMAIN=${var.subdomain}.${var.domain.name}",
     "OWNCLOUD_TRUSTED_DOMAINS=${var.subdomain}.${var.domain.name}",

@@ -32,9 +32,6 @@ resource "docker_image" "commander" {
 resource "docker_container" "commander" {
   image = docker_image.commander.image_id
   name  = "commander"
-  ports {
-    internal = 1337
-  }
   labels {
     label = "traefik.enable"
     value = "true"

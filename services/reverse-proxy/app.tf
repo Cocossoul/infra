@@ -19,12 +19,7 @@ resource "docker_image" "reverse-proxy" {
 resource "docker_container" "reverse-proxy" {
   image = docker_image.reverse-proxy.image_id
   name  = "reverse-proxy"
-  ports {
-    internal = 80
-  }
-  ports {
-    internal = 443
-  }
+
   labels {
     label = "traefik.enable"
     value = "true"
