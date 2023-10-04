@@ -38,6 +38,7 @@ module "vultr_cloudflare_tunnel" {
   source = "./cloudflare_tunnel"
   tunnel_name = "vultr"
   cloudflare_account_id = var.cloudflare_account_id
+  hostnames = local.hostnames
   providers = {
     docker = docker.vultr_machine
   }
@@ -90,6 +91,7 @@ module "homeserver_cloudflare_tunnel" {
   source = "./cloudflare_tunnel"
   tunnel_name = "homeserver"
   cloudflare_account_id = var.cloudflare_account_id
+  hostnames = local.hostnames
   providers = {
     docker = docker.homeserver_machine
   }

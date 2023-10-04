@@ -1,3 +1,21 @@
+locals {
+    hostnames = [
+      "tbeteouquoi.fr",
+      "passbolt.cocopaps.com",
+      "cloud.cocopaps.com",
+      "gatus.cocopaps.com",
+      "gatus2.cocopaps.com",
+      "monitoringhomeserver.cocopaps.com",
+      "monitoringvultr.cocopaps.com",
+      "mealie.cocopaps.com",
+      "cocopaps.com",
+      "home.cocopaps.com",
+      "commander.cocopaps.com",
+      "pdf.cocopaps.com",
+      "boinc.cocopaps.com"
+    ]
+}
+
 module "owncloud" {
   source                  = "./owncloud"
   domain                  = data.cloudflare_zone.cocopaps
@@ -95,5 +113,16 @@ module "pdf" {
   subdomain = "pdf"
   providers = {
     docker = docker.vultr_machine
+  }
+}
+
+module "gatus_homeserver" {
+  source    = "./gatus"
+  domain    = data.cloudflare_zone.cocopaps
+  subdomain = "gatus2"
+  machine   = local.homeserver_machine
+  discord_webhook = var.discord_webhook_gatus
+  providers = {
+    docker = docker.homeserver_machine
   }
 }
