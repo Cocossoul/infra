@@ -21,7 +21,7 @@ resource "cloudflare_record" "pdf-tools" {
 }
 
 data "docker_registry_image" "pdf-tools" {
-  name = "frooodle/s-pdf:0.14.4" # renovate_docker
+  name = "frooodle/s-pdf:0.14.5" # renovate_docker
 }
 
 resource "docker_image" "pdf-tools" {
