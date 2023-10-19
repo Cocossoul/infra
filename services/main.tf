@@ -79,7 +79,7 @@ module "mealie" {
 }
 
 module "ru19h" {
-  source                = "./ru19h"
+  source = "git@github.com:Cocossoul/ru19h.git"
   ru19h_token = var.ru19h_token
   providers = {
     docker = docker.vultr_machine
