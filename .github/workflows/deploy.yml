@@ -7,6 +7,8 @@ on:
   repository_dispatch:
     types:
       - nightly_maintenance_deploy
+      - micro_services_deploy
+  workflow_dispatch:
 
 concurrency: deployment
 
