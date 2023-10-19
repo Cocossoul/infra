@@ -9,7 +9,7 @@ mkdir -p "/root/.ssh"
 SSH_KEY_PATH="/root/.ssh/ssh_key"
 printf "%s" "$SSH_CI_PRIVATEKEY_BASE64" | base64 -d > "$SSH_KEY_PATH"
 chmod 0400 "$SSH_KEY_PATH"
-echo "IdentityFile $SSH_KEY_PATH" >> "/root/.ssh/config"
+echo -e "IdentityFile $SSH_KEY_PATH\\nHost *\\nStrictHostKeyChecking no" >> "/root/.ssh/config"
 
 # Configure Passbolt CLI
 printf "%s" "$PASSBOLT_CI_ACS_BASE64" | base64 -d > passbolt_ci_user.acs
