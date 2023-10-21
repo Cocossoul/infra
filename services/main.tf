@@ -12,7 +12,9 @@ locals {
       "home.cocopaps.com",
       "commander.cocopaps.com",
       "pdf.cocopaps.com",
-      "boinc.cocopaps.com"
+      "boinc.cocopaps.com",
+      "firefly.cocopaps.com",
+      "firefly_importer.cocopaps.com"
     ]
 }
 
@@ -122,6 +124,17 @@ module "gatus_homeserver" {
   subdomain = "gatus2"
   machine   = local.homeserver_machine
   discord_webhook = var.discord_webhook_gatus
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
+
+module "firefly" {
+  source                  = "./firefly"
+  domain                  = data.cloudflare_zone.cocopaps
+  subdomain               = "firefly"
+  importer_subdomain      = "firefly_importer"
+  machine                 = local.homeserver_machine
   providers = {
     docker = docker.homeserver_machine
   }
