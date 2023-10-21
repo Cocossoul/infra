@@ -14,7 +14,7 @@ locals {
       "pdf.cocopaps.com",
       "boinc.cocopaps.com",
       "firefly.cocopaps.com",
-      "firefly_importer.cocopaps.com"
+      "fireflyimporter.cocopaps.com"
     ]
 }
 
@@ -133,7 +133,7 @@ module "firefly" {
   source                  = "./firefly"
   domain                  = data.cloudflare_zone.cocopaps
   subdomain               = "firefly"
-  importer_subdomain      = "firefly_importer"
+  importer_subdomain      = "fireflyimporter"
   machine                 = local.homeserver_machine
   providers = {
     docker = docker.homeserver_machine
