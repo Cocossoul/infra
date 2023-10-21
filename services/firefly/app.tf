@@ -64,7 +64,7 @@ resource "docker_container" "firefly" {
     "AUTHENTICATION_GUARD=web",
     "DISABLE_FRAME_HEADER=false",
     "DISABLE_CSP_HEADER=false",
-    "ALLOW_WEBHOOKS=false",
+    "ALLOW_WEBHOOKS=true",
     "DKR_BUILD_LOCALE=false",
     "DKR_CHECK_SQLITE=true",
     "DKR_RUN_MIGRATION=true",
