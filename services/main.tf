@@ -14,7 +14,8 @@ locals {
       "pdf.cocopaps.com",
       "boinc.cocopaps.com",
       "firefly.cocopaps.com",
-      "fireflyimporter.cocopaps.com"
+      "fireflyimporter.cocopaps.com",
+      "n8n.cocopaps.com"
     ]
 }
 
@@ -137,5 +138,15 @@ module "firefly" {
   machine                 = local.homeserver_machine
   providers = {
     docker = docker.homeserver_machine
+  }
+}
+
+module "n8n" {
+  source                  = "./n8n"
+  domain                  = data.cloudflare_zone.cocopaps
+  subdomain               = "n8n"
+  machine                 = local.vultr_machine
+  providers = {
+    docker = docker.vultr_machine
   }
 }
