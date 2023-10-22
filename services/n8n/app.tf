@@ -36,7 +36,7 @@ resource "docker_container" "n8n" {
     "N8N_PORT=5678",
     "N8N_PROTOCOL=https",
     "NODE_ENV=production",
-    "WEBHOOK_URL=https://${var.subdomain}.${var.subdomain}/",
+    "WEBHOOK_URL=https://${var.subdomain}.${var.domain}/",
     "GENERIC_TIMEZONE=Europe/Paris"
   ]
 
