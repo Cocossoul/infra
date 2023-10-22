@@ -139,3 +139,13 @@ module "firefly" {
     docker = docker.homeserver_machine
   }
 }
+
+module "n8n" {
+  source                  = "./n8n"
+  domain                  = data.cloudflare_zone.cocopaps
+  subdomain               = "n8n"
+  machine                 = local.vultr_machine
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
