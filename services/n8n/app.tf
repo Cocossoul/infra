@@ -19,7 +19,7 @@ resource "cloudflare_record" "n8n" {
 }
 
 data "docker_registry_image" "n8n" {
-  name = "n8nio/n8n:1.12.0" # renovate_docker
+  name = "n8nio/n8n:ai-beta" # renovate_docker
 }
 
 resource "docker_image" "n8n" {
