@@ -32,11 +32,11 @@ resource "docker_container" "n8n" {
   name  = "n8n"
 
   env = [
-    "N8N_HOST=${var.subdomain}.${var.domain}",
+    "N8N_HOST=${var.subdomain}.${var.domain.name}",
     "N8N_PORT=5678",
     "N8N_PROTOCOL=https",
     "NODE_ENV=production",
-    "WEBHOOK_URL=https://${var.subdomain}.${var.domain}/",
+    "WEBHOOK_URL=https://${var.subdomain}.${var.domain.name}/",
     "GENERIC_TIMEZONE=Europe/Paris"
   ]
 
