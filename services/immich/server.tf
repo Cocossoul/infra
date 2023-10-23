@@ -22,31 +22,6 @@ resource "docker_container" "immich_server" {
     "REDIS_HOSTNAME=immich_redis"
   ]
 
-  labels {
-    label = "traefik.enable"
-    value = "true"
-  }
-  labels {
-    label = "traefik.docker.network"
-    value = "gateway"
-  }
-  labels {
-    label = "traefik.http.routers.immich_server.entryPoints"
-    value = "secure"
-  }
-  labels {
-    label = "traefik.http.routers.immich_server.rule"
-    value = "Host(`${var.subdomain}.${var.domain.name}`) && PathPrefix(`/api/`)"
-  }
-  labels {
-    label = "traefik.http.routers.immich_server.tls"
-    value = "true"
-  }
-  labels {
-    label = "traefik.http.routers.immich_server.tls.certresolver"
-    value = "letsencrypt"
-  }
-
   command = ["start.sh", "immich"]
 
   volumes {
