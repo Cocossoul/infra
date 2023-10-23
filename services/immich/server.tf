@@ -9,7 +9,7 @@ resource "docker_image" "immich_server" {
 
 resource "docker_container" "immich_server" {
   image = docker_image.immich_server.image_id
-  name  = "immich_server"
+  name  = "immich-server"
 
   env = [
     "TYPESENSE_API_KEY='${random_password.typesense_api_key.result}'",

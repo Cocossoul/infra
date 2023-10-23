@@ -9,7 +9,7 @@ resource "docker_image" "immich_machine_learning" {
 
 resource "docker_container" "immich_machine_learning" {
   image = docker_image.immich_machine_learning.image_id
-  name  = "immich_machine_learning"
+  name  = "immich-machine-learning"
 
   volumes {
     container_path = "/cache"

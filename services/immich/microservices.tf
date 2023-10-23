@@ -9,7 +9,7 @@ resource "docker_image" "immich_microservices" {
 
 resource "docker_container" "immich_microservices" {
   image = docker_image.immich_microservices.image_id
-  name  = "immich_microservices"
+  name  = "immich-microservices"
 
   env = [
     "TYPESENSE_API_KEY='${random_password.typesense_api_key.result}'",
