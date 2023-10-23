@@ -1,7 +1,7 @@
 logLevel: "DEBUG"
 actions:
 - title: Search annuary (see logs for result)
-  shell: grep "{{ phone }},{{ name }} {{ surname }},.*" "/srv/annuary/{{ country }}"
+  shell: grep "{{ phone }},{{ firstname }} {{ lastname }},.*" "/srv/annuary/{{ country }}"
   icon: "&#128241;"
   timeout: 10
   arguments:
@@ -21,12 +21,12 @@ actions:
           value: spain.txt
         - title: Italy
           value: italy.txt
-    - name: name
-      title: Name
+    - name: firstname
+      title: First Name
       type: very_dangerous_raw_string
       default: .*
-    - name: surname
-      title: Surname
+    - name: lastname
+      title: Last Name
       type: very_dangerous_raw_string
       default: .*
     - name: phone
