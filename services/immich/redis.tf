@@ -9,7 +9,7 @@ resource "docker_image" "immich_redis" {
 
 resource "docker_container" "immich_redis" {
   image = docker_image.immich_redis.image_id
-  name  = "immich-redis"
+  name  = "immich_redis"
   networks_advanced {
     name = "gateway"
   }
