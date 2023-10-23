@@ -1,5 +1,5 @@
 data "docker_registry_image" "crowdsec" {
-  name = "crowdsecurity/crowdsec:v1.5.4" # renovate_docker
+  name = "crowdsecurity/crowdsec:v1.5.5" # renovate_docker
 }
 
 resource "docker_image" "crowdsec" {
