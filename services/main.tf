@@ -15,6 +15,7 @@ locals {
       "boinc.cocopaps.com",
       "firefly.cocopaps.com",
       "fireflyimporter.cocopaps.com",
+      "photos.cocopaps.com",
       "n8n.cocopaps.com"
     ]
 }
