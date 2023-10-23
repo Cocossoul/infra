@@ -17,8 +17,6 @@ resource "docker_container" "immich_db" {
     "POSTGRES_DB=immich"
   ]
 
-  command = ["--max-allowed-packet=128M", "--innodb-log-file-size=64M"]
-
   volumes {
     container_path = "/var/lib/postgresql/data"
     host_path      = "/mnt/raid/immich_data/immich_db"
