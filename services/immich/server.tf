@@ -16,7 +16,7 @@ resource "docker_container" "immich_server" {
     "MYSQL_DATABASE=owncloud",
     "MYSQL_USER=owncloud",
     "DB_PASSWORD=${random_password.immich_db.result}",
-    "DB_HOSTNAME=immich_db",
+    "DB_HOSTNAME=immich-postgres",
     "DB_USERNAME=postgres",
     "DB_DATABASE_NAME=immich",
     "REDIS_HOSTNAME=immich_redis"

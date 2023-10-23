@@ -9,7 +9,7 @@ resource "docker_image" "immich_db" {
 
 resource "docker_container" "immich_db" {
   image = docker_image.immich_db.image_id
-  name  = "immich-db"
+  name  = "immich-postgres"
 
   env = [
     "POSTGRES_PASSWORD=${random_password.immich_db.result}",
