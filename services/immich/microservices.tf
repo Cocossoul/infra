@@ -12,7 +12,7 @@ resource "docker_container" "immich_microservices" {
   name  = "immich-microservices"
 
   env = [
-    "TYPESENSE_API_KEY='${random_password.typesense_api_key.result}'",
+    "TYPESENSE_API_KEY=${random_password.typesense_api_key.result}",
     "MYSQL_DATABASE=owncloud",
     "MYSQL_USER=owncloud",
     "DB_PASSWORD=${random_password.immich_db.result}",
