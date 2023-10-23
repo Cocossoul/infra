@@ -150,3 +150,13 @@ module "n8n" {
     docker = docker.vultr_machine
   }
 }
+
+module "immich" {
+  source                  = "./immich"
+  domain                  = data.cloudflare_zone.cocopaps
+  subdomain               = "photos"
+  machine                 = local.homeserver_machine
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
