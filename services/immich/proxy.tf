@@ -11,15 +11,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "immich_proxy" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "immich_proxy" {
   name = "ghcr.io/immich-app/immich-proxy:v1.82.0" # renovate_docker
 }
