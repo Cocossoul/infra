@@ -31,3 +31,12 @@ resource "docker_container" "immich_db" {
 
   restart = "unless-stopped"
 }
+
+resource "random_integer" "immich_db_password_length" {
+  min = 12
+  max = 20
+}
+resource "random_password" "immich_db" {
+  length           = random_integer.immich_db_password_length.result
+  special          = false
+}
