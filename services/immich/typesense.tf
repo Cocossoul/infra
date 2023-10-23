@@ -17,6 +17,7 @@ resource "docker_container" "immich_typesense" {
       # remove this to get debug messages
     "GLOG_minloglevel=1"
   ]
+  command = ["--api-key", random_password.typesense_api_key.result, "--data-dir", "/data"]
 
   volumes {
     container_path = "/data"
