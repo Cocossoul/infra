@@ -11,6 +11,32 @@ resource "docker_container" "immich_web" {
   image = docker_image.immich_web.image_id
   name  = "immich-web"
 
+  labels {
+    label = "traefik.enable"
+    value = "true"
+  }
+  labels {
+    label = "traefik.docker.network"
+    value = "gateway"
+  }
+  labels {
+    label = "traefik.http.routers.immich_web.entryPoints"
+    value = "secure"
+  }
+  labels {
+    label = "traefik.http.routers.immich_web.rule"
+    value = "Host(`${var.subdomain}.${var.domain.name}`) && !PathPrefix(`/api/`)"
+  }
+  labels {
+    label = "traefik.http.routers.immich_web.tls"
+    value = "true"
+  }
+  labels {
+    label = "traefik.http.routers.immich_web.tls.certresolver"
+    value = "letsencrypt"
+  }
+
+
   networks_advanced {
     name = "gateway"
   }
