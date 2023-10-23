@@ -1,5 +1,5 @@
 data "docker_registry_image" "immich_db" {
-  name = "postgres:14-alpine" # renovate_docker
+  name = "postgres:16-alpine" # renovate_docker
 }
 
 resource "docker_image" "immich_db" {
