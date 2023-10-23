@@ -1,5 +1,5 @@
 data "docker_registry_image" "immich_redis" {
-  name = "redis:6.2-alpine@sha256:70a7a5b641117670beae0d80658430853896b5ef269ccf00d1827427e3263fa3" # renovate_docker
+  name = "redis:6.2-alpine" # renovate_docker
 }
 
 resource "docker_image" "immich_redis" {

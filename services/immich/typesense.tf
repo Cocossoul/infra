@@ -1,5 +1,5 @@
 data "docker_registry_image" "immich_typesense" {
-  name = "typesense/typesense:0.24.1@sha256:9bcff2b829f12074426ca044b56160ca9d777a0c488303469143dd9f8259d4dd" # renovate_docker
+  name = "typesense/typesense:0.24.1" # renovate_docker
 }
 
 resource "docker_image" "immich_typesense" {
