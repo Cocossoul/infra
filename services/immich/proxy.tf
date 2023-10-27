@@ -32,8 +32,8 @@ resource "docker_container" "immich_proxy" {
   name  = "immich_proxy"
 
   env = [
-    "IMMICH_SERVER_URL=http://${docker_container.immich_server.networks_advanced.aliases[0]}:3001",
-    "IMMICH_WEB_URL=http://${docker_container.immich_web.networks_advanced.aliases[0]}:3000",
+    "IMMICH_SERVER_URL=http://${docker_container.immich_server.networks_advanced.aliases.0}:3001",
+    "IMMICH_WEB_URL=http://${docker_container.immich_web.networks_advanced.aliases.0}:3000",
     "IMMICH_API_URL_EXTERNAL=https://${var.subdomain}.${var.domain.name}"
   ]
 
