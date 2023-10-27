@@ -45,6 +45,14 @@ resource "docker_container" "reverse-proxy" {
     value = "true"
   }
 
+  dynamic "ports" {
+    for_each = var.publish_ports ? [ { "internal": 8080, "external": 80 } ] : []
+    content {
+      internal = ports.value["internal"]
+      external = ports.value["external"]
+    }
+  }
+
   env = [
     "CLOUDFLARE_EMAIL=corentin0pape@gmail.com",
     "CLOUDFLARE_API_KEY=${var.cloudflare_global_api_key}"
