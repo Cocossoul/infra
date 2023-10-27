@@ -21,7 +21,7 @@ resource "cloudflare_record" "commander" {
 }
 
 data "docker_registry_image" "commander" {
-  name = "jamesread/olivetin:2023.10.24" # renovate_docker
+  name = "jamesread/olivetin:2023.10.25" # renovate_docker
 }
 
 resource "docker_image" "commander" {
