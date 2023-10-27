@@ -83,9 +83,19 @@ module "commander" {
 module "gatus_homeserver" {
   source    = "./gatus"
   domain    = data.cloudflare_zone.cocopaps
-  subdomain = "gatus2"
+  subdomain = "gatus"
   machine   = local.homeserver_machine
   discord_webhook = var.discord_webhook_gatus
+  gateway   = module.homeserver_reverse-proxy.gateway
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
+
+module "home_homeserver" {
+  source  = "./homer"
+  domain  = data.cloudflare_zone.cocopaps
+  machine = local.homeserver_machine
   gateway   = module.homeserver_reverse-proxy.gateway
   providers = {
     docker = docker.homeserver_machine
