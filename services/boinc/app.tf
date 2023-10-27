@@ -11,15 +11,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "boinc" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "boinc" {
   name = "linuxserver/boinc:7.20.5" # renovate_docker
 }

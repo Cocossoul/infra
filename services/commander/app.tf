@@ -11,15 +11,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "commander" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "commander" {
   name = "jamesread/olivetin:2023.10.24" # renovate_docker
 }

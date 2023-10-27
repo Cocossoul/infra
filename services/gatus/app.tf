@@ -11,15 +11,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "gatus" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "gatus" {
   name = "twinproduction/gatus:v5.6.0" # renovate_docker
 }

@@ -9,15 +9,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "firefly" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "firefly" {
   name = "fireflyiii/core:version-6.0.27" # renovate_docker
 }

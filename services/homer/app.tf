@@ -11,24 +11,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "homer" {
-  zone_id = var.domain.zone_id
-  name    = "@"
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
-resource "cloudflare_record" "homer_alias" {
-  zone_id = var.domain.zone_id
-  name    = "home"
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "homer" {
   name = "b4bz/homer:v23.10.1" # renovate_docker
 }

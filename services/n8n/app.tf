@@ -9,15 +9,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "n8n" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "n8n" {
   name = "n8nio/n8n:ai-beta" # renovate_docker
 }

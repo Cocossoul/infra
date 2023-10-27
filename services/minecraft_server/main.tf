@@ -11,14 +11,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "minecraft_server" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.dyndns_domain
-  type    = "CNAME"
-  ttl     = 3600
-}
-
 data "archive_file" "src" {
   type        = "zip"
   source_dir  = "${path.module}/src/"

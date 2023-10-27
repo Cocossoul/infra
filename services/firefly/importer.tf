@@ -1,12 +1,3 @@
-resource "cloudflare_record" "firefly_importer" {
-  zone_id = var.domain.zone_id
-  name    = var.importer_subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "firefly_importer" {
   name = "fireflyiii/data-importer:version-1.3.8" # renovate_docker
 }

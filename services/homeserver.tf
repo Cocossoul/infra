@@ -27,7 +27,6 @@ module "homeserver_netdata" {
   domain    = data.cloudflare_zone.cocopaps
   machine   = local.homeserver_machine
   subdomain = "monitoring"
-  private   = true
   gateway   = module.homeserver_reverse-proxy.gateway
   discord_notification_settings = {
     webhook_url = var.discord_webhook_homeserver
@@ -53,7 +52,6 @@ module "owncloud" {
   owncloud_admin_username = var.owncloud_admin_username
   owncloud_admin_password = var.owncloud_admin_password
   owncloud_db_password = var.owncloud_db_password
-  private   = true
   gateway   = module.homeserver_reverse-proxy.gateway
   providers = {
     docker = docker.homeserver_machine
@@ -65,7 +63,6 @@ module "mealie" {
   domain    = data.cloudflare_zone.cocopaps
   subdomain = "mealie"
   machine   = local.homeserver_machine
-  private   = true
   gateway   = module.homeserver_reverse-proxy.gateway
   providers = {
     docker = docker.homeserver_machine
@@ -77,7 +74,6 @@ module "commander" {
   domain    = data.cloudflare_zone.cocopaps
   subdomain = "commander"
   machine   = local.homeserver_machine
-  private   = true
   gateway   = module.homeserver_reverse-proxy.gateway
   providers = {
     docker = docker.homeserver_machine
@@ -90,7 +86,6 @@ module "gatus_homeserver" {
   subdomain = "gatus2"
   machine   = local.homeserver_machine
   discord_webhook = var.discord_webhook_gatus
-  private   = true
   gateway   = module.homeserver_reverse-proxy.gateway
   providers = {
     docker = docker.homeserver_machine
@@ -103,7 +98,6 @@ module "firefly" {
   subdomain               = "firefly"
   importer_subdomain      = "fireflyimporter"
   machine                 = local.homeserver_machine
-  private   = true
   gateway   = module.homeserver_reverse-proxy.gateway
   providers = {
     docker = docker.homeserver_machine
@@ -115,7 +109,6 @@ module "immich" {
   domain                  = data.cloudflare_zone.cocopaps
   subdomain               = "photos"
   machine                 = local.homeserver_machine
-  private   = true
   gateway   = module.homeserver_reverse-proxy.gateway
   providers = {
     docker = docker.homeserver_machine

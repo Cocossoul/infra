@@ -1,12 +1,3 @@
-resource "cloudflare_record" "log_viewer" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain_log_viewer
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "log_viewer" {
   name = "docker.elastic.co/kibana/kibana:8.10.4" # renovate_docker
 }

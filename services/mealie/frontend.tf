@@ -11,15 +11,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "mealie" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "mealie_frontend" {
   name = "hkotel/mealie:frontend-v1.0.0beta-5" # renovate_docker
 }

@@ -11,15 +11,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "tbeteouquoi" {
-  zone_id = var.domain.zone_id
-  name    = "@"
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "archive_file" "src" {
   type        = "zip"
   source_dir  = "${path.module}/src/"

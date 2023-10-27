@@ -11,15 +11,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "rwol" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "rwol" {
   name = "ex0nuss/remote-wake-sleep-on-lan-docker:latest"
 }

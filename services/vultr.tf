@@ -39,7 +39,11 @@ module "vultr_cloudflare_tunnel" {
   source = "./cloudflare_tunnel"
   tunnel_name = "vultr"
   cloudflare_account_id = var.cloudflare_account_id
-  hostnames = local.hostnames
+  hostnames = [
+    for hostname in local.hostnames:
+      hostname.subdomain == "@" ? hostname.domain.name : "${hostname.subdomain}.${hostname.domain.name}"
+  ]
+  gateway   = module.vultr_reverse-proxy.gateway
   providers = {
     docker = docker.vultr_machine
   }
@@ -50,28 +54,6 @@ module "vultr_watchtower" {
   providers = {
     docker = docker.vultr_machine
   }
-}
-
-locals {
-    hostnames = [
-      "tbeteouquoi.fr",
-      "passbolt.cocopaps.com",
-      "cloud.cocopaps.com",
-      "gatus.cocopaps.com",
-      "gatus2.cocopaps.com",
-      "monitoringhomeserver.cocopaps.com",
-      "monitoringvultr.cocopaps.com",
-      "mealie.cocopaps.com",
-      "cocopaps.com",
-      "home.cocopaps.com",
-      "commander.cocopaps.com",
-      "pdf.cocopaps.com",
-      "boinc.cocopaps.com",
-      "firefly.cocopaps.com",
-      "fireflyimporter.cocopaps.com",
-      "photos.cocopaps.com",
-      "n8n.cocopaps.com"
-    ]
 }
 
 module "gatus" {

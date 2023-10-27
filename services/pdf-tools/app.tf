@@ -11,15 +11,6 @@ terraform {
   }
 }
 
-resource "cloudflare_record" "pdf-tools" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "pdf-tools" {
   name = "frooodle/s-pdf:0.14.5" # renovate_docker
 }
