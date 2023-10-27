@@ -38,7 +38,7 @@ resource "docker_container" "log_aggregator" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.log_aggregator.entryPoints"
@@ -65,7 +65,7 @@ resource "docker_container" "log_aggregator" {
     volume_name    = docker_volume.elasticsearch.name
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
   env = [
       "discovery.type=single-node",

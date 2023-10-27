@@ -61,7 +61,7 @@ resource "docker_container" "log_collector" {
   }
 
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
   log_driver = "json-file"
   log_opts = {

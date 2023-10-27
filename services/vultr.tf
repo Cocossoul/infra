@@ -1,4 +1,58 @@
 locals {
+  vultr_machine = {
+    dyndns_address = var.vultr_dyndns_address
+    name          = "vultr"
+    address = module.vultr_cloudflare_tunnel.tunnel_address
+  }
+}
+provider "docker" {
+  host     = "ssh://coco@${local.vultr_machine.dyndns_address}:22"
+  ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
+  alias    = "vultr_machine"
+}
+module "vultr_reverse-proxy" {
+  source = "./reverse-proxy"
+  elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
+  sso_password_hash = htpasswd_password.sso.bcrypt
+  cloudflare_global_api_key = var.cloudflare_global_api_key
+  crowdsec_api_key = var.vultr_crowdsec_api_key
+  cloudflare_account_id = var.cloudflare_account_id
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
+module "vultr_netdata" {
+  source    = "./netdata"
+  domain    = data.cloudflare_zone.cocopaps
+  machine   = local.vultr_machine
+  subdomain = "monitoringvultr"
+  gateway   = module.vultr_reverse-proxy.gateway
+  discord_notification_settings = {
+    webhook_url = var.discord_webhook_vultr
+    channel = "vultr"
+  }
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
+module "vultr_cloudflare_tunnel" {
+  source = "./cloudflare_tunnel"
+  tunnel_name = "vultr"
+  cloudflare_account_id = var.cloudflare_account_id
+  hostnames = local.hostnames
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
+module "vultr_watchtower" {
+  source                = "./watchtower"
+  docker_password = var.docker_password
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
+
+locals {
     hostnames = [
       "tbeteouquoi.fr",
       "passbolt.cocopaps.com",
@@ -20,25 +74,13 @@ locals {
     ]
 }
 
-module "owncloud" {
-  source                  = "./owncloud"
-  domain                  = data.cloudflare_zone.cocopaps
-  subdomain               = "cloud"
-  machine                 = local.homeserver_machine
-  owncloud_admin_username = var.owncloud_admin_username
-  owncloud_admin_password = var.owncloud_admin_password
-  owncloud_db_password = var.owncloud_db_password
-  providers = {
-    docker = docker.homeserver_machine
-  }
-}
-
 module "gatus" {
   source    = "./gatus"
   domain    = data.cloudflare_zone.cocopaps
   subdomain = "gatus"
   machine   = local.vultr_machine
   discord_webhook = var.discord_webhook_gatus
+  gateway   = module.vultr_reverse-proxy.gateway
   providers = {
     docker = docker.vultr_machine
   }
@@ -48,6 +90,7 @@ module "home" {
   source  = "./homer"
   domain  = data.cloudflare_zone.cocopaps
   machine = local.vultr_machine
+  gateway   = module.vultr_reverse-proxy.gateway
   providers = {
     docker = docker.vultr_machine
   }
@@ -58,6 +101,7 @@ module "passbolt" {
   domain           = data.cloudflare_zone.cocopaps
   subdomain             = "passbolt"
   machine          = local.vultr_machine
+  gateway   = module.vultr_reverse-proxy.gateway
   providers = {
     docker = docker.vultr_machine
   }
@@ -67,18 +111,9 @@ module "tbeteouquoi" {
   source                = "./tbeteouquoi"
   domain           = data.cloudflare_zone.tbeteouquoi
   machine          = local.vultr_machine
+  gateway   = module.vultr_reverse-proxy.gateway
   providers = {
     docker = docker.vultr_machine
-  }
-}
-
-module "mealie" {
-  source    = "./mealie"
-  domain    = data.cloudflare_zone.cocopaps
-  subdomain = "mealie"
-  machine   = local.homeserver_machine
-  providers = {
-    docker = docker.homeserver_machine
   }
 }
 
@@ -95,18 +130,9 @@ module "boinc" {
   domain    = data.cloudflare_zone.cocopaps
   machine   = local.vultr_machine
   subdomain = "boinc"
+  gateway   = module.vultr_reverse-proxy.gateway
   providers = {
     docker = docker.vultr_machine
-  }
-}
-
-module "commander" {
-  source    = "./commander"
-  domain    = data.cloudflare_zone.cocopaps
-  subdomain = "commander"
-  machine   = local.homeserver_machine
-  providers = {
-    docker = docker.homeserver_machine
   }
 }
 
@@ -115,30 +141,9 @@ module "pdf" {
   domain    = data.cloudflare_zone.cocopaps
   machine   = local.vultr_machine
   subdomain = "pdf"
+  gateway   = module.vultr_reverse-proxy.gateway
   providers = {
     docker = docker.vultr_machine
-  }
-}
-
-module "gatus_homeserver" {
-  source    = "./gatus"
-  domain    = data.cloudflare_zone.cocopaps
-  subdomain = "gatus2"
-  machine   = local.homeserver_machine
-  discord_webhook = var.discord_webhook_gatus
-  providers = {
-    docker = docker.homeserver_machine
-  }
-}
-
-module "firefly" {
-  source                  = "./firefly"
-  domain                  = data.cloudflare_zone.cocopaps
-  subdomain               = "firefly"
-  importer_subdomain      = "fireflyimporter"
-  machine                 = local.homeserver_machine
-  providers = {
-    docker = docker.homeserver_machine
   }
 }
 
@@ -147,17 +152,8 @@ module "n8n" {
   domain                  = data.cloudflare_zone.cocopaps
   subdomain               = "n8n"
   machine                 = local.vultr_machine
+  gateway   = module.vultr_reverse-proxy.gateway
   providers = {
     docker = docker.vultr_machine
-  }
-}
-
-module "immich" {
-  source                  = "./immich"
-  domain                  = data.cloudflare_zone.cocopaps
-  subdomain               = "photos"
-  machine                 = local.homeserver_machine
-  providers = {
-    docker = docker.homeserver_machine
   }
 }

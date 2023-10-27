@@ -38,7 +38,7 @@ resource "docker_container" "gatus" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.gatus.entryPoints"
@@ -57,7 +57,7 @@ resource "docker_container" "gatus" {
     value = "letsencrypt"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   upload {

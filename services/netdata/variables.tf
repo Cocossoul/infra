@@ -4,3 +4,4 @@ variable "subdomain" {
 }
 variable "machine" {}
 variable "discord_notification_settings" {}
+variable "gateway" {}

@@ -22,7 +22,7 @@ resource "docker_container" "immich_db" {
     host_path      = "/mnt/raid/immich_data/immich_db"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

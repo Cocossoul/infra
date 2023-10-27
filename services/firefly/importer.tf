@@ -52,7 +52,7 @@ resource "docker_container" "firefly_importer" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.firefly_importer.entryPoints"
@@ -71,7 +71,7 @@ resource "docker_container" "firefly_importer" {
     value = "letsencrypt"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

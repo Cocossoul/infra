@@ -61,7 +61,7 @@ resource "docker_container" "portfolio" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.portfolio.entryPoints"
@@ -80,7 +80,7 @@ resource "docker_container" "portfolio" {
     value = "letsencrypt"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

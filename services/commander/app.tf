@@ -38,7 +38,7 @@ resource "docker_container" "commander" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.commander.entryPoints"
@@ -61,7 +61,7 @@ resource "docker_container" "commander" {
     value = "sso"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   upload {

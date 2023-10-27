@@ -13,3 +13,6 @@ variable "cloudflare_account_id" {
 variable "crowdsec_api_key" {
   sensitive = true
 }
+output "gateway" {
+  value = docker_network.gateway.name
+}

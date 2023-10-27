@@ -22,7 +22,7 @@ resource "docker_container" "passbolt_db" {
     volume_name    = docker_volume.passbolt_db.name
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

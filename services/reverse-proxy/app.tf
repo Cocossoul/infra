@@ -26,7 +26,7 @@ resource "docker_container" "reverse-proxy" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = docker_network.gateway.name
   }
   labels {
     label = "traefik.http.middlewares.sso.basicauth.users"
@@ -51,7 +51,7 @@ resource "docker_container" "reverse-proxy" {
   ]
 
   networks_advanced {
-    name = "gateway"
+    name = docker_network.gateway.name
   }
 
   upload {

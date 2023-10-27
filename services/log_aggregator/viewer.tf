@@ -25,7 +25,7 @@ resource "docker_container" "log_viewer" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.log_viewer.entryPoints"
@@ -48,7 +48,7 @@ resource "docker_container" "log_viewer" {
     value = "monitoring_auth"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   log_driver = "json-file"

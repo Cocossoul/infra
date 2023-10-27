@@ -41,7 +41,7 @@ resource "docker_container" "rwol" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.rwol.entryPoints"
@@ -67,7 +67,7 @@ resource "docker_container" "rwol" {
       "RWSOLS_COMPUTER_IP='192.168.1.75'"
   ]
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

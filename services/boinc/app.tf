@@ -39,7 +39,7 @@ resource "docker_container" "boinc" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.boinc.entryPoints"
@@ -66,7 +66,7 @@ resource "docker_container" "boinc" {
     value = "sso"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   cpu_shares = 256

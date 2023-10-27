@@ -39,7 +39,7 @@ resource "docker_container" "pdf-tools" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.pdf-tools.entryPoints"
@@ -62,7 +62,7 @@ resource "docker_container" "pdf-tools" {
     value = "sso"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   env = [

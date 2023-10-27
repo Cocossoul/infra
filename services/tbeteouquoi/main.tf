@@ -61,7 +61,7 @@ resource "docker_container" "tbeteouquoi" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.tbeteouquoi.entryPoints"
@@ -81,7 +81,7 @@ resource "docker_container" "tbeteouquoi" {
   }
 
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

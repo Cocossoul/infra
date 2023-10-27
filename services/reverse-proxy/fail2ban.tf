@@ -43,8 +43,6 @@ resource "docker_container" "fail2ban" {
     volume_name    = docker_volume.fail2ban.name
   }
 
-  network_mode = "host"
-
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"

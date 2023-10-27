@@ -5,3 +5,4 @@ variable "log_aggregator" {
   # [password]
 }
 variable "machine" {}
+variable "gateway" {}

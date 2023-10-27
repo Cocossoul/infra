@@ -38,7 +38,7 @@ resource "docker_container" "netdata" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.netdata.entryPoints"
@@ -61,7 +61,7 @@ resource "docker_container" "netdata" {
     value = "sso"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   volumes {

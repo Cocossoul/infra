@@ -46,7 +46,7 @@ resource "docker_container" "crowdsec" {
   }
 
   networks_advanced {
-    name = "gateway"
+    name = docker_network.gateway.name
   }
 
   destroy_grace_seconds = 60

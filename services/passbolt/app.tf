@@ -46,7 +46,7 @@ resource "docker_container" "passbolt" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.passbolt.entryPoints"
@@ -65,7 +65,7 @@ resource "docker_container" "passbolt" {
     value = "letsencrypt"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
   volumes {
     container_path = "/etc/passbolt/gpg"

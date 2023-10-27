@@ -43,7 +43,7 @@ resource "docker_container" "mealie_frontend" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.mealie_frontend.entryPoints"
@@ -62,7 +62,7 @@ resource "docker_container" "mealie_frontend" {
     value = "letsencrypt"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   volumes {

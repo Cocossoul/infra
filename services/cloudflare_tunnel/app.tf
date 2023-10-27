@@ -18,7 +18,7 @@ resource "docker_container" "cloudflared" {
   ]
 
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

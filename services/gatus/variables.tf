@@ -6,3 +6,4 @@ variable "machine" {}
 variable "discord_webhook" {
     sensitive = true
 }
+variable "gateway" {}

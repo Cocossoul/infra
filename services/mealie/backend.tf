@@ -20,7 +20,7 @@ resource "docker_container" "mealie_backend" {
     "BASE_URL=https://${var.subdomain}.${var.domain.name}"
   ]
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   volumes {
