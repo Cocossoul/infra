@@ -9,7 +9,7 @@ resource "docker_image" "immich_machine_learning" {
 
 resource "docker_container" "immich_machine_learning" {
   image = docker_image.immich_machine_learning.image_id
-  name  = "immich-machine-learning"
+  name  = "immich_machine_learning"
 
   volumes {
     container_path = "/cache"
@@ -17,6 +17,7 @@ resource "docker_container" "immich_machine_learning" {
   }
   networks_advanced {
     name = "gateway"
+    aliases = [ "immich-machine-learning" ]
   }
 
   destroy_grace_seconds = 60

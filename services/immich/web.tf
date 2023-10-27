@@ -9,10 +9,11 @@ resource "docker_image" "immich_web" {
 
 resource "docker_container" "immich_web" {
   image = docker_image.immich_web.image_id
-  name  = "immich-web"
+  name  = "immich_web"
 
   networks_advanced {
     name = "gateway"
+    aliases = [ "immich-web" ]
   }
 
   destroy_grace_seconds = 60

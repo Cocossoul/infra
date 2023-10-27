@@ -9,7 +9,7 @@ resource "docker_image" "immich_server" {
 
 resource "docker_container" "immich_server" {
   image = docker_image.immich_server.image_id
-  name  = "immich-server"
+  name  = "immich_server"
 
   env = [
     "TYPESENSE_API_KEY=${random_password.typesense_api_key.result}",
@@ -19,7 +19,7 @@ resource "docker_container" "immich_server" {
     "DB_HOSTNAME=immich-postgres",
     "DB_USERNAME=postgres",
     "DB_DATABASE_NAME=immich",
-    "REDIS_HOSTNAME=immich_redis"
+    "REDIS_HOSTNAME=immich-redis"
   ]
 
   command = ["start.sh", "immich"]
@@ -35,6 +35,7 @@ resource "docker_container" "immich_server" {
   }
   networks_advanced {
     name = "gateway"
+    aliases = [ "immich-server" ]
   }
 
   destroy_grace_seconds = 60

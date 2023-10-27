@@ -9,7 +9,7 @@ resource "docker_image" "immich_microservices" {
 
 resource "docker_container" "immich_microservices" {
   image = docker_image.immich_microservices.image_id
-  name  = "immich-microservices"
+  name  = "immich_microservices"
 
   env = [
     "TYPESENSE_API_KEY=${random_password.typesense_api_key.result}",
@@ -19,7 +19,7 @@ resource "docker_container" "immich_microservices" {
     "DB_HOSTNAME=immich-postgres",
     "DB_USERNAME=postgres",
     "DB_DATABASE_NAME=immich",
-    "REDIS_HOSTNAME=immich_redis"
+    "REDIS_HOSTNAME=immich-redis"
   ]
   command = ["start.sh", "microservices"]
 
@@ -35,6 +35,7 @@ resource "docker_container" "immich_microservices" {
 
   networks_advanced {
     name = "gateway"
+    aliases = [ "immich-microservices" ]
   }
 
   destroy_grace_seconds = 60

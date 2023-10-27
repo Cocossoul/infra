@@ -9,7 +9,7 @@ resource "docker_image" "immich_typesense" {
 
 resource "docker_container" "immich_typesense" {
   image = docker_image.immich_typesense.image_id
-  name  = "typesense"
+  name  = "immich_typesense"
 
   env = [
     "TYPESENSE_API_KEY=${random_password.typesense_api_key.result}",
@@ -25,6 +25,7 @@ resource "docker_container" "immich_typesense" {
   }
   networks_advanced {
     name = "gateway"
+    aliases = [ "typesense" ]
   }
 
   destroy_grace_seconds = 60

@@ -12,6 +12,7 @@ resource "docker_container" "immich_redis" {
   name  = "immich_redis"
   networks_advanced {
     name = "gateway"
+    aliases = [ "immich-redis" ]
   }
 
   healthcheck {
