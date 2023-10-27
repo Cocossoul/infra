@@ -55,6 +55,18 @@ module "vultr_watchtower" {
     docker = docker.vultr_machine
   }
 }
+module "redirect_to_homeserver_page" {
+  source = "./redirect_to_homeserver_page"
+  hostnames = [
+    for hostname in local.hostnames:
+      hostname.subdomain == "@" ? hostname.domain.name : "${hostname.subdomain}.${hostname.domain.name}"
+      if hostname.private
+  ]
+  gateway   = module.vultr_reverse-proxy.gateway
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
 
 module "gatus" {
   source    = "./gatus"

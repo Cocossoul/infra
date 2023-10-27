@@ -1,0 +1,2 @@
+variable "hostnames" {}
+variable "gateway" {}
