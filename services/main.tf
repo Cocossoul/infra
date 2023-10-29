@@ -16,8 +16,18 @@ locals {
       "firefly.cocopaps.com",
       "fireflyimporter.cocopaps.com",
       "photos.cocopaps.com",
+      "riing.cocopaps.com",
       "n8n.cocopaps.com"
     ]
+}
+
+resource "cloudflare_record" "riing" {
+  zone_id = data.cloudflare_zone.cocopaps.zone_id
+  name    = "riing"
+  value   = local.vultr_machine.address
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
 }
 
 module "owncloud" {
