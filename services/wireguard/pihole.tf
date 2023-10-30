@@ -28,6 +28,11 @@ resource "docker_container" "pihole" {
     protocol = "tcp"
   }
 
+  ports {
+    external = 8082
+    internal = 80
+  }
+
   volumes {
     container_path = "/etc/pihole"
     volume_name    = docker_volume.pihole_data.name

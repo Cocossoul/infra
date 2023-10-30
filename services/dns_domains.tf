@@ -83,6 +83,11 @@ locals {
         "private" = false,
         "domain" = cloudflare_zone.cocopaps
       },
+      {
+        "subdomain" = "dns"
+        "private" = true,
+        "domain" = cloudflare_zone.cocopaps
+      }
     ]
 }
 
