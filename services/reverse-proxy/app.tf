@@ -46,7 +46,7 @@ resource "docker_container" "reverse-proxy" {
   }
 
   dynamic "ports" {
-    for_each = var.publish_ports ? [ { "internal": 8080, "external": 80 } ] : []
+    for_each = var.publish_ports ? [ { "internal": 80, "external": 80 }, { "internal": 443, "external": 443 } ] : []
     content {
       internal = ports.value["internal"]
       external = ports.value["external"]
