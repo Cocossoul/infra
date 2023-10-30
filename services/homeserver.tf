@@ -22,6 +22,19 @@ module "homeserver_reverse-proxy" {
     docker = docker.homeserver_machine
   }
 }
+
+module "homeserver_wireguard" {
+  source = "./wireguard"
+  domain    = data.cloudflare_zone.cocopaps
+  machine = local.homeserver_machine
+  password = var.owncloud_admin_password
+  pihole_subdomain = "dns"
+  gateway   = module.homeserver_reverse-proxy.gateway
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
+
 module "homeserver_netdata" {
   source    = "./netdata"
   domain    = data.cloudflare_zone.cocopaps

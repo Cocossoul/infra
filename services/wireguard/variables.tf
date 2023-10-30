@@ -1,5 +1,4 @@
 variable "domain" {}
-variable "subdomain" {}
 variable "pihole_subdomain" {}
 variable "machine" {}
 variable "password" {
