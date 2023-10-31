@@ -6,5 +6,5 @@ module "vultr_machine" {
 module "homeserver_machine" {
   source       = "./homeserver"
   dyndns_token = var.dyndns_token
-  dyndns_address = var.homeserver_dyndns_address
+  dyndns_address = "homeserver.${var.dyndns_domain}"
 }
