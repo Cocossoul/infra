@@ -14,7 +14,9 @@ resource "local_file" "ansible_inventory" {
     working_dir = "${path.module}/ansible"
     command     = "./ansible_script.sh"
     environment = {
-      DYNDNS_DOMAIN = var.dyndns_address
+      DYNDNS_SUBDOMAIN = var.dyndns_record.name
+      DYNDNS_RECORD_ID = var.dyndns_record.id
+      DYNDNS_ZONE_ID = var.dyndns_zone.id
       DYNDNS_TOKEN  = var.dyndns_token
     }
   }
