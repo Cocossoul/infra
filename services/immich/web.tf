@@ -1,5 +1,5 @@
 data "docker_registry_image" "immich_web" {
-  name = "ghcr.io/immich-app/immich-web:v1.82.1" # renovate_docker
+  name = "ghcr.io/immich-app/immich-web: v1.84.0" # renovate_docker
 }
 
 resource "docker_image" "immich_web" {
