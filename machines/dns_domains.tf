@@ -1,5 +1,5 @@
 data "cloudflare_zone" "dyndns" {
-  name = var.dyndns_zone
+  name = var.dyndns_zone_name
 }
 
 resource "cloudflare_record" "vultr_dyndns" {
