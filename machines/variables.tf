@@ -4,3 +4,6 @@ variable "dyndns_token" {
 variable "dyndns_zone_name" {
   sensitive = true
 }
+variable "cloudflare_token" {
+  sensitive = true
+}
