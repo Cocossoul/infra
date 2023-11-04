@@ -17,13 +17,16 @@
     owner: root
     group: root
     mode: 0744
-  notify: "run dyndns update"
+
+- name: Run dyndns update
+  become: true
+  ansible.builtin.command: /etc/dyndns.sh
 
 - name: Start a cronjob to update dyndns everyday
   become: true
   ansible.builtin.cron:
     name: "update dyndns"
     weekday: "*"
-    minute: "5"
-    hour: "*"
+    minute: "*"
+    hour: "1"
     job: "/etc/dyndns.sh"

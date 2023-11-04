@@ -1,5 +1,0 @@
----
-- name: Run dyndns update
-  become: true
-  ansible.builtin.command: /etc/dyndns.sh
-  listen: "run dyndns update"

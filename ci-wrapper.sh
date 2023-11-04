@@ -23,4 +23,4 @@ source fetch_secrets.sh
 docker login -u cocopaps -p "$DOCKER_PASSWORD"
 
 # Start deployment
-./terraform.sh $@
+exec $@

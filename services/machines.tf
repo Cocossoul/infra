@@ -1,6 +1,6 @@
 locals {
   vultr_machine = {
-    dyndns_address = var.vultr_dyndns_address
+    dyndns_address = "vultr.${var.dyndns_zone_name}"
     name          = "vultr"
     address = module.vultr_cloudflare_tunnel.tunnel_address
   }
@@ -53,7 +53,7 @@ module "vultr_watchtower" {
 # -----------------------------------------------------------------------------
 locals {
   homeserver_machine = {
-    dyndns_address = var.homeserver_dyndns_address
+    dyndns_address = "homeserver.${var.dyndns_zone_name}"
     name          = "homeserver"
     address = module.homeserver_cloudflare_tunnel.tunnel_address
   }
