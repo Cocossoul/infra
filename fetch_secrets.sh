@@ -20,6 +20,7 @@ export TF_VAR_cloudflare_token
 
 TF_VAR_cloudflare_global_api_key="$(fetch_secret cloudflare_global_api_key)"
 export TF_VAR_cloudflare_global_api_key
+export TF_VAR_dyndns_token="$TF_VAR_cloudflare_global_api_key"
 
 TF_VAR_cloudflare_account_id="$(fetch_secret cloudflare_account_id)"
 export TF_VAR_cloudflare_account_id
@@ -27,14 +28,8 @@ export TF_VAR_cloudflare_account_id
 VULTR_API_KEY="$(fetch_secret vultr_api_key)"
 export VULTR_API_KEY
 
-TF_VAR_dyndns_token="$(fetch_secret dyndns_token)"
-export TF_VAR_dyndns_token
-
-TF_VAR_vultr_dyndns_address="$(fetch_secret vultr_dyndns_address)"
-export TF_VAR_vultr_dyndns_address
-
-TF_VAR_homeserver_dyndns_address="$(fetch_secret homeserver_dyndns_address)"
-export TF_VAR_homeserver_dyndns_address
+TF_VAR_dyndns_zone_name="$(fetch_secret dyndns_zone_name)"
+export TF_VAR_dyndns_zone_name
 
 TF_VAR_owncloud_admin_username="$(fetch_secret owncloud_admin_username)"
 export TF_VAR_owncloud_admin_username

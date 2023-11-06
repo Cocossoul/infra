@@ -40,10 +40,7 @@ variable "discord_webhook_gatus" {
 variable "deploy_workflow_token" {
   sensitive = true
 }
-variable "vultr_dyndns_address" {
-  sensitive = true
-}
-variable "homeserver_dyndns_address" {
+variable "dyndns_zone_name" {
   sensitive = true
 }
 variable "ru19h_token" {

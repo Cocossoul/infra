@@ -49,6 +49,7 @@ module "homeserver_netdata" {
     docker = docker.homeserver_machine
   }
 }
+
 module "homeserver_watchtower" {
   source                = "./watchtower"
   docker_password = var.docker_password

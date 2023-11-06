@@ -1,9 +1,9 @@
 variable "dyndns_token" {
   sensitive = true
 }
-variable "vultr_dyndns_address" {
+variable "dyndns_zone_name" {
   sensitive = true
 }
-variable "homeserver_dyndns_address" {
+variable "cloudflare_token" {
   sensitive = true
 }

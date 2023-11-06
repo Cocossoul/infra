@@ -1,10 +1,11 @@
 module "vultr_machine" {
   source       = "./vultr"
   dyndns_token = var.dyndns_token
-  dyndns_address = var.vultr_dyndns_address
+  dyndns_zone   = data.cloudflare_zone.dyndns
 }
+
 module "homeserver_machine" {
-  source       = "./homeserver"
-  dyndns_token = var.dyndns_token
-  dyndns_address = var.homeserver_dyndns_address
+  source        = "./homeserver"
+  dyndns_token  = var.dyndns_token
+  dyndns_zone   = data.cloudflare_zone.dyndns
 }
