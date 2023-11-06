@@ -3,9 +3,6 @@ terraform {
     docker = {
       source  = "kreuzwerker/docker"
     }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-    }
   }
 }
 
