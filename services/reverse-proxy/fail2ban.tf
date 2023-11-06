@@ -43,6 +43,10 @@ resource "docker_container" "fail2ban" {
     volume_name    = docker_volume.fail2ban.name
   }
 
+  networks_advanced {
+    name = docker_network.gateway.name
+  }
+
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
