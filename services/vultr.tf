@@ -1,6 +1,6 @@
 locals {
   vultr_machine = {
-    dyndns_address = var.vultr_dyndns_address
+    dyndns_address = "vultr.${var.dyndns_zone_name}"
     name          = "vultr"
     address = module.vultr_cloudflare_tunnel.tunnel_address
   }
@@ -40,7 +40,7 @@ module "vultr_cloudflare_tunnel" {
   tunnel_name = "vultr"
   cloudflare_account_id = var.cloudflare_account_id
   hostnames = [
-    for hostname in local.hostnames:
+    for key, hostname in local.hostnames:
       hostname.subdomain == "@" ? hostname.domain.name : "${hostname.subdomain}.${hostname.domain.name}"
   ]
   gateway   = module.vultr_reverse-proxy.gateway
@@ -58,7 +58,7 @@ module "vultr_watchtower" {
 module "redirect_to_homeserver_page" {
   source = "./redirect_to_homeserver_page"
   hostnames = [
-    for hostname in local.hostnames:
+    for key, hostname in local.hostnames:
       hostname.subdomain == "@" ? hostname.domain.name : "${hostname.subdomain}.${hostname.domain.name}"
       if hostname.private
   ]
