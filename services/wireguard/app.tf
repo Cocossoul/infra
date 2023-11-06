@@ -21,7 +21,7 @@ resource "docker_container" "wireguard" {
 
   env = [
     "TZ=Europe/Paris",
-    "WG_HOSTNAME=${var.machine.dyndns}",
+    "WG_HOSTNAME=${var.machine.dyndns_address}",
     "WG_PORT=51820",
     "PORT=8080", // Port of the web ui
     "WG_DEFAULT_DNS=127.0.0.1",

@@ -1,8 +1,8 @@
 locals {
   homeserver_machine = {
-    dyndns_address = var.homeserver_dyndns_address
+    dyndns_address = "homeserver.${var.dyndns_zone_name}"
     name           = "homeserver"
-    address        = var.homeserver_dyndns_address
+    address        = "homeserver.${var.dyndns_zone_name}"
   }
 }
 provider "docker" {
