@@ -11,7 +11,7 @@ resource "docker_container" "immich_redis" {
   image = docker_image.immich_redis.image_id
   name  = "immich_redis"
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   healthcheck {

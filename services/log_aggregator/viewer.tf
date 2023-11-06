@@ -1,12 +1,3 @@
-resource "cloudflare_record" "log_viewer" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain_log_viewer
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
-
 data "docker_registry_image" "log_viewer" {
   name = "docker.elastic.co/kibana/kibana:8.10.4" # renovate_docker
 }
@@ -25,7 +16,7 @@ resource "docker_container" "log_viewer" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.log_viewer.entryPoints"
@@ -48,7 +39,7 @@ resource "docker_container" "log_viewer" {
     value = "monitoring_auth"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   log_driver = "json-file"

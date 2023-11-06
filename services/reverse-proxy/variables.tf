@@ -13,3 +13,9 @@ variable "cloudflare_account_id" {
 variable "crowdsec_api_key" {
   sensitive = true
 }
+variable "publish_ports" {
+  default = false
+}
+output "gateway" {
+  value = docker_network.gateway.name
+}

@@ -3,19 +3,7 @@ terraform {
     docker = {
       source  = "kreuzwerker/docker"
     }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-    }
   }
-}
-
-resource "cloudflare_record" "n8n" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
 }
 
 data "docker_registry_image" "n8n" {
@@ -46,7 +34,7 @@ resource "docker_container" "n8n" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.n8n.entryPoints"
@@ -65,7 +53,7 @@ resource "docker_container" "n8n" {
     value = "letsencrypt"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   volumes {

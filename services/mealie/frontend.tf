@@ -2,22 +2,8 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "3.0.2"
-    }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "~> 4.5"
     }
   }
-}
-
-resource "cloudflare_record" "mealie" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
 }
 
 data "docker_registry_image" "mealie_frontend" {
@@ -43,7 +29,7 @@ resource "docker_container" "mealie_frontend" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.mealie_frontend.entryPoints"
@@ -62,7 +48,7 @@ resource "docker_container" "mealie_frontend" {
     value = "letsencrypt"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   volumes {

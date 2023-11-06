@@ -2,22 +2,8 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "3.0.2"
-    }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "~> 4.5"
     }
   }
-}
-
-resource "cloudflare_record" "rwol" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
 }
 
 data "docker_registry_image" "rwol" {
@@ -41,7 +27,7 @@ resource "docker_container" "rwol" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.rwol.entryPoints"
@@ -67,7 +53,7 @@ resource "docker_container" "rwol" {
       "RWSOLS_COMPUTER_IP='192.168.1.75'"
   ]
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

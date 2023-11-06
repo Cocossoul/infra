@@ -11,7 +11,7 @@ resource "docker_container" "redis" {
   image = docker_image.redis.image_id
   name  = "redis"
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
   command = ["--databases", "1"]
 

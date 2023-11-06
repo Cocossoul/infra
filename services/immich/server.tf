@@ -34,7 +34,7 @@ resource "docker_container" "immich_server" {
     read_only = true
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

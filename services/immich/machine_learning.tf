@@ -16,7 +16,7 @@ resource "docker_container" "immich_machine_learning" {
     volume_name    = docker_volume.immich_machine_learning_cache.name
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

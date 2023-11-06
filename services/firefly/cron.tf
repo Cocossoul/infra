@@ -18,7 +18,7 @@ resource "docker_container" "firefly_cron" {
     command = ["sh", "-c", "echo \"0 3 * * * wget -qO- http://${docker_container.firefly.name}:8080/api/v1/cron/${random_password.firefly_cron_token.result}\" | crontab - && crond -f -L /dev/stdout"]
 
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

@@ -32,7 +32,7 @@ resource "docker_container" "owncloud_db" {
     host_path      = "/mnt/raid/owncloud_data/owncloud_db"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

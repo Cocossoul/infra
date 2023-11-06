@@ -2,21 +2,8 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "3.0.2"
-    }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "~> 4.5"
     }
   }
-}
-
-resource "cloudflare_record" "minecraft_server" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.dyndns_domain
-  type    = "CNAME"
-  ttl     = 3600
 }
 
 data "archive_file" "src" {

@@ -2,7 +2,6 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "3.0.2"
     }
   }
 }
@@ -26,7 +25,7 @@ resource "docker_container" "reverse-proxy" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = docker_network.gateway.name
   }
   labels {
     label = "traefik.http.middlewares.sso.basicauth.users"
@@ -45,13 +44,21 @@ resource "docker_container" "reverse-proxy" {
     value = "true"
   }
 
+  dynamic "ports" {
+    for_each = var.publish_ports ? [ { "internal": 80, "external": 80 }, { "internal": 443, "external": 443 } ] : []
+    content {
+      internal = ports.value["internal"]
+      external = ports.value["external"]
+    }
+  }
+
   env = [
     "CLOUDFLARE_EMAIL=corentin0pape@gmail.com",
     "CLOUDFLARE_API_KEY=${var.cloudflare_global_api_key}"
   ]
 
   networks_advanced {
-    name = "gateway"
+    name = docker_network.gateway.name
   }
 
   upload {

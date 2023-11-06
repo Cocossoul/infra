@@ -2,11 +2,6 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "3.0.2"
-    }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "~> 4.5"
     }
   }
 }
@@ -61,7 +56,7 @@ resource "docker_container" "log_collector" {
   }
 
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
   log_driver = "json-file"
   log_opts = {

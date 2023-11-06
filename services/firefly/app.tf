@@ -3,19 +3,7 @@ terraform {
     docker = {
       source  = "kreuzwerker/docker"
     }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-    }
   }
-}
-
-resource "cloudflare_record" "firefly" {
-  zone_id = var.domain.zone_id
-  name    = var.subdomain
-  value   = var.machine.address
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
 }
 
 data "docker_registry_image" "firefly" {
@@ -87,7 +75,7 @@ resource "docker_container" "firefly" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.firefly.entryPoints"
@@ -106,7 +94,7 @@ resource "docker_container" "firefly" {
     value = "letsencrypt"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   volumes {

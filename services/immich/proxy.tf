@@ -2,11 +2,6 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "3.0.2"
-    }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "~> 4.5"
     }
   }
 }
@@ -36,7 +31,7 @@ resource "docker_container" "immich_proxy" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.immich_proxy.entryPoints"
@@ -55,7 +50,7 @@ resource "docker_container" "immich_proxy" {
     value = "letsencrypt"
   }
   networks_advanced {
-    name = "gateway"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

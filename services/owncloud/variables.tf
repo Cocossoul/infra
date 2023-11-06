@@ -10,3 +10,4 @@ variable "owncloud_admin_password" {
   type = string
 }
 variable "owncloud_db_password" {}
+variable "gateway" {}
