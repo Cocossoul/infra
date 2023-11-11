@@ -25,7 +25,7 @@ resource "docker_container" "wireguard_ui" {
     "TZ=Europe/Paris",
     "WGUI_PASSWORD=${var.password}",
     "WGUI_SERVER_INTERFACE_ADDRESSES=10.252.1.0/24",
-    "WGUI_DNS=192.168.1.24",
+    "WGUI_DNS=${var.machine.lan_ip}",
     "WGUI_SERVER_POST_UP_SCRIPT=iptables -t nat -A POSTROUTING -s 10.252.1.0/24 -o enp4s0 -j MASQUERADE; iptables -A INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT;",
     "WGUI_SERVER_POST_DOWN_SCRIPT=iptables -t nat -D POSTROUTING -s 10.252.1.0/24 -o enp4s0 -j MASQUERADE; iptables -D INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT;",
     "WGUI_DEFAULT_CLIENT_ALLOWED_IPS=192.168.1.0/24",
@@ -37,11 +37,6 @@ resource "docker_container" "wireguard_ui" {
 
   capabilities {
     add = ["NET_ADMIN"]
-  }
-
-  ports {
-    external = 5000
-    internal = 5000
   }
 
   volumes {

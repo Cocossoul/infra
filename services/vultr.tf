@@ -40,7 +40,7 @@ module "vultr_cloudflare_tunnel" {
   tunnel_name           = "vultr"
   cloudflare_account_id = var.cloudflare_account_id
   hostnames = [
-    for key, hostname in local.hostnames :
+    for key, hostname in local.hostnames_public_map :
     hostname.subdomain == "@" ? hostname.domain.name : "${hostname.subdomain}.${hostname.domain.name}"
   ]
   gateway = module.vultr_reverse-proxy.gateway
@@ -51,18 +51,6 @@ module "vultr_cloudflare_tunnel" {
 module "vultr_watchtower" {
   source          = "./watchtower"
   docker_password = var.docker_password
-  providers = {
-    docker = docker.vultr_machine
-  }
-}
-module "redirect_to_homeserver_page" {
-  source = "./redirect_to_homeserver_page"
-  hostnames = [
-    for key, hostname in local.hostnames :
-    ((hostname.subdomain == "@") ? hostname.domain.name : "${hostname.subdomain}.${hostname.domain.name}")
-    if hostname.private
-  ]
-  gateway = module.vultr_reverse-proxy.gateway
   providers = {
     docker = docker.vultr_machine
   }

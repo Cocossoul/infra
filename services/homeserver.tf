@@ -3,6 +3,7 @@ locals {
     dyndns_address = "homeserver.${var.dyndns_zone_name}"
     name           = "homeserver"
     address        = "homeserver.${var.dyndns_zone_name}"
+    lan_ip = "192.168.1.24"
   }
 }
 provider "docker" {

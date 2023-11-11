@@ -95,18 +95,34 @@ locals {
     }
   ]
 
-  hostnames_map = {
+  hostnames_public_map = {
     for index, hostname in local.hostnames :
     "${hostname.subdomain}.${hostname.domain.name}" => hostname
+    if hostname.private == false
+  }
+  hostnames_private_map = {
+    for index, hostname in local.hostnames :
+    "${hostname.subdomain}.${hostname.domain.name}" => hostname
+    if hostname.private
   }
 }
 
 resource "cloudflare_record" "services" {
-  for_each = local.hostnames_map
+  for_each = local.hostnames_public_map
   zone_id  = each.value.domain.zone_id
   name     = each.value.subdomain
   value    = local.vultr_machine.address
   type     = "CNAME"
   ttl      = 1
   proxied  = true
+}
+
+resource "cloudflare_record" "private_services" {
+  for_each = local.hostnames_private_map
+  zone_id  = each.value.domain.zone_id
+  name     = each.value.subdomain
+  value    = local.homeserver_machine.lan_ip
+  type     = "A"
+  ttl      = 360
+  proxied  = false
 }
