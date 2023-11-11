@@ -25,7 +25,7 @@ module "vultr_netdata" {
   source    = "./netdata"
   domain    = data.cloudflare_zone.cocopaps
   machine   = local.vultr_machine
-  subdomain = "monitoringvultr"
+  subdomain = "monitoring"
   gateway   = module.vultr_reverse-proxy.gateway
   discord_notification_settings = {
     webhook_url = var.discord_webhook_vultr
