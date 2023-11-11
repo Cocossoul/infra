@@ -12,6 +12,9 @@ jobs:
     container: cocopaps/ci-tools:latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - name: Terraform fmt check
+        run: |
+          terraform fmt -check -recursive
       - name: Terraform plan
         env:
           PASSBOLT_CI_ACS_BASE64: ${{secrets.PASSBOLT_CI_ACS_BASE64}}
