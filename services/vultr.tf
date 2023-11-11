@@ -59,7 +59,7 @@ module "redirect_to_homeserver_page" {
   source = "./redirect_to_homeserver_page"
   hostnames = [
     for key, hostname in local.hostnames :
-    hostname.subdomain == "@" ? hostname.domain.name : "${hostname.subdomain}.${hostname.domain.name}"
+    ((hostname.subdomain == "@") ? hostname.domain.name : "${hostname.subdomain}.${hostname.domain.name}")
     if hostname.private
   ]
   gateway = module.vultr_reverse-proxy.gateway
