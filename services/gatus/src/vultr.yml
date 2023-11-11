@@ -49,26 +49,6 @@ endpoints:
         failure-threshold: 3
         success-threshold: 3
 
-  - name: cloud dns
-    url: "8.8.8.8"
-    interval: 30s
-    group: 3. dns
-    dns:
-      query-name: "cloud.cocopaps.com"
-      query-type: "A"
-    conditions:
-      - "[DNS_RCODE] == NOERROR"
-
-  - name: mealie dns
-    url: "8.8.8.8"
-    interval: 30s
-    group: 3. dns
-    dns:
-      query-name: "mealie.cocopaps.com"
-      query-type: "A"
-    conditions:
-      - "[DNS_RCODE] == NOERROR"
-
   - name: passbolt dns
     url: "8.8.8.8"
     interval: 30s
