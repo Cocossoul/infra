@@ -48,8 +48,8 @@ resource "docker_container" "homer" {
 
   upload {
     file        = "/www/assets/config.yml"
-    source      = "${path.module}/src/config.yml"
-    source_hash = filesha256("${path.module}/src/config.yml")
+    source      = "${path.module}/src/${var.config_path}"
+    source_hash = filesha256("${path.module}/src/${var.config_path}")
   }
 
   destroy_grace_seconds = 60

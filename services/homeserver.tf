@@ -108,11 +108,12 @@ module "gatus_homeserver" {
   }
 }
 
-module "home_homeserver" {
-  source  = "./homer"
-  domain  = data.cloudflare_zone.cocopaps
-  machine = local.homeserver_machine
-  gateway = module.homeserver_reverse-proxy.gateway
+module "homeserver_home" {
+  source      = "./homer"
+  domain      = data.cloudflare_zone.cocopaps
+  machine     = local.homeserver_machine
+  config_path = "homeserver.yml"
+  gateway     = module.homeserver_reverse-proxy.gateway
   providers = {
     docker = docker.homeserver_machine
   }

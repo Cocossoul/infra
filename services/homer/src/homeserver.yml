@@ -6,7 +6,7 @@
 # externalConfig: https://example.com/server-luci/config.yaml
 
 title: "Homepage"
-subtitle: "Homer"
+subtitle: "Welcome home :)"
 # documentTitle: "Welcome" # Customize the browser tab text
 # logo: "assets/logo.png"
 # Alternatively a fa icon can be provided:
@@ -16,7 +16,7 @@ header: true # Set to false to hide the header
 # Optional: Different hotkey for search, defaults to "/"
 # hotkey:
 #   search: "Shift"
-footer: '<p>Infrastructure source code on <a href="https://github.com/Cocossoul/infra">Github</a> // Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>' # set false if you want to hide it.
+footer: 'You are home or correctly connected with Wireguard.' # set false if you want to hide it.
 
 columns: "3" # "auto" or number (must be a factor of 12: 1, 2, 3, 4, 6, 12)
 connectivityCheck: true # whether you want to display a message when the apps are not accessible anymore (VPN disconnected for example).
@@ -76,6 +76,52 @@ colors:
 # First level array represents a group.
 # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
 services:
+  - name: "Private"
+    icon: "fa-solid fa-people-roof"
+    items:
+      - name: "Home Cloud"
+        icon: "fa-solid fa-hard-drive"
+        subtitle: "Owncloud server"
+        url: "https://cloud.cocopaps.com"
+      - name: "Photos"
+        icon: "fa-solid fa-images"
+        subtitle: "Immich server"
+        url: "https://photos.cocopaps.com"
+      - name: "Personal finance manager"
+        icon: "fa-solid fa-piggy-bank"
+        subtitle: "Firefly III server"
+        url: "https://firefly.cocopaps.com"
+      - name: "Import Bank Records"
+        icon: "fa-solid fa-file-import"
+        subtitle: "Import CSV Bank Records to Firefly III server"
+        url: "https://import.firefly.cocopaps.com"
+      - name: "PDF Tools"
+        icon: "fa-solid fa-file-pdf"
+        subtitle: "S-PDF toolset"
+        url: "https://pdf.cocopaps.com"
+      - name: "Meal planner"
+        icon: "fa-solid fa-cloud-meatball"
+        subtitle: "Planning my meals with Mealie"
+        url: "https://mealie.cocopaps.com"
+  - name: "Internal"
+    icon: "fa-solid fa-screwdriver-wrench"
+    items:
+      - name: "Wireguard"
+        icon: "fa-solid fa-lock"
+        subtitle: "Wireguard Configuration"
+        url: "http://wireguard.cocopaps.com:5000"
+      - name: "Pihole"
+        icon: "fa-solid fa-route"
+        subtitle: "Pihole VPN Configuration"
+        url: "https://dns.cocopaps.com/admin"
+      - name: "Service health"
+        icon: "fa-solid fa-heart-pulse"
+        subtitle: "Monitor availability with Gatus"
+        url: "https://gatus.cocopaps.com"
+      - name: "Monitoring"
+        icon: "fa-brands fa-watchman-monitoring"
+        subtitle: "Monitoring my Home Server with Netdata"
+        url: "https://monitoring.cocopaps.com"
   - name: "Public"
     icon: "fa-solid fa-globe"
     items:
@@ -87,41 +133,11 @@ services:
         icon: "fa-brands fa-instagram"
         subtitle: "My Instagram photo account"
         url: "https://www.instagram.com/aperceptionn/"
-      - name: "Service health"
-        icon: "fa-solid fa-heart-pulse"
-        subtitle: "Monitor availability with Gatus"
-        url: "https://gatus.cocopaps.com"
-  - name: "Private"
-    icon: "fa-solid fa-people-roof"
-    items:
-      - name: "Home Cloud"
-        icon: "fa-solid fa-hard-drive"
-        subtitle: "Owncloud server"
-        url: "https://cloud.cocopaps.com"
-      - name: "PDF Tools"
-        icon: "fa-solid fa-file-pdf"
-        subtitle: "S-PDF toolset"
-        url: "https://pdf.cocopaps.com"
-      - name: "Meal planner"
-        icon: "fa-solid fa-cloud-meatball"
-        subtitle: "Planning my meals with Mealie"
-        url: "https://mealie.cocopaps.com"
       - name: "BOINC"
         icon: "fa-solid fa-flask"
         subtitle: "Helping research with BOINC"
         url: "https://boinc.cocopaps.com"
-  - name: "Internal"
-    icon: "fa-solid fa-screwdriver-wrench"
-    items:
       - name: "Passbolt"
         icon: "fa-solid fa-vault"
         subtitle: "Passbolt password vault"
         url: "https://passbolt.cocopaps.com"
-      - name: "Home Server Monitoring"
-        icon: "fa-brands fa-watchman-monitoring"
-        subtitle: "Monitoring my Home Server with Netdata"
-        url: "https://monitoringhomeserver.cocopaps.com"
-      - name: "Cloud Server Monitoring"
-        icon: "fa-brands fa-watchman-monitoring"
-        subtitle: "Monitoring my Cloud Server with Netdata"
-        url: "https://monitoringvultr.cocopaps.com"

@@ -68,11 +68,12 @@ module "gatus" {
   }
 }
 
-module "home" {
-  source  = "./homer"
-  domain  = data.cloudflare_zone.cocopaps
-  machine = local.vultr_machine
-  gateway = module.vultr_reverse-proxy.gateway
+module "vultr_home" {
+  source      = "./homer"
+  domain      = data.cloudflare_zone.cocopaps
+  machine     = local.vultr_machine
+  config_path = "vultr.yml"
+  gateway     = module.vultr_reverse-proxy.gateway
   providers = {
     docker = docker.vultr_machine
   }
