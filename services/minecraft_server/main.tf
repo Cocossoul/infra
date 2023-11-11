@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -55,7 +55,7 @@ resource "docker_container" "minecraft_server" {
   }
 
   upload {
-    file = "/server/config/server.properties"
+    file    = "/server/config/server.properties"
     content = local.serverproperties
   }
 

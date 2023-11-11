@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -78,14 +78,14 @@ resource "docker_container" "netdata" {
   security_opts = ["apparmor:unconfined"]
 
   upload {
-    file = "/usr/lib/netdata/conf.d/health_alarm_notify.conf"
+    file           = "/usr/lib/netdata/conf.d/health_alarm_notify.conf"
     content_base64 = local.health_alarm_notify
   }
 
   log_driver = "json-file"
   log_opts = {
-    max-size: "15m"
-    max-file: 3
+    max-size : "15m"
+    max-file : 3
   }
 
   destroy_grace_seconds = 60

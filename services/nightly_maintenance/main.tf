@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -19,7 +19,7 @@ resource "null_resource" "nightly_maintenance_build" {
 
   provisioner "local-exec" {
     working_dir = "${path.module}/src"
-    command = "./build.sh"
+    command     = "./build.sh"
   }
 }
 
@@ -40,8 +40,8 @@ resource "docker_container" "nightly_maintenance" {
   name  = "nightly_maintenance"
 
   upload {
-    file = "/task.sh"
-    content = local.task
+    file       = "/task.sh"
+    content    = local.task
     executable = true
   }
 

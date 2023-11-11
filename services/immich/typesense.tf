@@ -14,7 +14,7 @@ resource "docker_container" "immich_typesense" {
   env = [
     "TYPESENSE_API_KEY=${random_password.typesense_api_key.result}",
     "TYPESENSE_DATA_DIR=/data",
-      # remove this to get debug messages
+    # remove this to get debug messages
     "GLOG_minloglevel=1"
   ]
   command = ["--api-key", random_password.typesense_api_key.result, "--data-dir", "/data"]
@@ -38,7 +38,7 @@ resource "docker_volume" "immich_typesense_data" {
 }
 
 resource "random_password" "typesense_api_key" {
-  length = 32
+  length  = 32
   special = false
   lifecycle {
     prevent_destroy = true

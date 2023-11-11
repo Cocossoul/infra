@@ -1,3 +1,3 @@
 variable "docker_password" {
-    sensitive = true
+  sensitive = true
 }

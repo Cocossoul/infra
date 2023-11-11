@@ -12,19 +12,19 @@ resource "docker_container" "owncloud_db" {
   name  = "owncloud_db"
 
   env = [
-      "MYSQL_RANDOM_ROOT_PASSWORD=\"true\"",
-      "MYSQL_DATABASE=owncloud",
-      "MYSQL_USER=owncloud",
-      "MYSQL_PASSWORD=${var.owncloud_db_password}"
+    "MYSQL_RANDOM_ROOT_PASSWORD=\"true\"",
+    "MYSQL_DATABASE=owncloud",
+    "MYSQL_USER=owncloud",
+    "MYSQL_PASSWORD=${var.owncloud_db_password}"
   ]
 
   command = ["--max-allowed-packet=128M", "--innodb-log-file-size=64M"]
 
   healthcheck {
-    test = ["CMD", "mysqladmin", "ping", "-u", "root", "--password=owncloud"]
+    test     = ["CMD", "mysqladmin", "ping", "-u", "root", "--password=owncloud"]
     interval = "10s"
-    timeout = "5s"
-    retries = 5
+    timeout  = "5s"
+    retries  = 5
   }
 
   volumes {

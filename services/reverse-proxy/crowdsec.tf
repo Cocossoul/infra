@@ -21,19 +21,19 @@ resource "docker_container" "crowdsec" {
   name  = "crowdsec"
 
   env = [
-      "COLLECTIONS=crowdsecurity/traefik"
+    "COLLECTIONS=crowdsecurity/traefik"
   ]
 
   upload {
-    file = "/etc/crowdsec/acquis.yaml"
-    source = "${path.module}/src/crowdsec_acquis.yaml"
+    file        = "/etc/crowdsec/acquis.yaml"
+    source      = "${path.module}/src/crowdsec_acquis.yaml"
     source_hash = filesha256("${path.module}/src/crowdsec_acquis.yaml")
   }
 
   volumes {
     container_path = "/var/log/traefik"
     volume_name    = docker_volume.reverse-proxy_logs.name
-    read_only = true
+    read_only      = true
   }
 
   volumes {

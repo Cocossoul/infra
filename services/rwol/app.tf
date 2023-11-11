@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -46,11 +46,11 @@ resource "docker_container" "rwol" {
     value = "letsencrypt"
   }
   env = [
-      "APACHE2_PORT=8080",
-      "PASSPHRASE=${var.rwol_password}",
-      "RWSOLS_COMPUTER_NAME='PCGamer'",
-      "RWSOLS_COMPUTER_MAC='${var.gamerpc_mac_address}'",
-      "RWSOLS_COMPUTER_IP='192.168.1.75'"
+    "APACHE2_PORT=8080",
+    "PASSPHRASE=${var.rwol_password}",
+    "RWSOLS_COMPUTER_NAME='PCGamer'",
+    "RWSOLS_COMPUTER_MAC='${var.gamerpc_mac_address}'",
+    "RWSOLS_COMPUTER_IP='192.168.1.75'"
   ]
   networks_advanced {
     name = var.gateway

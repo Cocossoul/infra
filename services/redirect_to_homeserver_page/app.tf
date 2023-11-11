@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -34,8 +34,8 @@ resource "docker_container" "redirect_to_homeserver_page" {
   labels {
     label = "traefik.http.routers.redirect_to_homeserver_page.rule"
     value = join(" && ", [
-      for hostname in var.hostnames:
-        "Host(`${hostname}`)"
+      for hostname in var.hostnames :
+      "Host(`${hostname}`)"
     ])
   }
   labels {
@@ -51,8 +51,8 @@ resource "docker_container" "redirect_to_homeserver_page" {
   }
 
   upload {
-    file = "/usr/share/nginx/html/index.html"
-    source = "${path.module}/src/index.html"
+    file        = "/usr/share/nginx/html/index.html"
+    source      = "${path.module}/src/index.html"
     source_hash = filesha256("${path.module}/src/index.html")
   }
 

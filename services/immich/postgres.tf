@@ -35,6 +35,6 @@ resource "random_integer" "immich_db_password_length" {
   max = 20
 }
 resource "random_password" "immich_db" {
-  length           = random_integer.immich_db_password_length.result
-  special          = false
+  length  = random_integer.immich_db_password_length.result
+  special = false
 }

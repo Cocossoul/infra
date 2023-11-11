@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -108,7 +108,7 @@ resource "docker_container" "firefly" {
 }
 
 resource "random_password" "firefly_app_key" {
-  length = 32
+  length  = 32
   special = false
   lifecycle {
     prevent_destroy = true

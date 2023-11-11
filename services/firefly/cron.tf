@@ -15,7 +15,7 @@ resource "docker_container" "firefly_cron" {
     "TZ=Europe/Paris"
   ]
 
-    command = ["sh", "-c", "echo \"0 3 * * * wget -qO- http://${docker_container.firefly.name}:8080/api/v1/cron/${random_password.firefly_cron_token.result}\" | crontab - && crond -f -L /dev/stdout"]
+  command = ["sh", "-c", "echo \"0 3 * * * wget -qO- http://${docker_container.firefly.name}:8080/api/v1/cron/${random_password.firefly_cron_token.result}\" | crontab - && crond -f -L /dev/stdout"]
 
   networks_advanced {
     name = var.gateway
@@ -27,7 +27,7 @@ resource "docker_container" "firefly_cron" {
 }
 
 resource "random_password" "firefly_cron_token" {
-  length = 32
+  length  = 32
   special = false
   lifecycle {
     prevent_destroy = true

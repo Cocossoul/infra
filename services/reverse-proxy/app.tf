@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -45,7 +45,7 @@ resource "docker_container" "reverse-proxy" {
   }
 
   dynamic "ports" {
-    for_each = var.publish_ports ? [ { "internal": 80, "external": 80 }, { "internal": 443, "external": 443 } ] : []
+    for_each = var.publish_ports ? [{ "internal" : 80, "external" : 80 }, { "internal" : 443, "external" : 443 }] : []
     content {
       internal = ports.value["internal"]
       external = ports.value["external"]
@@ -62,13 +62,13 @@ resource "docker_container" "reverse-proxy" {
   }
 
   upload {
-    file = "/traefik.yml"
-    source = "${path.module}/src/traefik.yml"
+    file        = "/traefik.yml"
+    source      = "${path.module}/src/traefik.yml"
     source_hash = filesha256("${path.module}/src/traefik.yml")
   }
   upload {
-    file = "/traefik_config.yml"
-    source = "${path.module}/src/traefik_config.yml"
+    file        = "/traefik_config.yml"
+    source      = "${path.module}/src/traefik_config.yml"
     source_hash = filesha256("${path.module}/src/traefik_config.yml")
   }
 

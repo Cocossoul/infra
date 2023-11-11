@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -19,7 +19,7 @@ resource "docker_container" "passbolt" {
   image = docker_image.passbolt.image_id
   name  = "passbolt"
   env = [
-"APP_FULL_BASE_URL=https://${var.subdomain}.${var.domain.name}",
+    "APP_FULL_BASE_URL=https://${var.subdomain}.${var.domain.name}",
     "DATASOURCES_DEFAULT_HOST=${docker_container.passbolt_db.name}:3306",
     "DATASOURCES_DEFAULT_USERNAME=passbolt",
     "DATASOURCES_DEFAULT_PASSWORD=${random_password.passbolt_db_password.result}",

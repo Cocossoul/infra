@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -51,8 +51,8 @@ resource "docker_container" "commander" {
   }
 
   upload {
-    file = "/config/config.yaml"
-    source = "${path.module}/src/config.yaml"
+    file        = "/config/config.yaml"
+    source      = "${path.module}/src/config.yaml"
     source_hash = filesha256("${path.module}/src/config.yaml")
   }
 

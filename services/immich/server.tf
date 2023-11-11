@@ -31,7 +31,7 @@ resource "docker_container" "immich_server" {
   volumes {
     container_path = "/etc/localtime"
     host_path      = "/etc/localtime"
-    read_only = true
+    read_only      = true
   }
   networks_advanced {
     name = var.gateway
@@ -41,7 +41,7 @@ resource "docker_container" "immich_server" {
 
   restart = "unless-stopped"
 
-   depends_on = [
+  depends_on = [
     docker_container.immich_redis,
     docker_container.immich_db,
     docker_container.immich_typesense

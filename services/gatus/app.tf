@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -49,9 +49,9 @@ resource "docker_container" "gatus" {
   upload {
     file = "/config/config.yaml"
     content = templatefile("${path.module}/src/config.yaml",
-        {
-            discord_webhook = var.discord_webhook
-        }
+      {
+        discord_webhook = var.discord_webhook
+      }
     )
   }
 

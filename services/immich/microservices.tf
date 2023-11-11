@@ -30,7 +30,7 @@ resource "docker_container" "immich_microservices" {
   volumes {
     container_path = "/etc/localtime"
     host_path      = "/etc/localtime"
-    read_only = true
+    read_only      = true
   }
 
   networks_advanced {
@@ -41,7 +41,7 @@ resource "docker_container" "immich_microservices" {
 
   restart = "unless-stopped"
 
-   depends_on = [
+  depends_on = [
     docker_container.immich_redis,
     docker_container.immich_db,
     docker_container.immich_typesense

@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -47,8 +47,8 @@ resource "docker_container" "homer" {
   }
 
   upload {
-    file = "/www/assets/config.yml"
-    source = "${path.module}/src/config.yml"
+    file        = "/www/assets/config.yml"
+    source      = "${path.module}/src/config.yml"
     source_hash = filesha256("${path.module}/src/config.yml")
   }
 

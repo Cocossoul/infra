@@ -12,10 +12,10 @@ resource "docker_container" "passbolt_db" {
   name  = "passbolt_db"
 
   env = [
-      "MYSQL_RANDOM_ROOT_PASSWORD=\"true\"",
-      "MYSQL_DATABASE=passbolt",
-      "MYSQL_USER=passbolt",
-      "MYSQL_PASSWORD=${random_password.passbolt_db_password.result}"
+    "MYSQL_RANDOM_ROOT_PASSWORD=\"true\"",
+    "MYSQL_DATABASE=passbolt",
+    "MYSQL_USER=passbolt",
+    "MYSQL_PASSWORD=${random_password.passbolt_db_password.result}"
   ]
   volumes {
     container_path = "/var/lib/mysql"
@@ -44,7 +44,7 @@ resource "random_integer" "passbolt_db_password_length" {
   max = 20
 }
 resource "random_password" "passbolt_db_password" {
-  length           = random_integer.passbolt_db_password_length.result
-  special          = false
+  length  = random_integer.passbolt_db_password_length.result
+  special = false
 }
 

@@ -18,15 +18,15 @@ resource "cloudflare_tunnel_config" "config" {
       content {
         hostname = ingress_rule.value
         origin_request {
-          http2_origin = true
+          http2_origin       = true
           origin_server_name = ingress_rule.value
         }
-        service  = "https://reverse-proxy:443"
+        service = "https://reverse-proxy:443"
       }
     }
 
     ingress_rule {
-      service  = "http_status:404"
+      service = "http_status:404"
     }
   }
 }

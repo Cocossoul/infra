@@ -10,7 +10,7 @@ resource "random_password" "elasticsearch_salt" {
   length = 8
 }
 resource "random_password" "elasticsearch" {
-  length = 16
+  length  = 16
   special = false
 }
 resource "htpasswd_password" "elasticsearch" {

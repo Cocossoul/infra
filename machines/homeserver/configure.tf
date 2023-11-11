@@ -1,6 +1,6 @@
 data "cloudflare_record" "dyndns" {
-  zone_id = var.dyndns_zone.id
-  hostname    = "homeserver.${var.dyndns_zone.name}"
+  zone_id  = var.dyndns_zone.id
+  hostname = "homeserver.${var.dyndns_zone.name}"
 }
 
 resource "local_file" "ansible_inventory" {
@@ -23,8 +23,8 @@ resource "null_resource" "ansible_configuration" {
     environment = {
       DYNDNS_SUBDOMAIN = "homeserver"
       DYNDNS_RECORD_ID = data.cloudflare_record.dyndns.id
-      DYNDNS_ZONE_ID = var.dyndns_zone.id
-      DYNDNS_TOKEN  = var.dyndns_token
+      DYNDNS_ZONE_ID   = var.dyndns_zone.id
+      DYNDNS_TOKEN     = var.dyndns_token
     }
   }
 }

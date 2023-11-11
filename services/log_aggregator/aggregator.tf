@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -54,17 +54,17 @@ resource "docker_container" "log_aggregator" {
     name = var.gateway
   }
   env = [
-      "discovery.type=single-node",
-      "xpack.security.enabled=false",
-      "xpack.security.http.ssl.enabled=false",
-      "xpack.security.transport.ssl.enabled=false"
+    "discovery.type=single-node",
+    "xpack.security.enabled=false",
+    "xpack.security.http.ssl.enabled=false",
+    "xpack.security.transport.ssl.enabled=false"
   ]
 
 
   log_driver = "json-file"
   log_opts = {
-    max-size: "15m"
-    max-file: 3
+    max-size : "15m"
+    max-file : 3
   }
 
   destroy_grace_seconds = 60

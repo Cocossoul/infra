@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source = "kreuzwerker/docker"
     }
   }
 }
@@ -19,7 +19,7 @@ resource "null_resource" "log_collector_build" {
 
   provisioner "local-exec" {
     working_dir = "${path.module}/src"
-    command = "./build.sh"
+    command     = "./build.sh"
   }
 }
 
@@ -51,7 +51,7 @@ resource "docker_container" "log_collector" {
   }
 
   upload {
-    file = "/fluentd/etc/fluent.conf"
+    file    = "/fluentd/etc/fluent.conf"
     content = can(var.log_aggregator.password) ? local.fluent_basic_auth_conf : local.fluentconf
   }
 
@@ -60,8 +60,8 @@ resource "docker_container" "log_collector" {
   }
   log_driver = "json-file"
   log_opts = {
-    max-size: "15m"
-    max-file: 3
+    max-size : "15m"
+    max-file : 3
   }
 
   destroy_grace_seconds = 60

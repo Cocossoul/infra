@@ -5,7 +5,7 @@ variable "cloudflare_global_api_key" {
   sensitive = true
 }
 variable "cloudflare_account_id" {
-    sensitive = true
+  sensitive = true
 }
 variable "owncloud_admin_username" {
   sensitive = true
@@ -51,9 +51,9 @@ variable "docker_password" {
 }
 variable "vultr_crowdsec_api_key" {
   sensitive = true
-  default = "undefined"
+  default   = "undefined"
 }
 variable "homeserver_crowdsec_api_key" {
   sensitive = true
-  default = "undefined"
+  default   = "undefined"
 }

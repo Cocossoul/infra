@@ -12,17 +12,17 @@ resource "docker_container" "firefly_db" {
   name  = "firefly_db"
 
   env = [
-      "MYSQL_RANDOM_ROOT_PASSWORD=\"true\"",
-      "MYSQL_DATABASE=firefly",
-      "MYSQL_USER=firefly",
-      "MYSQL_PASSWORD=${random_password.firefly_db.result}"
+    "MYSQL_RANDOM_ROOT_PASSWORD=\"true\"",
+    "MYSQL_DATABASE=firefly",
+    "MYSQL_USER=firefly",
+    "MYSQL_PASSWORD=${random_password.firefly_db.result}"
   ]
 
   healthcheck {
-    test = ["CMD", "mysqladmin", "ping", "-u", "root", "--password=firefly"]
+    test     = ["CMD", "mysqladmin", "ping", "-u", "root", "--password=firefly"]
     interval = "10s"
-    timeout = "5s"
-    retries = 5
+    timeout  = "5s"
+    retries  = 5
   }
 
   volumes {
@@ -47,8 +47,8 @@ resource "random_integer" "firefly_db_password_length" {
   }
 }
 resource "random_password" "firefly_db" {
-  length           = random_integer.firefly_db_password_length.result
-  special          = false
+  length  = random_integer.firefly_db_password_length.result
+  special = false
   lifecycle {
     prevent_destroy = true
   }
