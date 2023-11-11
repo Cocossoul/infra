@@ -109,7 +109,7 @@ endpoints:
         success-threshold: 3
 
   - name: pihole
-    url: "https://dns.cocopaps.com"
+    url: "https://dns.cocopaps.com/admin"
     interval: 30s
     group: 2. private
     conditions:
