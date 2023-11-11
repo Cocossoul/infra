@@ -69,7 +69,7 @@ locals {
       "domain"    = data.cloudflare_zone.cocopaps
     },
     {
-      "subdomain" = "fireflyimporter",
+      "subdomain" = "import.firefly",
       "private"   = true,
       "domain"    = data.cloudflare_zone.cocopaps
     },

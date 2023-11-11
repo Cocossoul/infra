@@ -122,7 +122,7 @@ module "firefly" {
   source             = "./firefly"
   domain             = data.cloudflare_zone.cocopaps
   subdomain          = "firefly"
-  importer_subdomain = "fireflyimporter"
+  importer_subdomain = "import.firefly"
   machine            = local.homeserver_machine
   gateway            = module.homeserver_reverse-proxy.gateway
   providers = {
