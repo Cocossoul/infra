@@ -6,7 +6,7 @@
 # externalConfig: https://example.com/server-luci/config.yaml
 
 title: "Homepage"
-subtitle: "Welcome home :)"
+subtitle: "Connected through Wireguard"
 # documentTitle: "Welcome" # Customize the browser tab text
 # logo: "assets/logo.png"
 # Alternatively a fa icon can be provided:
@@ -16,7 +16,7 @@ header: true # Set to false to hide the header
 # Optional: Different hotkey for search, defaults to "/"
 # hotkey:
 #   search: "Shift"
-footer: 'You are home or correctly connected with Wireguard.' # set false if you want to hide it.
+footer: 'You are correctly connected with Wireguard.' # set false if you want to hide it.
 
 columns: "3" # "auto" or number (must be a factor of 12: 1, 2, 3, 4, 6, 12)
 connectivityCheck: true # whether you want to display a message when the apps are not accessible anymore (VPN disconnected for example).
