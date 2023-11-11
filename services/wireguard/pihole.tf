@@ -16,6 +16,10 @@ resource "docker_container" "pihole" {
     "WEBPASSWORD=${var.password}"
   ]
 
+  capabilities {
+    add = ["CAP_NET_BIND_SERVICE"]
+  }
+
   ports {
     external = 53
     internal = 53
@@ -29,7 +33,7 @@ resource "docker_container" "pihole" {
   }
 
   ports {
-    external = 8082
+    external = 8081
     internal = 80
   }
 
@@ -49,7 +53,7 @@ resource "docker_container" "pihole" {
   }
   labels {
     label = "traefik.docker.network"
-    value = "gateway_wireguard"
+    value = var.gateway
   }
   labels {
     label = "traefik.http.routers.pihole.entryPoints"
@@ -72,7 +76,7 @@ resource "docker_container" "pihole" {
     value = "letsencrypt"
   }
   networks_advanced {
-    name = "gateway_wireguard"
+    name = var.gateway
   }
 
   destroy_grace_seconds = 60

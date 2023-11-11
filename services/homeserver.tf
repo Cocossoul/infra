@@ -29,6 +29,7 @@ module "homeserver_wireguard" {
   machine = local.homeserver_machine
   password = var.owncloud_admin_password
   pihole_subdomain = "dns"
+  wireguard_ui_subdomain = "wireguard"
   gateway   = module.homeserver_reverse-proxy.gateway
   providers = {
     docker = docker.homeserver_machine

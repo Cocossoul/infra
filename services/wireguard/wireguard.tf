@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "wireguard" {
-  name = "weejewel/wg-easy:7" # renovate_docker
+  name = "linuxserver/wireguard:1.0.20210914" # renovate_docker
 }
 
 resource "docker_image" "wireguard" {
@@ -21,11 +21,7 @@ resource "docker_container" "wireguard" {
 
   env = [
     "TZ=Europe/Paris",
-    "WG_HOSTNAME=${var.machine.dyndns_address}",
-    "WG_PORT=51820",
-    "PORT=8080", // Port of the web ui
-    "WG_DEFAULT_DNS=127.0.0.1",
-    "PASSWORD=${var.password}"
+    "SERVERPORT=51820"
   ]
 
   capabilities {
@@ -34,18 +30,12 @@ resource "docker_container" "wireguard" {
 
   sysctls = {
     "net.ipv4.conf.all.src_valid_mark" = "1",
-    "net.ipv4.ip_forward" = "1"
   }
 
   ports {
     external = 51820
     internal = 51820
     protocol = "udp"
-  }
-
-  ports {
-    external = 8080
-    internal = 8080
   }
 
   volumes {

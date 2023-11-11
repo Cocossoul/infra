@@ -87,6 +87,11 @@ locals {
         "subdomain" = "dns"
         "private" = true,
         "domain" = data.cloudflare_zone.cocopaps
+      },
+      {
+        "subdomain" = "wireguard"
+        "private" = true,
+        "domain" = data.cloudflare_zone.cocopaps
       }
     ]
 
