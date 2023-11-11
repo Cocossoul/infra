@@ -33,10 +33,10 @@ resource "docker_container" "redirect_to_homeserver_page" {
   }
   labels {
     label = "traefik.http.routers.redirect_to_homeserver_page.rule"
-    value = join(" && ", [
+    value = "Host(${join(",", [
       for hostname in var.hostnames :
-      "Host(`${hostname}`)"
-    ])
+      "`${hostname}`"
+    ])})"
   }
   labels {
     label = "traefik.http.routers.redirect_to_homeserver_page.tls"
