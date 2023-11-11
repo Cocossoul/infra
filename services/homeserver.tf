@@ -96,11 +96,12 @@ module "commander" {
   }
 }
 
-module "gatus_homeserver" {
+module "homeserver_gatus" {
   source          = "./gatus"
   domain          = data.cloudflare_zone.cocopaps
   subdomain       = "gatus"
   machine         = local.homeserver_machine
+  config_path     = "homeserver.yml"
   discord_webhook = var.discord_webhook_gatus
   gateway         = module.homeserver_reverse-proxy.gateway
   providers = {

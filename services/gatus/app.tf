@@ -48,7 +48,7 @@ resource "docker_container" "gatus" {
 
   upload {
     file = "/config/config.yaml"
-    content = templatefile("${path.module}/src/config.yaml",
+    content = templatefile("${path.module}/src/${var.config_path}",
       {
         discord_webhook = var.discord_webhook
       }

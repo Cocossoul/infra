@@ -56,11 +56,12 @@ module "vultr_watchtower" {
   }
 }
 
-module "gatus" {
+module "vultr_gatus" {
   source          = "./gatus"
   domain          = data.cloudflare_zone.cocopaps
   subdomain       = "gatus"
   machine         = local.vultr_machine
+  config_path     = "vultr.yml"
   discord_webhook = var.discord_webhook_gatus
   gateway         = module.vultr_reverse-proxy.gateway
   providers = {

@@ -7,3 +7,4 @@ variable "discord_webhook" {
   sensitive = true
 }
 variable "gateway" {}
+variable "config_path" {}
