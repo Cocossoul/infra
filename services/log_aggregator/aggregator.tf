@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "log_aggregator" {
-  name = "docker.elastic.co/elasticsearch/elasticsearch:8.10.4" # renovate_docker
+  name = "docker.elastic.co/elasticsearch/elasticsearch:8.11.1" # renovate_docker
 }
 
 resource "docker_image" "log_aggregator" {
