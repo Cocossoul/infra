@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "firefly" {
-  name = "fireflyiii/core:version-6.0.27" # renovate_docker
+  name = "fireflyiii/core:version-6.0.30" # renovate_docker
 }
 
 resource "docker_image" "firefly" {
