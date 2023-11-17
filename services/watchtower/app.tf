@@ -6,7 +6,7 @@ terraform {
   }
 }
 data "docker_registry_image" "watchtower" {
-  name = "containrrr/watchtower:1.6.0" # renovate_docker
+  name = "containrrr/watchtower:1.7.1" # renovate_docker
 }
 
 resource "docker_image" "watchtower" {
