@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "immich_proxy" {
-  name = "ghcr.io/immich-app/immich-proxy:v1.86.0" # renovate_docker
+  name = "ghcr.io/immich-app/immich-proxy:v1.87.0" # renovate_docker
 }
 
 resource "docker_image" "immich_proxy" {
