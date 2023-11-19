@@ -42,7 +42,7 @@ resource "docker_container" "grafana" {
 
   log_driver = "fluentd"
   log_opts = {
-    fluentd-address = "fluentd:24224"
+    fluentd-address = "localhost:24224"
   }
 
   env = [

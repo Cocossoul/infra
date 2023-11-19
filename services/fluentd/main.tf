@@ -19,6 +19,11 @@ resource "docker_container" "fluentd" {
   image = docker_image.fluentd.image_id
   name  = "fluentd"
 
+  ports {
+    internal = 24224
+    external = 24224
+  }
+
   env = [
     "LOKI_URL=${var.loki.url}",
     "LOKI_USERNAME=loki",

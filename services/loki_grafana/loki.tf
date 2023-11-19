@@ -18,6 +18,7 @@ resource "docker_image" "loki" {
 resource "docker_container" "loki" {
   image = docker_image.loki.image_id
   name  = "loki"
+
   labels {
     label = "traefik.enable"
     value = "true"
@@ -53,7 +54,7 @@ resource "docker_container" "loki" {
 
   log_driver = "fluentd"
   log_opts = {
-    fluentd-address = "fluentd:24224"
+    fluentd-address = "localhost:24224"
   }
 
   upload {
