@@ -19,6 +19,16 @@ locals {
       "domain"    = data.cloudflare_zone.cocopaps
     },
     {
+      "subdomain" = "loki",
+      "private"   = false,
+      "domain"    = data.cloudflare_zone.cocopaps
+    },
+    {
+      "subdomain" = "grafana",
+      "private"   = false,
+      "domain"    = data.cloudflare_zone.cocopaps
+    },
+    {
       "subdomain" = "cloud",
       "private"   = true,
       "domain"    = data.cloudflare_zone.cocopaps

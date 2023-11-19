@@ -11,12 +11,12 @@ provider "docker" {
   alias    = "vultr_machine"
 }
 module "vultr_reverse-proxy" {
-  source                      = "./reverse-proxy"
-  elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
-  sso_password_hash           = htpasswd_password.sso.bcrypt
-  cloudflare_global_api_key   = var.cloudflare_global_api_key
-  crowdsec_api_key            = var.vultr_crowdsec_api_key
-  cloudflare_account_id       = var.cloudflare_account_id
+  source                    = "./reverse-proxy"
+  loki_password_hash        = htpasswd_password.loki.bcrypt
+  sso_password_hash         = htpasswd_password.sso.bcrypt
+  cloudflare_global_api_key = var.cloudflare_global_api_key
+  crowdsec_api_key          = var.vultr_crowdsec_api_key
+  cloudflare_account_id     = var.cloudflare_account_id
   providers = {
     docker = docker.vultr_machine
   }

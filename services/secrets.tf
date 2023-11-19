@@ -6,14 +6,14 @@ resource "htpasswd_password" "sso" {
   salt     = random_password.sso_salt.result
 }
 
-resource "random_password" "elasticsearch_salt" {
+resource "random_password" "loki_salt" {
   length = 8
 }
-resource "random_password" "elasticsearch" {
+resource "random_password" "loki" {
   length  = 16
   special = false
 }
-resource "htpasswd_password" "elasticsearch" {
-  password = random_password.elasticsearch.result
-  salt     = random_password.elasticsearch_salt.result
+resource "htpasswd_password" "loki" {
+  password = random_password.loki.result
+  salt     = random_password.loki_salt.result
 }

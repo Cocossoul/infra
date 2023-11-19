@@ -36,11 +36,11 @@ resource "docker_container" "reverse-proxy" {
     value = "true"
   }
   labels {
-    label = "traefik.http.middlewares.elasticsearch_auth.basicauth.users"
-    value = "elastic:${var.elasticsearch_password_hash}"
+    label = "traefik.http.middlewares.loki_auth.basicauth.users"
+    value = "loki:${var.loki_password_hash}"
   }
   labels {
-    label = "traefik.http.middlewares.elasticsearch_auth.basicauth.removeheader"
+    label = "traefik.http.middlewares.loki_auth.basicauth.removeheader"
     value = "true"
   }
 
