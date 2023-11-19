@@ -19,6 +19,11 @@ locals {
       "domain"    = data.cloudflare_zone.cocopaps
     },
     {
+      "subdomain" = "cockpit",
+      "private"   = false,
+      "domain"    = data.cloudflare_zone.cocopaps
+    },
+    {
       "subdomain" = "cloud",
       "private"   = true,
       "domain"    = data.cloudflare_zone.cocopaps

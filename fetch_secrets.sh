@@ -31,11 +31,8 @@ export VULTR_API_KEY
 TF_VAR_dyndns_zone_name="$(fetch_secret dyndns_zone_name)"
 export TF_VAR_dyndns_zone_name
 
-TF_VAR_owncloud_admin_username="$(fetch_secret owncloud_admin_username)"
-export TF_VAR_owncloud_admin_username
-
-TF_VAR_owncloud_admin_password="$(fetch_secret owncloud_admin_password)"
-export TF_VAR_owncloud_admin_password
+TF_VAR_admin_password="$(fetch_secret owncloud_admin_password)"
+export TF_VAR_admin_password
 
 TF_VAR_owncloud_db_password="$(fetch_secret owncloud_db_password)"
 export TF_VAR_owncloud_db_password

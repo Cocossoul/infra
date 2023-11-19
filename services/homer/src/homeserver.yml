@@ -122,6 +122,10 @@ services:
         icon: "fa-brands fa-watchman-monitoring"
         subtitle: "Monitoring my Home Server with Netdata"
         url: "https://monitoring.cocopaps.com"
+      - name: "Cockpit"
+        icon: "fa-brands fa-screwdriver-wrench"
+        subtitle: "Manage Docker with Portainer"
+        url: "https://cockpit.cocopaps.com"
   - name: "Public"
     icon: "fa-solid fa-globe"
     items:

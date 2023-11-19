@@ -7,10 +7,7 @@ variable "cloudflare_global_api_key" {
 variable "cloudflare_account_id" {
   sensitive = true
 }
-variable "owncloud_admin_username" {
-  sensitive = true
-}
-variable "owncloud_admin_password" {
+variable "admin_password" {
   sensitive = true
 }
 variable "owncloud_db_password" {

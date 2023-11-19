@@ -23,12 +23,23 @@ module "homeserver_reverse-proxy" {
     docker = docker.homeserver_machine
   }
 }
+module "homeserver_portainer" {
+  source          = "./portainer"
+  domain          = data.cloudflare_zone.cocopaps
+  subdomain       = "cockpit"
+  machine         = local.homeserver_machine
+  gateway         = module.homeserver_reverse-proxy.gateway
+  hashed_admin_password = htpasswd_password.admin.bcrypt
+  providers = {
+    docker = docker.homeserver_machine
+  }
+}
 
 module "homeserver_wireguard" {
   source                 = "./wireguard"
   domain                 = data.cloudflare_zone.cocopaps
   machine                = local.homeserver_machine
-  password               = var.owncloud_admin_password
+  password               = var.admin_password
   pihole_subdomain       = "dns"
   wireguard_ui_subdomain = "wireguard"
   gateway                = module.homeserver_reverse-proxy.gateway
@@ -65,8 +76,8 @@ module "owncloud" {
   domain                  = data.cloudflare_zone.cocopaps
   subdomain               = "cloud"
   machine                 = local.homeserver_machine
-  owncloud_admin_username = var.owncloud_admin_username
-  owncloud_admin_password = var.owncloud_admin_password
+  owncloud_admin_username = "admin_owncloud"
+  owncloud_admin_password = var.admin_password
   owncloud_db_password    = var.owncloud_db_password
   gateway                 = module.homeserver_reverse-proxy.gateway
   providers = {
