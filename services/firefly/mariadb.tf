@@ -18,13 +18,6 @@ resource "docker_container" "firefly_db" {
     "MYSQL_PASSWORD=${random_password.firefly_db.result}"
   ]
 
-  healthcheck {
-    test     = ["CMD", "mysqladmin", "ping", "-u", "root", "--password=firefly"]
-    interval = "10s"
-    timeout  = "5s"
-    retries  = 5
-  }
-
   volumes {
     container_path = "/var/lib/mysql"
     host_path      = "/mnt/raid/firefly_data/firefly_db"
