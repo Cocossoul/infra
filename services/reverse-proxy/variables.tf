@@ -1,7 +1,7 @@
 variable "sso_password_hash" {
   sensitive = true
 }
-variable "elasticsearch_password_hash" {
+variable "loki_password_hash" {
   sensitive = true
 }
 variable "cloudflare_global_api_key" {

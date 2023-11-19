@@ -12,13 +12,13 @@ provider "docker" {
   alias    = "homeserver_machine"
 }
 module "homeserver_reverse-proxy" {
-  source                      = "./reverse-proxy"
-  sso_password_hash           = htpasswd_password.sso.bcrypt
-  elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
-  cloudflare_global_api_key   = var.cloudflare_global_api_key
-  cloudflare_account_id       = var.cloudflare_account_id
-  crowdsec_api_key            = var.homeserver_crowdsec_api_key
-  publish_ports               = true
+  source                    = "./reverse-proxy"
+  sso_password_hash         = htpasswd_password.sso.bcrypt
+  loki_password_hash        = htpasswd_password.loki.bcrypt
+  cloudflare_global_api_key = var.cloudflare_global_api_key
+  cloudflare_account_id     = var.cloudflare_account_id
+  crowdsec_api_key          = var.homeserver_crowdsec_api_key
+  publish_ports             = true
   providers = {
     docker = docker.homeserver_machine
   }
@@ -52,13 +52,19 @@ module "homeserver_netdata" {
   }
 }
 
-module "homeserver_watchtower" {
-  source          = "./watchtower"
-  docker_password = var.docker_password
+module "homeserver_fluentd" {
+  source  = "./fluentd"
+  machine = local.homeserver_machine
+  gateway = module.homeserver_reverse-proxy.gateway
+  loki = {
+    url      = "https://loki.${data.cloudflare_zone.cocopaps.name}"
+    password = random_password.loki.result
+  }
   providers = {
     docker = docker.homeserver_machine
   }
 }
+
 
 module "owncloud" {
   source                  = "./owncloud"

@@ -11,12 +11,12 @@ provider "docker" {
   alias    = "vultr_machine"
 }
 module "vultr_reverse-proxy" {
-  source                      = "./reverse-proxy"
-  elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
-  sso_password_hash           = htpasswd_password.sso.bcrypt
-  cloudflare_global_api_key   = var.cloudflare_global_api_key
-  crowdsec_api_key            = var.vultr_crowdsec_api_key
-  cloudflare_account_id       = var.cloudflare_account_id
+  source                    = "./reverse-proxy"
+  loki_password_hash        = htpasswd_password.loki.bcrypt
+  sso_password_hash         = htpasswd_password.sso.bcrypt
+  cloudflare_global_api_key = var.cloudflare_global_api_key
+  crowdsec_api_key          = var.vultr_crowdsec_api_key
+  cloudflare_account_id     = var.cloudflare_account_id
   providers = {
     docker = docker.vultr_machine
   }
@@ -48,9 +48,27 @@ module "vultr_cloudflare_tunnel" {
     docker = docker.vultr_machine
   }
 }
-module "vultr_watchtower" {
-  source          = "./watchtower"
-  docker_password = var.docker_password
+module "vultr_fluentd" {
+  source  = "./fluentd"
+  machine = local.vultr_machine
+  gateway = module.vultr_reverse-proxy.gateway
+  loki = {
+    url      = "https://loki.${data.cloudflare_zone.cocopaps.name}"
+    password = random_password.loki.result
+  }
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
+
+module "loki_grafana" {
+  source                 = "./loki_grafana"
+  domain                 = data.cloudflare_zone.cocopaps
+  machine                = local.vultr_machine
+  gateway                = module.vultr_reverse-proxy.gateway
+  grafana_admin_password = var.owncloud_admin_password
+  subdomain_loki         = "loki"
+  subdomain_grafana      = "grafana"
   providers = {
     docker = docker.vultr_machine
   }
