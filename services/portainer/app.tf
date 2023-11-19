@@ -77,6 +77,6 @@ resource "docker_container" "portainer" {
 }
 
 resource "docker_volume" "portainer_data" {
-  name = "portainer_data"
+  name   = "portainer_data"
   driver = "local"
 }

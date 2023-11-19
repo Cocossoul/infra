@@ -24,11 +24,11 @@ module "homeserver_reverse-proxy" {
   }
 }
 module "homeserver_portainer" {
-  source          = "./portainer"
-  domain          = data.cloudflare_zone.cocopaps
-  subdomain       = "cockpit"
-  machine         = local.homeserver_machine
-  gateway         = module.homeserver_reverse-proxy.gateway
+  source                = "./portainer"
+  domain                = data.cloudflare_zone.cocopaps
+  subdomain             = "cockpit"
+  machine               = local.homeserver_machine
+  gateway               = module.homeserver_reverse-proxy.gateway
   hashed_admin_password = htpasswd_password.admin.bcrypt
   providers = {
     docker = docker.homeserver_machine
