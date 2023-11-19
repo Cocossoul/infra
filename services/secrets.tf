@@ -6,6 +6,14 @@ resource "htpasswd_password" "sso" {
   salt     = random_password.sso_salt.result
 }
 
+resource "random_password" "admin_salt" {
+  length = 8
+}
+resource "htpasswd_password" "admin" {
+  password = var.admin_password
+  salt     = random_password.admin_salt.result
+}
+
 resource "random_password" "elasticsearch_salt" {
   length = 8
 }

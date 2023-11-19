@@ -55,6 +55,17 @@ module "vultr_watchtower" {
     docker = docker.vultr_machine
   }
 }
+module "vultr_portainer" {
+  source          = "./portainer"
+  domain          = data.cloudflare_zone.cocopaps
+  subdomain       = "cockpit"
+  machine         = local.vultr_machine
+  gateway         = module.vultr_reverse-proxy.gateway
+  hashed_admin_password = htpasswd_password.admin.bcrypt
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
 
 module "vultr_gatus" {
   source          = "./gatus"
