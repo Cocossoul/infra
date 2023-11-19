@@ -50,7 +50,6 @@ module "vultr_cloudflare_tunnel" {
 }
 module "vultr_fluentd" {
   source  = "./fluentd"
-  domain  = data.cloudflare_zone.cocopaps
   machine = local.vultr_machine
   gateway = module.vultr_reverse-proxy.gateway
   loki = {

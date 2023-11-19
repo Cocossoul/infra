@@ -54,7 +54,6 @@ module "homeserver_netdata" {
 
 module "homeserver_fluentd" {
   source  = "./fluentd"
-  domain  = data.cloudflare_zone.cocopaps
   machine = local.homeserver_machine
   gateway = module.homeserver_reverse-proxy.gateway
   loki = {
