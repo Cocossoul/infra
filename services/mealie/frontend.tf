@@ -56,6 +56,12 @@ resource "docker_container" "mealie_frontend" {
     volume_name    = docker_volume.mealie.name
   }
 
+  log_driver = "json-file"
+  log_opts = {
+    max-size : "15m"
+    max-file : 3
+  }
+
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"

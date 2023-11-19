@@ -102,6 +102,12 @@ resource "docker_container" "firefly" {
     host_path      = "/mnt/raid/firefly_data/firefly"
   }
 
+  log_driver = "json-file"
+  log_opts = {
+    max-size : "15m"
+    max-file : 3
+  }
+
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"

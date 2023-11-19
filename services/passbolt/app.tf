@@ -63,6 +63,12 @@ resource "docker_container" "passbolt" {
   }
   command = ["/usr/bin/wait-for.sh", "-t", "0", "${docker_container.passbolt_db.name}:3306", "--", "/docker-entrypoint.sh"]
 
+  log_driver = "json-file"
+  log_opts = {
+    max-size : "15m"
+    max-file : 3
+  }
+
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"

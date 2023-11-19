@@ -69,6 +69,12 @@ resource "docker_container" "portainer" {
     read_only      = true
   }
 
+  log_driver = "json-file"
+  log_opts = {
+    max-size : "15m"
+    max-file : 3
+  }
+
   privileged = true
 
   destroy_grace_seconds = 60

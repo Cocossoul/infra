@@ -35,6 +35,12 @@ resource "docker_container" "owncloud_db" {
     name = var.gateway
   }
 
+  log_driver = "json-file"
+  log_opts = {
+    max-size : "15m"
+    max-file : 3
+  }
+
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"

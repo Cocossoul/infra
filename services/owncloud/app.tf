@@ -73,7 +73,12 @@ resource "docker_container" "owncloud" {
     interval = "30s"
     timeout  = "10s"
     retries  = 5
+  }
 
+  log_driver = "json-file"
+  log_opts = {
+    max-size : "15m"
+    max-file : 3
   }
 
   destroy_grace_seconds = 60

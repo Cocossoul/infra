@@ -52,6 +52,12 @@ resource "docker_container" "homer" {
     source_hash = filesha256("${path.module}/src/${var.config_path}")
   }
 
+  log_driver = "json-file"
+  log_opts = {
+    max-size : "15m"
+    max-file : 3
+  }
+
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"

@@ -61,6 +61,12 @@ resource "docker_container" "commander" {
     host_path      = "/commander_data"
   }
 
+  log_driver = "json-file"
+  log_opts = {
+    max-size : "15m"
+    max-file : 3
+  }
+
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
