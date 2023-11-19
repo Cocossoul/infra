@@ -63,14 +63,6 @@ module "homeserver_netdata" {
   }
 }
 
-module "homeserver_watchtower" {
-  source          = "./watchtower"
-  docker_password = var.docker_password
-  providers = {
-    docker = docker.homeserver_machine
-  }
-}
-
 module "owncloud" {
   source                  = "./owncloud"
   domain                  = data.cloudflare_zone.cocopaps

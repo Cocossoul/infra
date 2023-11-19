@@ -48,13 +48,7 @@ module "vultr_cloudflare_tunnel" {
     docker = docker.vultr_machine
   }
 }
-module "vultr_watchtower" {
-  source          = "./watchtower"
-  docker_password = var.docker_password
-  providers = {
-    docker = docker.vultr_machine
-  }
-}
+
 module "vultr_portainer" {
   source          = "./portainer"
   domain          = data.cloudflare_zone.cocopaps
