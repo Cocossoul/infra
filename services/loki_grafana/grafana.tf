@@ -46,7 +46,7 @@ resource "docker_container" "grafana" {
   }
 
   env = [
-    "GF_SECURITY_ADMIN_PASSWORD=${var.grafana_password}",
+    "GF_SECURITY_ADMIN_PASSWORD=${var.grafana_admin_password}",
     "GF_SECURITY_ADMIN_USER=admin"
   ]
 

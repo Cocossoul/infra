@@ -52,13 +52,20 @@ module "homeserver_netdata" {
   }
 }
 
-module "homeserver_watchtower" {
-  source          = "./watchtower"
-  docker_password = var.docker_password
+module "homeserver_fluentd" {
+  source  = "./fluentd"
+  domain  = data.cloudflare_zone.cocopaps
+  machine = local.homeserver_machine
+  gateway = module.homeserver_reverse-proxy.gateway
+  loki = {
+    url      = "https://loki.${data.cloudflare_zone.cocopaps.name}"
+    password = random_password.loki.result
+  }
   providers = {
     docker = docker.homeserver_machine
   }
 }
+
 
 module "owncloud" {
   source                  = "./owncloud"

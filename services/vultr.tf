@@ -48,9 +48,28 @@ module "vultr_cloudflare_tunnel" {
     docker = docker.vultr_machine
   }
 }
-module "vultr_watchtower" {
-  source          = "./watchtower"
-  docker_password = var.docker_password
+module "vultr_fluentd" {
+  source  = "./fluentd"
+  domain  = data.cloudflare_zone.cocopaps
+  machine = local.vultr_machine
+  gateway = module.vultr_reverse-proxy.gateway
+  loki = {
+    url      = "https://loki.${data.cloudflare_zone.cocopaps.name}"
+    password = random_password.loki.result
+  }
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
+
+module "loki_grafana" {
+  source                 = "./loki_grafana"
+  domain                 = data.cloudflare_zone.cocopaps
+  machine                = local.vultr_machine
+  gateway                = module.vultr_reverse-proxy.gateway
+  grafana_admin_password = var.owncloud_admin_password
+  subdomain_loki         = "loki"
+  subdomain_grafana      = "grafana"
   providers = {
     docker = docker.vultr_machine
   }
