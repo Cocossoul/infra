@@ -1,2 +1,0 @@
-variable "hostnames" {}
-variable "gateway" {}
