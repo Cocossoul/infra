@@ -1,5 +1,5 @@
 data "docker_registry_image" "immich_machine_learning" {
-  name = "ghcr.io/immich-app/immich-machine-learning:v1.86.0" # renovate_docker
+  name = "ghcr.io/immich-app/immich-machine-learning:v1.88.2" # renovate_docker
 }
 
 resource "docker_image" "immich_machine_learning" {
