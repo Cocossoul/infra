@@ -1,13 +1,5 @@
-terraform {
-  required_providers {
-    docker = {
-      source = "kreuzwerker/docker"
-    }
-  }
-}
-
 data "docker_registry_image" "immich_proxy" {
-  name = "ghcr.io/immich-app/immich-proxy:v1.86.0" # renovate_docker
+  name = "ghcr.io/immich-app/immich-proxy:${local.version}"
 }
 
 resource "docker_image" "immich_proxy" {
