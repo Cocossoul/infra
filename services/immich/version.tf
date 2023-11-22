@@ -7,5 +7,5 @@ terraform {
 }
 
 locals {
-  version = "v1.87.0" # renovate_docker_multiple ghcr.io/immich-app/immich-server
+  version = "v1.88.0" # renovate_docker_multiple ghcr.io/immich-app/immich-server
 }
