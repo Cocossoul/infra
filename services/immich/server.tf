@@ -19,7 +19,8 @@ resource "docker_container" "immich_server" {
     "DB_HOSTNAME=immich-postgres",
     "DB_USERNAME=postgres",
     "DB_DATABASE_NAME=immich",
-    "REDIS_HOSTNAME=immich_redis"
+    "REDIS_HOSTNAME=immich_redis",
+    "IMMICH_API_URL_EXTERNAL=https://${var.subdomain}.${var.domain.name}"
   ]
 
   command = ["start.sh", "immich"]
@@ -32,6 +33,30 @@ resource "docker_container" "immich_server" {
     container_path = "/etc/localtime"
     host_path      = "/etc/localtime"
     read_only      = true
+  }
+  labels {
+    label = "traefik.enable"
+    value = "true"
+  }
+  labels {
+    label = "traefik.docker.network"
+    value = var.gateway
+  }
+  labels {
+    label = "traefik.http.routers.immich.entryPoints"
+    value = "secure"
+  }
+  labels {
+    label = "traefik.http.routers.immich.rule"
+    value = "Host(`${var.subdomain}.${var.domain.name}`)"
+  }
+  labels {
+    label = "traefik.http.routers.immich.tls"
+    value = "true"
+  }
+  labels {
+    label = "traefik.http.routers.immich.tls.certresolver"
+    value = "letsencrypt"
   }
   networks_advanced {
     name = var.gateway
