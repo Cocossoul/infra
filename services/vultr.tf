@@ -146,3 +146,17 @@ module "n8n" {
     docker = docker.vultr_machine
   }
 }
+
+module "vultr_owncloud" {
+  source                  = "./owncloud"
+  domain                  = data.cloudflare_zone.cocopaps
+  subdomain               = "share"
+  machine                 = local.vultr_machine
+  owncloud_admin_username = "admin"
+  owncloud_admin_password = var.admin_password
+  owncloud_db_password    = var.owncloud_db_password
+  gateway                 = module.vultr_reverse-proxy.gateway
+  providers = {
+    docker = docker.vultr_machine
+  }
+}
