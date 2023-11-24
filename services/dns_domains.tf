@@ -59,6 +59,11 @@ locals {
       "domain"    = data.cloudflare_zone.cocopaps
     },
     {
+      "subdomain" = "share",
+      "private"   = false,
+      "domain"    = data.cloudflare_zone.cocopaps
+    },
+    {
       "subdomain" = "pdf",
       "private"   = false,
       "domain"    = data.cloudflare_zone.cocopaps
