@@ -18,7 +18,7 @@ endpoints:
       - type: discord
         description: "healthcheck failed"
         send-on-resolved: true
-        failure-threshold: 3
+        failure-threshold: 6
         success-threshold: 3
 
   - name: passbolt
@@ -32,7 +32,7 @@ endpoints:
       - type: discord
         description: "healthcheck failed"
         send-on-resolved: true
-        failure-threshold: 3
+        failure-threshold: 6
         success-threshold: 3
 
   - name: portainer
@@ -46,7 +46,7 @@ endpoints:
       - type: discord
         description: "healthcheck failed"
         send-on-resolved: true
-        failure-threshold: 3
+        failure-threshold: 6
         success-threshold: 3
 
   - name: tbeteouquoi
@@ -60,7 +60,7 @@ endpoints:
       - type: discord
         description: "healthcheck failed"
         send-on-resolved: true
-        failure-threshold: 3
+        failure-threshold: 6
         success-threshold: 3
 
   - name: passbolt dns
