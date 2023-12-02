@@ -13,6 +13,10 @@ data "docker_registry_image" "gatus" {
 resource "docker_image" "gatus" {
   name          = data.docker_registry_image.gatus.name
   pull_triggers = [data.docker_registry_image.gatus.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "gatus" {

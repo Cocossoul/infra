@@ -5,6 +5,10 @@ data "docker_registry_image" "mealie_backend" {
 resource "docker_image" "mealie_backend" {
   name          = data.docker_registry_image.mealie_backend.name
   pull_triggers = [data.docker_registry_image.mealie_backend.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "mealie_backend" {

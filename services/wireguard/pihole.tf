@@ -5,6 +5,10 @@ data "docker_registry_image" "pihole" {
 resource "docker_image" "pihole" {
   name          = data.docker_registry_image.pihole.name
   pull_triggers = [data.docker_registry_image.pihole.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "pihole" {

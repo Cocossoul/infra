@@ -24,6 +24,10 @@ resource "null_resource" "tbeteouquoi_build" {
     }
     command = "./build.sh"
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 data "docker_registry_image" "tbeteouquoi" {
@@ -36,11 +40,15 @@ data "docker_registry_image" "tbeteouquoi" {
 resource "docker_image" "tbeteouquoi" {
   name          = data.docker_registry_image.tbeteouquoi.name
   pull_triggers = [data.docker_registry_image.tbeteouquoi.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "tbeteouquoi" {
   image = docker_image.tbeteouquoi.image_id
-  name  = "tbeteouquoi"
+  name  = "tbeteouquoi_${data.docker_registry_image.tbeteouquoi.sha256_digest}"
   labels {
     label = "traefik.enable"
     value = "true"
@@ -79,4 +87,8 @@ resource "docker_container" "tbeteouquoi" {
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }

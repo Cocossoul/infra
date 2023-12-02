@@ -5,6 +5,10 @@ data "docker_registry_image" "crowdsec" {
 resource "docker_image" "crowdsec" {
   name          = data.docker_registry_image.crowdsec.name
   pull_triggers = [data.docker_registry_image.crowdsec.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 data "docker_registry_image" "crowdsec_bouncer" {
@@ -14,6 +18,10 @@ data "docker_registry_image" "crowdsec_bouncer" {
 resource "docker_image" "crowdsec_bouncer" {
   name          = data.docker_registry_image.crowdsec_bouncer.name
   pull_triggers = [data.docker_registry_image.crowdsec_bouncer.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "crowdsec" {
@@ -56,7 +64,7 @@ resource "docker_container" "crowdsec" {
 
 resource "docker_container" "crowdsec_bouncer" {
   image = docker_image.crowdsec_bouncer.image_id
-  name  = "crowdsec_bouncer"
+  name  = "crowdsec_bouncer_${data.docker_registry_image.crowdsec_bouncer.sha256_digest}"
 
   env = [
     "CROWDSEC_BOUNCER_API_KEY=${var.crowdsec_api_key}",
@@ -76,6 +84,10 @@ resource "docker_container" "crowdsec_bouncer" {
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_volume" "crowdsec_db" {

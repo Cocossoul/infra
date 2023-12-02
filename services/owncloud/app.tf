@@ -13,6 +13,10 @@ data "docker_registry_image" "owncloud" {
 resource "docker_image" "owncloud" {
   name          = data.docker_registry_image.owncloud.name
   pull_triggers = [data.docker_registry_image.owncloud.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "owncloud" {

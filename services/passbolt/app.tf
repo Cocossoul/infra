@@ -13,6 +13,10 @@ data "docker_registry_image" "passbolt" {
 resource "docker_image" "passbolt" {
   name          = data.docker_registry_image.passbolt.name
   pull_triggers = [data.docker_registry_image.passbolt.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "passbolt" {

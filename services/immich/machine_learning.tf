@@ -5,6 +5,10 @@ data "docker_registry_image" "immich_machine_learning" {
 resource "docker_image" "immich_machine_learning" {
   name          = data.docker_registry_image.immich_machine_learning.name
   pull_triggers = [data.docker_registry_image.immich_machine_learning.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "immich_machine_learning" {

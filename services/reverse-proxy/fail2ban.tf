@@ -5,6 +5,10 @@ data "docker_registry_image" "fail2ban" {
 resource "docker_image" "fail2ban" {
   name          = data.docker_registry_image.fail2ban.name
   pull_triggers = [data.docker_registry_image.fail2ban.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "fail2ban" {

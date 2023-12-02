@@ -13,11 +13,15 @@ data "docker_registry_image" "pdf-tools" {
 resource "docker_image" "pdf-tools" {
   name          = data.docker_registry_image.pdf-tools.name
   pull_triggers = [data.docker_registry_image.pdf-tools.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "pdf-tools" {
   image = docker_image.pdf-tools.image_id
-  name  = "pdf-tools"
+  name  = "pdf-tools_${data.docker_registry_image.pdf-tools.sha256_digest}"
 
   labels {
     label = "traefik.enable"
@@ -65,4 +69,8 @@ resource "docker_container" "pdf-tools" {
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }

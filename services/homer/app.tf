@@ -13,11 +13,15 @@ data "docker_registry_image" "homer" {
 resource "docker_image" "homer" {
   name          = data.docker_registry_image.homer.name
   pull_triggers = [data.docker_registry_image.homer.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "homer" {
   image = docker_image.homer.image_id
-  name  = "homer"
+  name  = "homer_${data.docker_registry_image.homer.sha256_digest}"
   labels {
     label = "traefik.enable"
     value = "true"
@@ -61,4 +65,8 @@ resource "docker_container" "homer" {
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }

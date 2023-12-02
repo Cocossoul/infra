@@ -5,11 +5,15 @@ data "docker_registry_image" "firefly_importer" {
 resource "docker_image" "firefly_importer" {
   name          = data.docker_registry_image.firefly_importer.name
   pull_triggers = [data.docker_registry_image.firefly_importer.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "firefly_importer" {
   image = docker_image.firefly_importer.image_id
-  name  = "firefly_importer"
+  name  = "firefly_importer_${data.docker_registry_image.firefly_importer.sha256_digest}"
 
   env = [
     "FIREFLY_III_URL=http://${docker_container.firefly.name}:8080",
@@ -74,4 +78,8 @@ resource "docker_container" "firefly_importer" {
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }

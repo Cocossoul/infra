@@ -5,6 +5,10 @@ data "docker_registry_image" "firefly_db" {
 resource "docker_image" "firefly_db" {
   name          = data.docker_registry_image.firefly_db.name
   pull_triggers = [data.docker_registry_image.firefly_db.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "firefly_db" {

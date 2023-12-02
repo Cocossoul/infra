@@ -5,6 +5,10 @@ data "docker_registry_image" "immich_db" {
 resource "docker_image" "immich_db" {
   name          = data.docker_registry_image.immich_db.name
   pull_triggers = [data.docker_registry_image.immich_db.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "immich_db" {

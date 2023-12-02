@@ -5,6 +5,10 @@ data "docker_registry_image" "immich_typesense" {
 resource "docker_image" "immich_typesense" {
   name          = data.docker_registry_image.immich_typesense.name
   pull_triggers = [data.docker_registry_image.immich_typesense.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "immich_typesense" {

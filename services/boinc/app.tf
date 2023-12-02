@@ -13,6 +13,10 @@ data "docker_registry_image" "boinc" {
 resource "docker_image" "boinc" {
   name          = data.docker_registry_image.boinc.name
   pull_triggers = [data.docker_registry_image.boinc.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "boinc" {

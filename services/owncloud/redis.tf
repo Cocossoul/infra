@@ -5,11 +5,15 @@ data "docker_registry_image" "redis" {
 resource "docker_image" "redis" {
   name          = data.docker_registry_image.redis.name
   pull_triggers = [data.docker_registry_image.redis.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "redis" {
   image = docker_image.redis.image_id
-  name  = "redis"
+  name  = "owncloud_redis_${data.docker_registry_image.redis.sha256_digest}"
   networks_advanced {
     name = var.gateway
   }
@@ -36,6 +40,10 @@ resource "docker_container" "redis" {
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_volume" "redis" {

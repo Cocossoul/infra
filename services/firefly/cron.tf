@@ -5,6 +5,10 @@ data "docker_registry_image" "firefly_cron" {
 resource "docker_image" "firefly_cron" {
   name          = data.docker_registry_image.firefly_cron.name
   pull_triggers = [data.docker_registry_image.firefly_cron.sha256_digest]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_container" "firefly_cron" {
