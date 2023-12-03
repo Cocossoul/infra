@@ -11,7 +11,7 @@ data "docker_registry_image" "commander" {
 }
 
 resource "docker_image" "commander" {
-  name          = data.docker_registry_image.commander.name
+  name          = "${data.docker_registry_image.commander.name}@${data.docker_registry_image.commander.sha256_digest}"
   pull_triggers = [data.docker_registry_image.commander.sha256_digest]
 
   lifecycle {
@@ -21,7 +21,7 @@ resource "docker_image" "commander" {
 
 resource "docker_container" "commander" {
   image = docker_image.commander.image_id
-  name  = "commander_${data.docker_registry_image.commander.sha256_digest}"
+  name  = "commander_${sha256(data.docker_registry_image.commander.sha256_digest)}"
   labels {
     label = "traefik.enable"
     value = "true"

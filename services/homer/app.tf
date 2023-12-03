@@ -7,11 +7,11 @@ terraform {
 }
 
 data "docker_registry_image" "homer" {
-  name = "b4bz/homer:v23.10.1" # renovate_docker
+  name = "b4bz/homer:v23.09.1" # renovate_docker
 }
 
 resource "docker_image" "homer" {
-  name          = data.docker_registry_image.homer.name
+  name          = "${data.docker_registry_image.homer.name}@${data.docker_registry_image.homer.sha256_digest}"
   pull_triggers = [data.docker_registry_image.homer.sha256_digest]
 
   lifecycle {
@@ -21,7 +21,7 @@ resource "docker_image" "homer" {
 
 resource "docker_container" "homer" {
   image = docker_image.homer.image_id
-  name  = "homer_${data.docker_registry_image.homer.sha256_digest}"
+  name  = "homer_${sha256(data.docker_registry_image.homer.sha256_digest)}"
   labels {
     label = "traefik.enable"
     value = "true"

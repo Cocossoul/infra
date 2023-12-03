@@ -3,7 +3,7 @@ data "docker_registry_image" "firefly_db" {
 }
 
 resource "docker_image" "firefly_db" {
-  name          = data.docker_registry_image.firefly_db.name
+  name          = "${data.docker_registry_image.firefly_db.name}@${data.docker_registry_image.firefly_db.sha256_digest}"
   pull_triggers = [data.docker_registry_image.firefly_db.sha256_digest]
 
   lifecycle {

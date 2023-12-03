@@ -3,7 +3,7 @@ data "docker_registry_image" "immich_server" {
 }
 
 resource "docker_image" "immich_server" {
-  name          = data.docker_registry_image.immich_server.name
+  name          = "${data.docker_registry_image.immich_server.name}@${data.docker_registry_image.immich_server.sha256_digest}"
   pull_triggers = [data.docker_registry_image.immich_server.sha256_digest]
 
   lifecycle {

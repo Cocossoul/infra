@@ -3,7 +3,7 @@ data "docker_registry_image" "firefly_cron" {
 }
 
 resource "docker_image" "firefly_cron" {
-  name          = data.docker_registry_image.firefly_cron.name
+  name          = "${data.docker_registry_image.firefly_cron.name}@${data.docker_registry_image.firefly_cron.sha256_digest}"
   pull_triggers = [data.docker_registry_image.firefly_cron.sha256_digest]
 
   lifecycle {

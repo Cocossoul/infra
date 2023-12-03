@@ -11,7 +11,7 @@ data "docker_registry_image" "reverse-proxy" {
 }
 
 resource "docker_image" "reverse-proxy" {
-  name          = data.docker_registry_image.reverse-proxy.name
+  name          = "${data.docker_registry_image.reverse-proxy.name}@${data.docker_registry_image.reverse-proxy.sha256_digest}"
   pull_triggers = [data.docker_registry_image.reverse-proxy.sha256_digest]
 
   lifecycle {

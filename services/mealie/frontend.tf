@@ -11,7 +11,7 @@ data "docker_registry_image" "mealie_frontend" {
 }
 
 resource "docker_image" "mealie_frontend" {
-  name          = data.docker_registry_image.mealie_frontend.name
+  name          = "${data.docker_registry_image.mealie_frontend.name}@${data.docker_registry_image.mealie_frontend.sha256_digest}"
   pull_triggers = [data.docker_registry_image.mealie_frontend.sha256_digest]
 
   lifecycle {

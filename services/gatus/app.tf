@@ -11,7 +11,7 @@ data "docker_registry_image" "gatus" {
 }
 
 resource "docker_image" "gatus" {
-  name          = data.docker_registry_image.gatus.name
+  name          = "${data.docker_registry_image.gatus.name}@${data.docker_registry_image.gatus.sha256_digest}"
   pull_triggers = [data.docker_registry_image.gatus.sha256_digest]
 
   lifecycle {

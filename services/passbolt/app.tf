@@ -11,7 +11,7 @@ data "docker_registry_image" "passbolt" {
 }
 
 resource "docker_image" "passbolt" {
-  name          = data.docker_registry_image.passbolt.name
+  name          = "${data.docker_registry_image.passbolt.name}@${data.docker_registry_image.passbolt.sha256_digest}"
   pull_triggers = [data.docker_registry_image.passbolt.sha256_digest]
 
   lifecycle {

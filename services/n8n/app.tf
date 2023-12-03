@@ -11,7 +11,7 @@ data "docker_registry_image" "n8n" {
 }
 
 resource "docker_image" "n8n" {
-  name          = data.docker_registry_image.n8n.name
+  name          = "${data.docker_registry_image.n8n.name}@${data.docker_registry_image.n8n.sha256_digest}"
   pull_triggers = [data.docker_registry_image.n8n.sha256_digest]
 
   lifecycle {

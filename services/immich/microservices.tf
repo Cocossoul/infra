@@ -3,7 +3,7 @@ data "docker_registry_image" "immich_microservices" {
 }
 
 resource "docker_image" "immich_microservices" {
-  name          = data.docker_registry_image.immich_microservices.name
+  name          = "${data.docker_registry_image.immich_microservices.name}@${data.docker_registry_image.immich_microservices.sha256_digest}"
   pull_triggers = [data.docker_registry_image.immich_microservices.sha256_digest]
 
   lifecycle {

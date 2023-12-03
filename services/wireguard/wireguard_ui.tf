@@ -11,7 +11,7 @@ data "docker_registry_image" "wireguard_ui" {
 }
 
 resource "docker_image" "wireguard_ui" {
-  name          = data.docker_registry_image.wireguard_ui.name
+  name          = "${data.docker_registry_image.wireguard_ui.name}@${data.docker_registry_image.wireguard_ui.sha256_digest}"
   pull_triggers = [data.docker_registry_image.wireguard_ui.sha256_digest]
 
   lifecycle {

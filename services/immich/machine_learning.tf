@@ -3,7 +3,7 @@ data "docker_registry_image" "immich_machine_learning" {
 }
 
 resource "docker_image" "immich_machine_learning" {
-  name          = data.docker_registry_image.immich_machine_learning.name
+  name          = "${data.docker_registry_image.immich_machine_learning.name}@${data.docker_registry_image.immich_machine_learning.sha256_digest}"
   pull_triggers = [data.docker_registry_image.immich_machine_learning.sha256_digest]
 
   lifecycle {

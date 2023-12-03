@@ -11,7 +11,7 @@ data "docker_registry_image" "netdata" {
 }
 
 resource "docker_image" "netdata" {
-  name          = data.docker_registry_image.netdata.name
+  name          = "${data.docker_registry_image.netdata.name}@${data.docker_registry_image.netdata.sha256_digest}"
   pull_triggers = [data.docker_registry_image.netdata.sha256_digest]
 
   lifecycle {
@@ -21,7 +21,7 @@ resource "docker_image" "netdata" {
 
 resource "docker_container" "netdata" {
   image = docker_image.netdata.image_id
-  name  = "netdata_${data.docker_registry_image.netdata.sha256_digest}"
+  name  = "netdata_${sha256(data.docker_registry_image.netdata.sha256_digest)}"
   labels {
     label = "traefik.enable"
     value = "true"

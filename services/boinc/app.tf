@@ -11,7 +11,7 @@ data "docker_registry_image" "boinc" {
 }
 
 resource "docker_image" "boinc" {
-  name          = data.docker_registry_image.boinc.name
+  name          = "${data.docker_registry_image.boinc.name}@${data.docker_registry_image.boinc.sha256_digest}"
   pull_triggers = [data.docker_registry_image.boinc.sha256_digest]
 
   lifecycle {

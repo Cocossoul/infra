@@ -3,7 +3,7 @@ data "docker_registry_image" "redis" {
 }
 
 resource "docker_image" "redis" {
-  name          = data.docker_registry_image.redis.name
+  name          = "${data.docker_registry_image.redis.name}@${data.docker_registry_image.redis.sha256_digest}"
   pull_triggers = [data.docker_registry_image.redis.sha256_digest]
 
   lifecycle {
@@ -13,7 +13,7 @@ resource "docker_image" "redis" {
 
 resource "docker_container" "redis" {
   image = docker_image.redis.image_id
-  name  = "owncloud_redis_${data.docker_registry_image.redis.sha256_digest}"
+  name  = "owncloud_redis_${sha256(data.docker_registry_image.redis.sha256_digest)}"
   networks_advanced {
     name = var.gateway
   }

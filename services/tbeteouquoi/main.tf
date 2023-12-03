@@ -38,7 +38,7 @@ data "docker_registry_image" "tbeteouquoi" {
 }
 
 resource "docker_image" "tbeteouquoi" {
-  name          = data.docker_registry_image.tbeteouquoi.name
+  name          = "${data.docker_registry_image.tbeteouquoi.name}@${data.docker_registry_image.tbeteouquoi.sha256_digest}"
   pull_triggers = [data.docker_registry_image.tbeteouquoi.sha256_digest]
 
   lifecycle {
@@ -48,7 +48,7 @@ resource "docker_image" "tbeteouquoi" {
 
 resource "docker_container" "tbeteouquoi" {
   image = docker_image.tbeteouquoi.image_id
-  name  = "tbeteouquoi_${data.docker_registry_image.tbeteouquoi.sha256_digest}"
+  name  = "tbeteouquoi_${sha256(data.docker_registry_image.tbeteouquoi.sha256_digest)}"
   labels {
     label = "traefik.enable"
     value = "true"

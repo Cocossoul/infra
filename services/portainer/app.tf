@@ -11,7 +11,7 @@ data "docker_registry_image" "portainer" {
 }
 
 resource "docker_image" "portainer" {
-  name          = data.docker_registry_image.portainer.name
+  name          = "${data.docker_registry_image.portainer.name}@${data.docker_registry_image.portainer.sha256_digest}"
   pull_triggers = [data.docker_registry_image.portainer.sha256_digest]
 
   lifecycle {

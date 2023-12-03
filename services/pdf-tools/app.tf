@@ -11,7 +11,7 @@ data "docker_registry_image" "pdf-tools" {
 }
 
 resource "docker_image" "pdf-tools" {
-  name          = data.docker_registry_image.pdf-tools.name
+  name          = "${data.docker_registry_image.pdf-tools.name}@${data.docker_registry_image.pdf-tools.sha256_digest}"
   pull_triggers = [data.docker_registry_image.pdf-tools.sha256_digest]
 
   lifecycle {
@@ -21,7 +21,7 @@ resource "docker_image" "pdf-tools" {
 
 resource "docker_container" "pdf-tools" {
   image = docker_image.pdf-tools.image_id
-  name  = "pdf-tools_${data.docker_registry_image.pdf-tools.sha256_digest}"
+  name  = "pdf-tools_${sha256(data.docker_registry_image.pdf-tools.sha256_digest)}"
 
   labels {
     label = "traefik.enable"

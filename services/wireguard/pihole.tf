@@ -3,7 +3,7 @@ data "docker_registry_image" "pihole" {
 }
 
 resource "docker_image" "pihole" {
-  name          = data.docker_registry_image.pihole.name
+  name          = "${data.docker_registry_image.pihole.name}@${data.docker_registry_image.pihole.sha256_digest}"
   pull_triggers = [data.docker_registry_image.pihole.sha256_digest]
 
   lifecycle {

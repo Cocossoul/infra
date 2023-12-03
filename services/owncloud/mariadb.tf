@@ -3,7 +3,7 @@ data "docker_registry_image" "owncloud_db" {
 }
 
 resource "docker_image" "owncloud_db" {
-  name          = data.docker_registry_image.owncloud_db.name
+  name          = "${data.docker_registry_image.owncloud_db.name}@${data.docker_registry_image.owncloud_db.sha256_digest}"
   pull_triggers = [data.docker_registry_image.owncloud_db.sha256_digest]
 
   lifecycle {
