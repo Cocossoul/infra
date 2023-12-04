@@ -1,5 +1,7 @@
 # Infra
 
+![Deployment status](https://github.com/Cocossoul/infra/actions/workflows/deploy.yml/badge.svg)
+
 Infrastructure as code for [cocopaps.com](https://cocopaps.com)
 
 ## Usage
