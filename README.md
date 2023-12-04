@@ -1,7 +1,7 @@
 # Infra
 
 ![Deployment status](https://github.com/Cocossoul/infra/actions/workflows/deploy.yml/badge.svg)
-![Homepage health](https://gatus.cocopaps.com/api/v1/endpoints/1--public_homepage/health/badge.svg)
+![Homepage uptime](https://gatus.cocopaps.com/api/v1/endpoints/1--public_homepage/uptimes/7d/badge.svg)
 
 Infrastructure as code for [cocopaps.com](https://cocopaps.com)
 
