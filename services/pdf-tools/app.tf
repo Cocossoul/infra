@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "pdf-tools" {
-  name = "frooodle/s-pdf:0.15.1" # renovate_docker
+  name = "frooodle/s-pdf:0.16.0" # renovate_docker
 }
 
 resource "docker_image" "pdf-tools" {
