@@ -40,10 +40,6 @@ resource "docker_container" "redis" {
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }
 
 resource "docker_volume" "redis" {
