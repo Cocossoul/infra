@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "commander" {
-  name = "jamesread/olivetin:2023.12.1" # renovate_docker
+  name = "jamesread/olivetin:2023.12.17" # renovate_docker
 }
 
 resource "docker_image" "commander" {
