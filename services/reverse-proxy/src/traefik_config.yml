@@ -14,5 +14,5 @@ http:
             - "0.0.0.0/0"
     ratelimiter:
       rateLimit:
-        average: 30
-        burst: 25
+        average: 50
+        burst: 100
