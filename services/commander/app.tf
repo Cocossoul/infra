@@ -11,17 +11,13 @@ data "docker_registry_image" "commander" {
 }
 
 resource "docker_image" "commander" {
-  name          = "${data.docker_registry_image.commander.name}@${data.docker_registry_image.commander.sha256_digest}"
+  name          = data.docker_registry_image.commander.name
   pull_triggers = [data.docker_registry_image.commander.sha256_digest]
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }
 
 resource "docker_container" "commander" {
   image = docker_image.commander.image_id
-  name  = "commander_${sha256(data.docker_registry_image.commander.sha256_digest)}"
+  name  = "commander"
   labels {
     label = "traefik.enable"
     value = "true"
@@ -74,8 +70,4 @@ resource "docker_container" "commander" {
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }

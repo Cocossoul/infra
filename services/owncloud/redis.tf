@@ -3,12 +3,8 @@ data "docker_registry_image" "redis" {
 }
 
 resource "docker_image" "redis" {
-  name          = "${data.docker_registry_image.redis.name}@${data.docker_registry_image.redis.sha256_digest}"
+  name          = data.docker_registry_image.redis.name
   pull_triggers = [data.docker_registry_image.redis.sha256_digest]
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }
 
 resource "docker_container" "redis" {

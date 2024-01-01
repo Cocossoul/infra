@@ -3,12 +3,8 @@ data "docker_registry_image" "cloudflared" {
 }
 
 resource "docker_image" "cloudflared" {
-  name          = "${data.docker_registry_image.cloudflared.name}@${data.docker_registry_image.cloudflared.sha256_digest}"
+  name          = data.docker_registry_image.cloudflared.name
   pull_triggers = [data.docker_registry_image.cloudflared.sha256_digest]
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }
 
 resource "docker_container" "cloudflared" {

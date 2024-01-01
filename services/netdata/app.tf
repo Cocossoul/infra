@@ -11,17 +11,13 @@ data "docker_registry_image" "netdata" {
 }
 
 resource "docker_image" "netdata" {
-  name          = "${data.docker_registry_image.netdata.name}@${data.docker_registry_image.netdata.sha256_digest}"
+  name          = data.docker_registry_image.netdata.name
   pull_triggers = [data.docker_registry_image.netdata.sha256_digest]
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }
 
 resource "docker_container" "netdata" {
   image = docker_image.netdata.image_id
-  name  = "netdata_${sha256(data.docker_registry_image.netdata.sha256_digest)}"
+  name  = "netdata"
   labels {
     label = "traefik.enable"
     value = "true"
@@ -95,8 +91,4 @@ resource "docker_container" "netdata" {
   destroy_grace_seconds = 60
 
   restart = "unless-stopped"
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }

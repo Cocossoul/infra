@@ -3,12 +3,8 @@ data "docker_registry_image" "immich_redis" {
 }
 
 resource "docker_image" "immich_redis" {
-  name          = "${data.docker_registry_image.immich_redis.name}@${data.docker_registry_image.immich_redis.sha256_digest}"
+  name          = data.docker_registry_image.immich_redis.name
   pull_triggers = [data.docker_registry_image.immich_redis.sha256_digest]
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }
 
 resource "docker_container" "immich_redis" {

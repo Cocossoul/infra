@@ -11,12 +11,8 @@ data "docker_registry_image" "firefly" {
 }
 
 resource "docker_image" "firefly" {
-  name          = "${data.docker_registry_image.firefly.name}@${data.docker_registry_image.firefly.sha256_digest}"
+  name          = data.docker_registry_image.firefly.name
   pull_triggers = [data.docker_registry_image.firefly.sha256_digest]
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }
 
 resource "docker_container" "firefly" {
