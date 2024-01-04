@@ -41,3 +41,16 @@ resource "aws_dynamodb_table" "terraform_locks" {
     type = "S"
   }
 }
+
+resource "aws_s3_bucket_lifecycle_configuration" "keep_last_five" {
+  bucket = aws_s3_bucket.terraform_state.id
+  rule {
+    id = "keep-last-five"
+    filter {}
+    noncurrent_version_expiration {
+      noncurrent_days = 90
+      newer_noncurrent_versions = 4
+    }
+    status = "Enabled"
+  }
+}
