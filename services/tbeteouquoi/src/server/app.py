@@ -14,7 +14,7 @@ def home():
 @app.route('/bete')
 def bete():
     photo = b''
-    with open("bete.jpeg", 'rb') as f:
+    with open("bete.jpg", 'rb') as f:
         photo = f.read()
     resp = app.make_response(photo)
     resp.mimetype = "image/jpeg"
