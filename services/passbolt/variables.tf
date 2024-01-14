@@ -4,3 +4,4 @@ variable "subdomain" {
 }
 variable "machine" {}
 variable "gateway" {}
+variable "mariadb_image" {}

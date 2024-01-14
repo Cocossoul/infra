@@ -11,3 +11,4 @@ variable "owncloud_admin_password" {
 }
 variable "owncloud_db_password" {}
 variable "gateway" {}
+variable "mariadb_image" {}

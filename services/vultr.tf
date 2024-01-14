@@ -10,6 +10,16 @@ provider "docker" {
   ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
   alias    = "vultr_machine"
 }
+data "docker_registry_image" "vultr_mariadb" {
+  name     = "mariadb:10.11" # renovate_docker
+  provider = docker.vultr_machine
+}
+
+resource "docker_image" "vultr_mariadb" {
+  name          = data.docker_registry_image.vultr_mariadb.name
+  pull_triggers = [data.docker_registry_image.vultr_mariadb.sha256_digest]
+  provider      = docker.vultr_machine
+}
 module "vultr_reverse-proxy" {
   source                      = "./reverse-proxy"
   elasticsearch_password_hash = htpasswd_password.elasticsearch.bcrypt
@@ -86,11 +96,12 @@ module "vultr_home" {
 }
 
 module "passbolt" {
-  source    = "./passbolt"
-  domain    = data.cloudflare_zone.cocopaps
-  subdomain = "passbolt"
-  machine   = local.vultr_machine
-  gateway   = module.vultr_reverse-proxy.gateway
+  source        = "./passbolt"
+  domain        = data.cloudflare_zone.cocopaps
+  subdomain     = "passbolt"
+  machine       = local.vultr_machine
+  gateway       = module.vultr_reverse-proxy.gateway
+  mariadb_image = docker_image.vultr_mariadb
   providers = {
     docker = docker.vultr_machine
   }
@@ -156,6 +167,7 @@ module "vultr_owncloud" {
   owncloud_admin_password = var.admin_password
   owncloud_db_password    = var.owncloud_db_password
   gateway                 = module.vultr_reverse-proxy.gateway
+  mariadb_image           = docker_image.vultr_mariadb
   providers = {
     docker = docker.vultr_machine
   }
