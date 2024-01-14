@@ -18,6 +18,7 @@ def bete():
         photo = f.read()
     resp = app.make_response(photo)
     resp.mimetype = "image/jpeg"
+    resp.headers["Cache-Control"] = "no-store"
     return resp
 
 if __name__ == '__main__':
