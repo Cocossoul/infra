@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    docker = {
+      source = "kreuzwerker/docker"
+    }
+  }
+}
+
 data "docker_registry_image" "mealie" {
   name = "ghcr.io/mealie-recipes/mealie:v1.1.1" # renovate_docker
 }
