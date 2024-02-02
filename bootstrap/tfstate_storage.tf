@@ -48,7 +48,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "keep_last_five" {
     id = "keep-last-five"
     filter {}
     noncurrent_version_expiration {
-      noncurrent_days = 90
+      noncurrent_days           = 90
       newer_noncurrent_versions = 4
     }
     status = "Enabled"
