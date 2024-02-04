@@ -1,5 +1,5 @@
 data "docker_registry_image" "firefly_importer" {
-  name = "fireflyiii/data-importer:version-1.3.8" # renovate_docker
+  name = "fireflyiii/data-importer:version-1.4.2" # renovate_docker
 }
 
 resource "docker_image" "firefly_importer" {
