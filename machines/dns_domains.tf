@@ -10,7 +10,7 @@ resource "cloudflare_record" "vultr_dyndns" {
   proxied = false
 
   lifecycle {
-    ignore_changes = [ value ]
+    ignore_changes = [value]
   }
 }
 
@@ -22,6 +22,6 @@ resource "cloudflare_record" "homeserver_dyndns" {
   proxied = false
 
   lifecycle {
-    ignore_changes = [ value ]
+    ignore_changes = [value]
   }
 }
