@@ -11,6 +11,16 @@ provider "docker" {
   ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
   alias    = "homeserver_machine"
 }
+data "docker_registry_image" "homeserver_mariadb" {
+  name     = "mariadb:10.11" # renovate_docker
+  provider = docker.homeserver_machine
+}
+
+resource "docker_image" "homeserver_mariadb" {
+  name          = data.docker_registry_image.homeserver_mariadb.name
+  pull_triggers = [data.docker_registry_image.homeserver_mariadb.sha256_digest]
+  provider      = docker.homeserver_machine
+}
 module "homeserver_reverse-proxy" {
   source                      = "./reverse-proxy"
   sso_password_hash           = htpasswd_password.sso.bcrypt
@@ -71,6 +81,7 @@ module "owncloud" {
   owncloud_admin_username = "admin_owncloud"
   owncloud_admin_password = var.admin_password
   owncloud_db_password    = var.owncloud_db_password
+  mariadb_image           = docker_image.homeserver_mariadb
   gateway                 = module.homeserver_reverse-proxy.gateway
   providers = {
     docker = docker.homeserver_machine

@@ -17,7 +17,8 @@ def bete():
     with open("bete.jpg", 'rb') as f:
         photo = f.read()
     resp = app.make_response(photo)
-    resp.mimetype = "image/jpg"
+    resp.mimetype = "image/jpeg"
+    resp.headers["Cache-Control"] = "no-store"
     return resp
 
 if __name__ == '__main__':

@@ -1,14 +1,5 @@
-data "docker_registry_image" "owncloud_db" {
-  name = "mariadb:10.11" # renovate_docker
-}
-
-resource "docker_image" "owncloud_db" {
-  name          = data.docker_registry_image.owncloud_db.name
-  pull_triggers = [data.docker_registry_image.owncloud_db.sha256_digest]
-}
-
 resource "docker_container" "owncloud_db" {
-  image = docker_image.owncloud_db.image_id
+  image = var.mariadb_image.image_id
   name  = "owncloud_db"
 
   env = [

@@ -1,13 +1,12 @@
-FROM alpine:3.18.4
+FROM alpine:3.19.0
 
-RUN apk add --no-cache tini python3 py3-pip
+RUN apk add --no-cache tini python3 py3-flask
 ENTRYPOINT [ "/sbin/tini", "--" ]
 
 COPY server/ /server
 
 WORKDIR /server
 
-RUN pip3 install -r requirements.txt
 EXPOSE 8080
 
 CMD [ "python3", "app.py" ]

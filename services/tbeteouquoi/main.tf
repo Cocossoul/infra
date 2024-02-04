@@ -24,6 +24,10 @@ resource "null_resource" "tbeteouquoi_build" {
     }
     command = "./build.sh"
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 data "docker_registry_image" "tbeteouquoi" {

@@ -6,22 +6,26 @@ terraform {
   }
 }
 
-data "docker_registry_image" "mealie_frontend" {
-  name = "hkotel/mealie:frontend-v1.0.0beta-5" # renovate_docker
+data "docker_registry_image" "mealie" {
+  name = "ghcr.io/mealie-recipes/mealie:v1.1.1" # renovate_docker
 }
 
-resource "docker_image" "mealie_frontend" {
-  name          = data.docker_registry_image.mealie_frontend.name
-  pull_triggers = [data.docker_registry_image.mealie_frontend.sha256_digest]
+resource "docker_image" "mealie" {
+  name          = data.docker_registry_image.mealie.name
+  pull_triggers = [data.docker_registry_image.mealie.sha256_digest]
 }
 
-resource "docker_container" "mealie_frontend" {
-  image = docker_image.mealie_frontend.image_id
-  name  = "mealie_frontend"
-
+resource "docker_container" "mealie" {
+  image = docker_image.mealie.image_id
+  name  = "mealie"
   env = [
     "ALLOW_SIGNUP=false",
-    "API_URL=http://${docker_container.mealie_backend.name}:9000"
+    "PUID=1000",
+    "PGID=1000",
+    "TZ=Europe/Paris",
+    "MAX_WORKERS=1",
+    "WEB_CONCURRENCY=1",
+    "BASE_URL=https://${var.subdomain}.${var.domain.name}"
   ]
   labels {
     label = "traefik.enable"
@@ -32,19 +36,19 @@ resource "docker_container" "mealie_frontend" {
     value = var.gateway
   }
   labels {
-    label = "traefik.http.routers.mealie_frontend.entryPoints"
+    label = "traefik.http.routers.mealie.entryPoints"
     value = "secure"
   }
   labels {
-    label = "traefik.http.routers.mealie_frontend.rule"
+    label = "traefik.http.routers.mealie.rule"
     value = "Host(`${var.subdomain}.${var.domain.name}`)"
   }
   labels {
-    label = "traefik.http.routers.mealie_frontend.tls"
+    label = "traefik.http.routers.mealie.tls"
     value = "true"
   }
   labels {
-    label = "traefik.http.routers.mealie_frontend.tls.certresolver"
+    label = "traefik.http.routers.mealie.tls.certresolver"
     value = "letsencrypt"
   }
   networks_advanced {

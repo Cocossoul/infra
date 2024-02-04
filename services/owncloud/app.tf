@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "owncloud" {
-  name = "owncloud/server:10.13" # renovate_docker
+  name = "owncloud/server:10.13.4" # renovate_docker
 }
 
 resource "docker_image" "owncloud" {

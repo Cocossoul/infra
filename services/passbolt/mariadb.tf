@@ -1,14 +1,5 @@
-data "docker_registry_image" "passbolt_db" {
-  name = "mariadb:10.11" # renovate_docker
-}
-
-resource "docker_image" "passbolt_db" {
-  name          = data.docker_registry_image.passbolt_db.name
-  pull_triggers = [data.docker_registry_image.passbolt_db.sha256_digest]
-}
-
 resource "docker_container" "passbolt_db" {
-  image = docker_image.passbolt_db.image_id
+  image = var.mariadb_image.image_id
   name  = "passbolt_db"
 
   env = [
