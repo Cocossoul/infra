@@ -8,6 +8,10 @@ resource "cloudflare_record" "vultr_dyndns" {
   value   = "1.1.1.1"
   type    = "A"
   proxied = false
+
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
 
 resource "cloudflare_record" "homeserver_dyndns" {
@@ -16,4 +20,8 @@ resource "cloudflare_record" "homeserver_dyndns" {
   value   = "1.1.1.1"
   type    = "A"
   proxied = false
+
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
