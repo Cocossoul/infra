@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "netdata" {
-  name = "netdata/netdata:v1.44.1" # renovate_docker
+  name = "netdata/netdata:v1.44.3" # renovate_docker
 }
 
 resource "docker_image" "netdata" {
