@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "wireguard_ui" {
-  name = "ngoduykhanh/wireguard-ui:0.5.2" # renovate_docker
+  name = "ngoduykhanh/wireguard-ui:0.6.2" # renovate_docker
 }
 
 resource "docker_image" "wireguard_ui" {
