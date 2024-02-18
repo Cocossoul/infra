@@ -1,5 +1,5 @@
 data "docker_registry_image" "immich_redis" {
-  name = "redis:6.2-alpine" # renovate_docker
+  name = "redis:7.2-alpine" # renovate_docker
 }
 
 resource "docker_image" "immich_redis" {
