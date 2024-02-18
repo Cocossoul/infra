@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "reverse-proxy" {
-  name = "traefik:v2.10.7" # renovate_docker
+  name = "traefik:2.11.0" # renovate_docker
 }
 
 resource "docker_image" "reverse-proxy" {
