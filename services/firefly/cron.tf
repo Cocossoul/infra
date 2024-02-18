@@ -1,5 +1,5 @@
 data "docker_registry_image" "firefly_cron" {
-  name = "alpine:3.19.0" # renovate_docker
+  name = "alpine:3.19.1" # renovate_docker
 }
 
 resource "docker_image" "firefly_cron" {
