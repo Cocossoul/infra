@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "boinc" {
-  name = "linuxserver/boinc:7.20.5" # renovate_docker
+  name = "linuxserver/boinc:7.24.1" # renovate_docker
 }
 
 resource "docker_image" "boinc" {
