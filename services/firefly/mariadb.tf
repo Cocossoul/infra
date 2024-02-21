@@ -1,5 +1,5 @@
 data "docker_registry_image" "firefly_db" {
-  name = "mariadb:11.1.2" # renovate_docker
+  name = "mariadb:11.3.2" # renovate_docker
 }
 
 resource "docker_image" "firefly_db" {
