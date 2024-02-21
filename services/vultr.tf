@@ -11,7 +11,7 @@ provider "docker" {
   alias    = "vultr_machine"
 }
 data "docker_registry_image" "vultr_mariadb" {
-  name     = "mariadb:10.11" # renovate_docker
+  name     = "mariadb:11.3" # renovate_docker
   provider = docker.vultr_machine
 }
 

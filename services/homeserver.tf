@@ -12,7 +12,7 @@ provider "docker" {
   alias    = "homeserver_machine"
 }
 data "docker_registry_image" "homeserver_mariadb" {
-  name     = "mariadb:10.11" # renovate_docker
+  name     = "mariadb:11.3" # renovate_docker
   provider = docker.homeserver_machine
 }
 
