@@ -24,6 +24,11 @@
       community.general.ufw:
         rule: allow
         port: 25575
+    - name: Allow traffic from wg0 to ethernet interface
+      community.general.ufw:
+        rule: allow
+        interface_in: wg0
+        interface_out: enp4s0
     - name: Allow Wireguard port
       become: true
       community.general.ufw:
