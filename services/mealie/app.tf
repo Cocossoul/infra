@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "mealie" {
-  name = "ghcr.io/mealie-recipes/mealie:v1.2.0" # renovate_docker
+  name = "ghcr.io/mealie-recipes/mealie:v1.3.2" # renovate_docker
 }
 
 resource "docker_image" "mealie" {
