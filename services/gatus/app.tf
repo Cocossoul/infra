@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "gatus" {
-  name = "twinproduction/gatus:v5.7.0" # renovate_docker
+  name = "twinproduction/gatus:v5.8.0" # renovate_docker
 }
 
 resource "docker_image" "gatus" {
