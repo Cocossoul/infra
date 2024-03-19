@@ -7,7 +7,7 @@ terraform {
 }
 
 data "docker_registry_image" "portainer" {
-  name = "portainer/portainer-ce:2.19.4" # renovate_docker
+  name = "portainer/portainer-ce:2.20.0" # renovate_docker
 }
 
 resource "docker_image" "portainer" {
