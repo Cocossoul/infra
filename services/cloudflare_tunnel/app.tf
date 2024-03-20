@@ -1,5 +1,5 @@
 data "docker_registry_image" "cloudflared" {
-  name = "cloudflare/cloudflared:2023.10.0" # renovate_docker
+  name = "cloudflare/cloudflared:2024.3.0" # renovate_docker
 }
 
 resource "docker_image" "cloudflared" {
