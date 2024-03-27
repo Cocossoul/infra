@@ -1,5 +1,5 @@
 data "docker_registry_image" "pihole" {
-  name = "pihole/pihole:2024.02.0" # renovate_docker
+  name = "pihole/pihole:2024.03.1" # renovate_docker
 }
 
 resource "docker_image" "pihole" {
